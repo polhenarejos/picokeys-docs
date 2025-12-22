@@ -48,9 +48,17 @@ nav:
 
   - Pico HSM:
       - Overview: picohsm/index.md
-      - Supported features: picohsm/supported-features.md
-      - Usage: picohsm/usage.md
-      - Security model: picohsm/security-model.md
+      - Supported features: picohsm/features.md
+      - Usage:
+        - First steps: picohsm/first-steps.md
+        - Key Generation: picohsm/key-generation.md
+        - AES: picohsm/aes.md
+        - Asymmetric Ciphering: picohsm/asymmetric-ciphering.md
+        - Sign & Verify: picohsm/sign-verify.md
+        - Public Key Authentication: picohsm/public-key-authentication.md
+        - Backup & Restore: picohsm/backup-restore.md
+        - Store Data: picohsm/store-data.md
+        - Smart Card Shell 3: picohsm/scs3.md
 
   - Pico FIDO:
       - Overview: picofido/index.md
