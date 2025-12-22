@@ -1,6 +1,7 @@
 site_name: PicoKeys Documentation
 site_description: Documentation for Pico HSM, Pico FIDO, Pico OpenPGP and PicoKeyApp
 site_url: https://docs.picokeys.com/
+site_dir: site
 
 theme:
   name: material
