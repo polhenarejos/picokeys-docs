@@ -1,0 +1,58 @@
+site_name: PicoKeys Documentation
+site_description: Documentation for Pico HSM, Pico FIDO, Pico OpenPGP and PicoKeyApp
+site_url: https://docs.picokeys.com/
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+nav:
+  - Home: index.md
+
+  - PicoKeyApp:
+      - Overview: picokeyapp/index.md
+      - Installation: picokeyapp/install.md
+      - First steps: picokeyapp/first-steps.md
+      - Quick start: picokeyapp/quickstart.md
+      - Usage guide:
+        - Home screen: picokeyapp/home.md
+        - Device configuration: picokeyapp/configuration.md
+        - Firmware management: picokeyapp/firmware.md
+        - About: picokeyapp/about.md
+        - License: picokeyapp/license.md
+
+  - Pico HSM:
+      - Overview: picohsm/index.md
+      - Supported features: picohsm/supported-features.md
+      - Usage: picohsm/usage.md
+      - Security model: picohsm/security-model.md
+
+  - Pico FIDO:
+      - Overview: picofido/index.md
+      - FIDO2 basics: picofido/fido2-basics.md
+      - Usage: picofido/usage.md
+
+  - Pico OpenPGP:
+      - Overview: pico-openpgp/index.md
+      - OpenPGP basics: pico-openpgp/openpgp-basics.md
+      - Usage: pico-openpgp/usage.md
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
