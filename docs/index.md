@@ -29,6 +29,7 @@ It is responsible for:
 PicoKeyApp provides the **same user interface regardless of the installed firmware**.
 
 ➡️ See:
+
 - [PicoKeyApp](picokeyapp/index.md)
 - [First-time use](picokeyapp/first-time-use.md)
 - [Quick start](picokeyapp/quickstart.md)
