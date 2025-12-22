@@ -37,6 +37,7 @@ nav:
       - Installation: picokeyapp/install.md
       - First steps: picokeyapp/first-steps.md
       - Quick start: picokeyapp/quickstart.md
+      - Troubleshooting: picokeyapp/troubleshooting.md
       - Usage guide:
         - Home screen: picokeyapp/home.md
         - Device configuration: picokeyapp/configuration.md
