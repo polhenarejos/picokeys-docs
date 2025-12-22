@@ -15,7 +15,6 @@ PicoKeyApp communicates directly with the device over USB and exposes only the f
 
 ## Contents
 
-- [Application layout](layout.md)
 - [Home](home.md)
 - [Configuration](configuration.md)
 - [About and diagnostics](about.md)

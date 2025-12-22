@@ -31,7 +31,7 @@ PicoKeyApp provides the **same user interface regardless of the installed firmwa
 ➡️ See:
 
 - [PicoKeyApp](picokeyapp/index.md)
-- [First-time use](picokeyapp/first-time-use.md)
+- [First steps](picokeyapp/first-steps.md)
 - [Quick start](picokeyapp/quickstart.md)
 
 ---

@@ -62,13 +62,9 @@ nav:
 
   - Pico FIDO:
       - Overview: picofido/index.md
-      - FIDO2 basics: picofido/fido2-basics.md
-      - Usage: picofido/usage.md
 
   - Pico OpenPGP:
       - Overview: pico-openpgp/index.md
-      - OpenPGP basics: pico-openpgp/openpgp-basics.md
-      - Usage: pico-openpgp/usage.md
 
 markdown_extensions:
   - admonition
