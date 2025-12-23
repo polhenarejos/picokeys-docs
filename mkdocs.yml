@@ -42,7 +42,11 @@ nav:
       - Usage guide:
         - Home screen: picokeyapp/home.md
         - Device configuration: picokeyapp/configuration.md
+        - Security boot & lock: picokeyapp/security.md
         - Firmware management: picokeyapp/firmware.md
+        - Initialization:
+          - Pico HSM: picokeyapp/init-picohsm.md
+          - Pico FIDO: picokeyapp/init-picofido.md
         - About: picokeyapp/about.md
         - License: picokeyapp/license.md
 

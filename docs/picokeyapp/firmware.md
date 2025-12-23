@@ -4,6 +4,8 @@ This section explains how to update the firmware of a PicoKeys device using **Pi
 
 Firmware updates modify the software running on the device and may affect available features and behavior.
 
+![Firmware](../assets/images/picokeyapp/firmware.png)
+
 ---
 
 ## Overview
@@ -71,6 +73,8 @@ During the update:
 
 - Progress information may be displayed
 - The device may temporarily disconnect and reconnect
+
+![Firmware upgrade](../assets/images/picokeyapp/firmware.png)
 
 ---
 

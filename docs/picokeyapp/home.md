@@ -2,6 +2,8 @@
 
 The **Home** section provides an overview of the currently connected device.
 
+![Home](../assets/images/picokeyapp/home.png)
+
 ---
 
 ## Device detection

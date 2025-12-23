@@ -2,6 +2,8 @@
 
 The **Configuration** section is used to commission and customize the device.
 
+![Configuration](../assets/images/picokeyapp/configuration.png)
+
 ---
 
 ## Vendor / USB identity
