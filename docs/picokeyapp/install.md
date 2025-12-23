@@ -5,7 +5,7 @@ This page explains how to install PicoKeyApp on your operating system.
 ## Downloads
 Download PicoKeyApp from the official downloads page:
 
-- PicoKeyApp downloads: (add your link here)
+- PicoKeyApp downloads:
 
 !!! note
     Always download PicoKeyApp from official sources to avoid tampered binaries.
@@ -17,6 +17,7 @@ Download PicoKeyApp from the official downloads page:
 
 ### Windows driver notes
 PicoKeyApp uses standard USB drivers where possible. If your device is not detected, go to:
+
 - [Troubleshooting](troubleshooting.md)
 
 ## macOS
@@ -40,4 +41,5 @@ PicoKeyApp uses standard USB drivers where possible. If your device is not detec
 
 !!! Linux permissions (USB access)
 If the device is not detected, you may need udev rules or group permissions. See:
+
 - [Troubleshooting](troubleshooting.md)
