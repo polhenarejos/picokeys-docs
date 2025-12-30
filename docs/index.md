@@ -15,9 +15,9 @@ This documentation is intended for users who want to understand how to set up, m
 
 The PicoKeys ecosystem is split into two clearly separated layers:
 
-### 1. PicoKeyApp (desktop application)
+### 1. PicoKey App (desktop application)
 
-**PicoKeyApp** is the desktop application used to manage PicoKeys devices.
+**PicoKey App** is the desktop application used to manage PicoKeys devices.
 
 It is responsible for:
 
@@ -26,11 +26,11 @@ It is responsible for:
 - License installation and board registration
 - Diagnostics and troubleshooting
 
-PicoKeyApp provides the **same user interface regardless of the installed firmware**.
+PicoKey App provides the **same user interface regardless of the installed firmware**.
 
 ➡️ See:
 
-- [PicoKeyApp](picokeyapp/index.md)
+- [PicoKey App](picokeyapp/index.md)
 - [First steps](picokeyapp/first-steps.md)
 - [Quick start](picokeyapp/quickstart.md)
 
@@ -65,7 +65,7 @@ Available firmware variants include:
 
 For most users, the typical workflow is:
 
-1. Install PicoKeyApp
+1. Install PicoKey App
 2. Install a license
 3. Connect a PicoKeys device
 4. Select and register the correct board type
@@ -86,7 +86,7 @@ Make sure to read the first-time use documentation before proceeding.
 
 This documentation covers:
 
-- How to use PicoKeyApp
+- How to use PicoKey App
 - How to perform first-time setup safely
 - What functionality is provided by each firmware variant
 - Common concepts shared across the PicoKeys ecosystem
@@ -101,7 +101,7 @@ This documentation does **not** cover:
 
 ## Getting help
 
-If you encounter an issue with PicoKeyApp or the documentation:
+If you encounter an issue with PicoKey App or the documentation:
 
 - Check the relevant section in this documentation
 - Review the troubleshooting information

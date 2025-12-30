@@ -1,6 +1,6 @@
 # Troubleshooting
 
-This section lists the most common issues encountered when using **PicoKeyApp**, together with their causes and recommended actions.
+This section lists the most common issues encountered when using **PicoKey App**, together with their causes and recommended actions.
 
 Read this section carefully before opening a support ticket.
 
@@ -8,7 +8,7 @@ Read this section carefully before opening a support ticket.
 
 ## Device not detected
 
-PicoKeyApp does not detect any connected device.
+PicoKey App does not detect any connected device.
 
 ### Possible causes
 
@@ -24,7 +24,7 @@ PicoKeyApp does not detect any connected device.
 - Try a different USB cable
 - Close other applications that may access USB devices
 - Disconnect and reconnect the device
-- Restart PicoKeyApp
+- Restart PicoKey App
 
 !!! tip
     For first-time setup, always use a direct USB connection without hubs.
@@ -122,7 +122,7 @@ Open a ticket at:
 Include:
 
 - The exact board model
-- PicoKeyApp version
+- PicoKey App version
 - Firmware version
 - Any relevant screenshots or logs
 
@@ -142,7 +142,7 @@ A firmware update does not complete successfully.
 ### Recommended actions
 
 - Do not unplug the device immediately
-- Follow any instructions shown by PicoKeyApp
+- Follow any instructions shown by PicoKey App
 - If the device reappears in `RESCUE` mode, retry the update
 - Use a direct USB connection
 
@@ -157,7 +157,7 @@ Some features are missing after installing or updating firmware.
 
 ### Explanation
 
-Available features depend on the **installed firmware**, not on PicoKeyApp itself.
+Available features depend on the **installed firmware**, not on PicoKey App itself.
 
 Installing a different firmware variant may:
 
@@ -172,7 +172,7 @@ Installing a different firmware variant may:
 - Re-run commissioning if required
 
 !!! note
-    PicoKeyApp only exposes features supported by the firmware.
+    PicoKey App only exposes features supported by the firmware.
 
 ---
 
@@ -191,7 +191,7 @@ Linux systems may require additional USB permissions.
 - Restart the session after changing permissions
 
 !!! tip
-    Running PicoKeyApp from a terminal can help identify permission-related errors.
+    Running PicoKey App from a terminal can help identify permission-related errors.
 
 ---
 

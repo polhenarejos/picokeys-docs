@@ -16,7 +16,7 @@ The main goals of Pico HSM are:
 - Integration with standard cryptographic interfaces
 
 !!! note
-    Pico HSM defines device behavior. PicoKeyApp is only used to manage and provision the device.
+    Pico HSM defines device behavior. PicoKey App is only used to manage and provision the device.
 
 ---
 
@@ -98,7 +98,7 @@ To use Pico HSM effectively, the host system typically requires:
 - Required middleware or libraries (e.g. PKCS#11)
 
 !!! note
-    Host-side setup is outside the scope of PicoKeyApp and depends on the operating system.
+    Host-side setup is outside the scope of PicoKey App and depends on the operating system.
 
 ---
 

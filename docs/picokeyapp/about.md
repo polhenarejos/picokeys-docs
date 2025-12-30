@@ -6,7 +6,7 @@ The **About** section contains application-level information and diagnostic tool
 
 ## About
 
-Provides basic information about the PicoKeyApp version and build.
+Provides basic information about the PicoKey App version and build.
 
 ---
 

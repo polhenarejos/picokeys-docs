@@ -1,6 +1,6 @@
 # Security initialization
 
-This page describes the **security initialization and provisioning options** available with PicoKeyApp.
+This page describes the **security initialization and provisioning options** available with PicoKey App.
 
 These options are **applied once during initialization** and directly affect the security model of the authenticator.
 

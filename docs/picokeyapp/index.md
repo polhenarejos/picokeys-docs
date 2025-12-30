@@ -1,6 +1,6 @@
-# PicoKeyApp
+# PicoKey App
 
-PicoKeyApp is the desktop application used to manage **PicoKeys devices**.
+PicoKe App is the desktop application used to manage **PicoKeys devices**.
 
 It provides a local user interface for:
 
@@ -9,7 +9,7 @@ It provides a local user interface for:
 - Security-related settings (firmware-dependent)
 - License and board registration
 
-PicoKeyApp communicates directly with the device over USB and exposes only the features supported by the currently installed firmware.
+PicoKey App communicates directly with the device over USB and exposes only the features supported by the currently installed firmware.
 
 ---
 

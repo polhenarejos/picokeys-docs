@@ -1,6 +1,6 @@
 # Pico HSM Initialization
 
-This page documents the **security initialization options** available for **Pico HSM** when using PicoKeyApp.
+This page documents the **security initialization options** available for **Pico HSM** when using PicoKey App.
 
 These settings control **PIN policies, key protection mechanisms, and recovery options**.
 

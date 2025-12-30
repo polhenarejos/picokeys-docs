@@ -2,17 +2,17 @@
 
 This section explains the **core concepts** used throughout the PicoKeys ecosystem.
 
-Understanding these concepts is essential to correctly use PicoKeyApp and the different firmware variants.
+Understanding these concepts is essential to correctly use PicoKey App and the different firmware variants.
 
 ---
 
-## PicoKeyApp vs firmware
+## PicoKey App vs firmware
 
 The PicoKeys ecosystem is split into two distinct layers.
 
-### PicoKeyApp (desktop application)
+### PicoKey App (desktop application)
 
-PicoKeyApp is the **management interface**.
+PicoKey App is the **management interface**.
 
 It is responsible for:
 
@@ -23,7 +23,7 @@ It is responsible for:
 - Providing diagnostics and troubleshooting tools
 
 !!! note
-    PicoKeyApp does not implement cryptographic functionality.
+    PicoKey App does not implement cryptographic functionality.
 
 ---
 
@@ -38,7 +38,7 @@ Different firmware variants provide different functionality, such as:
 - OpenPGP smartcard functionality (Pico OpenPGP)
 
 !!! note
-    The same PicoKeyApp interface is used regardless of the installed firmware.
+    The same PicoKey App interface is used regardless of the installed firmware.
 
 ---
 
@@ -185,7 +185,7 @@ The PicoKeys ecosystem follows a **user-controlled model**.
 This means:
 
 - The user explicitly selects actions
-- PicoKeyApp does not auto-correct critical decisions
+- PicoKey App does not auto-correct critical decisions
 - Irreversible operations require explicit confirmation
 
 !!! note
@@ -197,7 +197,7 @@ This means:
 
 To use PicoKeys devices correctly, remember:
 
-- PicoKeyApp is the management interface
+- PicoKey App is the management interface
 - Firmware defines actual device functionality
 - Board selection and registration are irreversible
 - Commissioning finalizes device setup

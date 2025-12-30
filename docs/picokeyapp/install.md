@@ -1,29 +1,29 @@
 # Installation
 
-This page explains how to install PicoKeyApp on your operating system.
+This page explains how to install PicoKey App on your operating system.
 
 ## Downloads
-Download PicoKeyApp from the official downloads page:
+Download PicoKey App from the official downloads page:
 
-- PicoKeyApp downloads:
+- PicoKey App downloads:
 
 !!! note
-    Always download PicoKeyApp from official sources to avoid tampered binaries.
+    Always download PicoKey App from official sources to avoid tampered binaries.
 
 ## Windows
-1. Download the `.exe` installer (or portable build, depending on release).
-2. Run the installer.
-3. Launch **PicoKeyApp** from the Start menu.
+1. Download the `.exe` portable build.
+2. No installer is required. Just put the app in the desired folder.
+3. Launch **PicoKey App** from the Start menu.
 
 ### Windows driver notes
-PicoKeyApp uses standard USB drivers where possible. If your device is not detected, go to:
+PicoKey App uses standard USB drivers where possible. If your device is not detected, go to:
 
 - [Troubleshooting](troubleshooting.md)
 
 ## macOS
 1. Download the `.dmg` (or `.zip`) build.
-2. Drag **PicoKeyApp** into **Applications**.
-3. Open PicoKeyApp.
+2. Drag **PicoKey App** into **Applications**.
+3. Open PicoKey App.
 
 !!! tip
     If macOS blocks the app, open **System Settings → Privacy & Security** and allow the application.

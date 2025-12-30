@@ -1,6 +1,6 @@
 # Firmware update
 
-This section explains how to update the firmware of a PicoKeys device using **PicoKeyApp**.
+This section explains how to update the firmware of a PicoKeys device using **PicoKey App**.
 
 Firmware updates modify the software running on the device and may affect available features and behavior.
 
@@ -22,12 +22,7 @@ Firmware updates are **explicit user actions** and are never performed automatic
 
 ## Supported update modes
 
-Depending on the device state and firmware, PicoKeyApp may support firmware updates when the device is in:
-
-- **BOOTSEL / RESCUE mode** (recommended and most reliable)
-- Normal operation mode (firmware-dependent)
-
-For new or freshly flashed devices, **RESCUE mode is expected**.
+Depending on the device state and firmware, PicoKey App may support firmware updates when the device is **BOOTSEL / RESCUE mode**. For new or freshly flashed devices, **RESCUE mode is expected**.
 
 ---
 
@@ -54,7 +49,7 @@ If the device is not already in BOOTSEL / RESCUE mode:
 2. Click **Reboot to BOOTSEL**
 3. Wait for the device to reconnect
 
-Once in BOOTSEL / RESCUE mode, PicoKeyApp should detect the device again.
+Once in BOOTSEL / RESCUE mode, PicoKey App should detect the device again.
 
 ---
 
@@ -62,11 +57,11 @@ Once in BOOTSEL / RESCUE mode, PicoKeyApp should detect the device again.
 
 The typical firmware update process is:
 
-1. Open the firmware update section in PicoKeyApp
+1. Open the firmware update section in PicoKey App
 2. Select the firmware file to be installed
    (firmware files are usually provided as a binary image)
 3. Start the update process
-4. Wait until PicoKeyApp reports completion
+4. Wait until PicoKey App reports completion
 5. Reconnect the device if requested
 
 During the update:
@@ -84,7 +79,7 @@ After a successful firmware update:
 
 - The device may reboot automatically
 - The reported firmware version should change accordingly
-- Available features in PicoKeyApp may change depending on the firmware
+- Available features in PicoKey App may change depending on the firmware
 
 It is recommended to:
 
@@ -104,7 +99,7 @@ Installing a new firmware may:
 
 !!! Note
     Firmware functionality is defined by the installed firmware,
-    not by PicoKeyApp itself.
+    not by PicoKey App itself.
 
 ---
 
@@ -113,7 +108,7 @@ Installing a new firmware may:
 If the firmware update fails:
 
 - Do not unplug the device immediately
-- Follow any instructions shown by PicoKeyApp
+- Follow any instructions shown by PicoKey App
 - If the device enters BOOTSEL / RESCUE mode, retry the update
 
 If recovery is not possible or behavior is unclear, open a ticket at:
@@ -122,7 +117,7 @@ If recovery is not possible or behavior is unclear, open a ticket at:
 
 Include:
 
-- PicoKeyApp version
+- PicoKey App version
 - Firmware version (if known)
 - Device platform and board model
 - A description of what happened and at which step
@@ -132,5 +127,5 @@ Include:
 ## Important notes
 
 - Firmware updates are explicit and user-controlled
-- PicoKeyApp does not automatically select or install firmware
+- PicoKey App does not automatically select or install firmware
 - Always verify that you are installing the correct firmware variant for your device

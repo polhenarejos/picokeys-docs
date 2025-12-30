@@ -1,6 +1,6 @@
 # First-time use
 
-This section describes the **mandatory steps required the first time you use PicoKeyApp with a new device**.
+This section describes the **mandatory steps required the first time you use PicoKey App with a new device**.
 
 These steps are only performed once per device and include **irreversible operations**.
 Read this section carefully before proceeding.
@@ -9,7 +9,7 @@ Read this section carefully before proceeding.
 
 ## Overview
 
-When using PicoKeyApp for the first time, the following actions are required:
+When using PicoKey App for the first time, the following actions are required:
 
 1. Install a valid license
 2. Connect a compatible PicoKeys device
@@ -42,7 +42,7 @@ At this stage:
 
 1. Plug the PicoKeys device into a USB port
 2. Use a direct USB connection whenever possible
-3. Launch PicoKeyApp if it is not already running
+3. Launch PicoKey App if it is not already running
 
 Go to **Home** and verify that:
 
@@ -53,7 +53,7 @@ If the device is not detected:
 
 - Try a different USB cable or port
 - Close other applications that may be accessing the device
-- Reconnect the device and restart PicoKeyApp
+- Reconnect the device and restart PicoKey App
 
 ---
 
@@ -64,7 +64,7 @@ Before registering the board, **you must explicitly select the correct board typ
 This step is **required** and **user-controlled**.
 
 - The board type defines the hardware variant associated with the license
-- PicoKeyApp cannot automatically infer the correct board in all cases
+- PicoKey App cannot automatically infer the correct board in all cases
 - The user is responsible for selecting the correct option
 
 !!! Warning
@@ -124,7 +124,7 @@ Instead, open a support ticket at:
 Include:
 
 - The exact board model
-- The PicoKeyApp version
+- The   version
 - The firmware version running on the device
 - Any relevant screenshots or logs
 

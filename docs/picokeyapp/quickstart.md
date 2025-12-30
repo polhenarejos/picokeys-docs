@@ -1,6 +1,6 @@
 # Quick start
 
-This guide walks through a **typical first-time workflow** using PicoKeyApp, from connecting a device to having it commissioned and ready for use.
+This guide walks through a **typical first-time workflow** using PicoKey App, from connecting a device to having it commissioned and ready for use.
 
 No prior configuration is assumed.
 
@@ -10,7 +10,7 @@ No prior configuration is assumed.
 
 1. Plug the PicoKeys device into a USB port.
 2. Use a direct USB connection whenever possible (avoid hubs during initial setup).
-3. Launch **PicoKeyApp**.
+3. Launch **PicoKey App**.
 
 After a few seconds, the application should detect the device automatically.
 
@@ -32,7 +32,7 @@ If the device is **not detected**:
 
 - Try a different USB port or cable
 - Close other applications that might be accessing the device
-- Reconnect the device and restart PicoKeyApp
+- Reconnect the device and restart PicoKey App
 
 ---
 
@@ -114,7 +114,7 @@ At this point, the device is ready to be used with the installed firmware.
 
 ## What’s next?
 
-PicoKeyApp provides the same UI for different firmware variants.
+PicoKey App provides the same UI for different firmware variants.
 
 Next steps depend on which firmware is installed:
 

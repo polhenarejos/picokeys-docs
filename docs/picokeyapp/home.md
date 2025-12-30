@@ -8,7 +8,7 @@ The **Home** section provides an overview of the currently connected device.
 
 ## Device detection
 
-When a device is correctly detected, PicoKeyApp displays the following information:
+When a device is correctly detected, PicoKey App displays the following information:
 
 - **Type** – Device family (e.g. `PICOKEY`)
 - **Connection** – Current connection mode (e.g. `RESCUE`)
