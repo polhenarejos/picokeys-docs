@@ -1,6 +1,6 @@
 # Pico FIDO Initialization
 
-This page describes the **security initialization and provisioning options** available when using **Pico FIDO** with PicoKeyApp.
+This page describes the **security initialization and provisioning options** available when using **Pico FIDO** with PicoKey App.
 
 These options are **applied once during initialization** and directly affect the security model of the authenticator.
 
