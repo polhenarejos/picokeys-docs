@@ -73,6 +73,10 @@ This step is **required** and **user-controlled**.
 
 Take special care at this step.
 
+!!! info
+    Do not attempt to register the board in BOOTSEL mode. Proceed with a
+    PicoKey firmware running normally.
+
 ---
 
 ## Step 4 – Register the board
@@ -124,7 +128,7 @@ Instead, open a support ticket at:
 Include:
 
 - The exact board model
-- The   version
+- The version
 - The firmware version running on the device
 - Any relevant screenshots or logs
 
