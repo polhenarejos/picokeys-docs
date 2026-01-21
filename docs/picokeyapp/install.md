@@ -5,7 +5,11 @@ This page explains how to install PicoKey App on your operating system.
 ## Downloads
 Download PicoKey App from the official downloads page:
 
-- PicoKey App downloads:
+- PicoKey App downloads: [https://www.picokeys.com/picokeyapp/](https://www.picokeys.com/picokeyapp/)
+
+To proceed with the download, a license must be purchased first. Once the purchase is completed, a download link will be sent to your email, granting access to the Downloads page. From there, you can download the application for Windows, Linux, and macOS, along with the corresponding license file.
+
+![Download Portal](../assets/images/picokeyapp/download-portal.png)
 
 !!! note
     Always download PicoKey App from official sources to avoid tampered binaries.
@@ -39,7 +43,10 @@ PicoKey App uses standard USB drivers where possible. If your device is not dete
     ./PicoKeyApp.AppImage
     ```
 
-!!! Linux permissions (USB access)
+!!! tip
+Linux permissions (USB access)
 If the device is not detected, you may need udev rules or group permissions. See:
 
 - [Troubleshooting](troubleshooting.md)
+
+Once finished with all steps and ensuring the app is working properly, go to [First Steps](first-steps.md).

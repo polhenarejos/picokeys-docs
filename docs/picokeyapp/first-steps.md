@@ -31,6 +31,8 @@ Before a device can be registered, a **valid license must be installed**.
 4. Enter or import your license
 5. Confirm that the license is accepted
 
+![Register License](../assets/images/picokeyapp/register-license.png)
+
 At this stage:
 
 - The license is installed locally
@@ -76,6 +78,8 @@ Take special care at this step.
 !!! info
     Do not attempt to register the board in BOOTSEL mode. Proceed with a
     PicoKey firmware running normally.
+
+![Register Board](../assets/images/picokeyapp/register-board.png)
 
 ---
 
