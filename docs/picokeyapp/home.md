@@ -44,3 +44,14 @@ The **Reboot to BOOTSEL** button reboots the device into BOOTSEL (recovery) mode
 !!! warning
     BOOTSEL mode should only be used when required (firmware update or recovery).
     Interrupting critical operations may require manual recovery.
+
+## Device status indicators
+
+At the bottom of the application, PicoKeyApp displays real-time status information:
+
+- Device connection status (online/offline)
+- Recovery mode state
+- Current device time
+
+!!! tip
+    Device time is updated automatically when the agent is enabled.
