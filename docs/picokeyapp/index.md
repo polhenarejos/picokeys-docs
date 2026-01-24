@@ -7,6 +7,8 @@ It provides a local user interface for:
 - Device detection
 - Device configuration and commissioning
 - Security-related settings (firmware-dependent)
+- Slots management in Pico Fido
+- App settings
 - License and board registration
 
 PicoKey App communicates directly with the device over USB and exposes only the features supported by the currently installed firmware.

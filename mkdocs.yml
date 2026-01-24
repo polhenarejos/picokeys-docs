@@ -47,6 +47,12 @@ nav:
         - Initialization:
           - Pico HSM: picokeyapp/init-picohsm.md
           - Pico FIDO: picokeyapp/init-picofido.md
+        - Slots management:
+          - Overview: picokeyapp/slots.md
+          - Challenge-response: picokeyapp/slots/chalresp.md
+          - Static password: picokeyapp/slots/static-password.md
+          - HOTP: picokeyapp/slots/hotp.md
+          - YubiOTP: picokeyapp/slots/yubiotp.md
         - App settings: picokeyapp/app-settings.md
         - About: picokeyapp/about.md
         - License: picokeyapp/license.md
