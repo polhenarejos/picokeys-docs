@@ -47,6 +47,7 @@ nav:
         - Initialization:
           - Pico HSM: picokeyapp/init-picohsm.md
           - Pico FIDO: picokeyapp/init-picofido.md
+        - App settings: picokeyapp/app-settings.md
         - About: picokeyapp/about.md
         - License: picokeyapp/license.md
 
