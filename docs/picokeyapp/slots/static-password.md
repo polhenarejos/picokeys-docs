@@ -4,7 +4,7 @@ This page describes the **Static Password slot type** available in PicoKeyApp.
 
 The Static Password slot stores a fixed password that is emitted by the device as **keyboard input** when triggered.
 
-![Static Password slot](../assets/images/picokeyapp/slots-staticpassword.png)
+![Static Password slot](../../assets/images/picokeyapp/slots-staticpassword.png)
 
 ---
 
