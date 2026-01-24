@@ -58,8 +58,9 @@ Each slot exposes a set of actions through icons:
 - [Challenge-response](slots/chalresp.md)
 - [Static password](slots/static-password.md)
 - [HOTP](slots/hotp.md)
-- [HOTP](slots/yubiotp.md)
+- [YubiOTP](slots/yubiotp.md)
 - Delete slot configuration
+
 
 ### Delete slot configuration
 
