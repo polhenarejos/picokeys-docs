@@ -4,7 +4,7 @@ This page describes the **Challenge-Response slot type** available in PicoKeyApp
 
 This slot implements a **host-driven challenge–response mechanism**, where the host generates a challenge, the device signs it, and the host verifies the response.
 
-![Challenge-Response slot](../../assets/images/picokeyapp/slots-chalresp.png)
+![Challenge-Response slot](../../assets/images/picokeyapp/slots/slots-chalresp.png)
 
 ---
 

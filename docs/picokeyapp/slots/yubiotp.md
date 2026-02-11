@@ -4,7 +4,7 @@ This page describes the **Yubico OTP slot type** available in PicoKeyApp.
 
 The Yubico OTP slot generates one-time passwords following the **Yubico OTP specification** and emits them as **keyboard input** when triggered.
 
-![Yubico OTP slot](../../assets/images/picokeyapp/slots-yubiotp.png)
+![Yubico OTP slot](../../assets/images/picokeyapp/slots/slots-yubiotp.png)
 
 ---
 

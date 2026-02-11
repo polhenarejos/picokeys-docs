@@ -45,8 +45,13 @@ nav:
         - Security boot & lock: picokeyapp/security.md
         - Firmware management: picokeyapp/firmware.md
         - Initialization:
-          - Pico HSM: picokeyapp/init-picohsm.md
           - Pico FIDO: picokeyapp/init-picofido.md
+        - HSM:
+          - Management:
+            - Overview: picokeyapp/hsm/management.md
+            - Key management: picokeyapp/hsm/key-management.md
+            - Cipher: picokeyapp/hsm/cipher.md
+          - Initialization: picokeyapp/hsm/initialize.md
         - Slots management:
           - Overview: picokeyapp/slots.md
           - Challenge-response: picokeyapp/slots/chalresp.md

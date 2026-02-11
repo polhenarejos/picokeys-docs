@@ -4,7 +4,7 @@ This page describes the **HOTP (HMAC-Based One-Time Password) slot type** availa
 
 The HOTP slot generates a numeric one-time password derived from a shared secret and emits it as **keyboard input** when triggered.
 
-![HOTP slot](../../assets/images/picokeyapp/slots-hotp.png)
+![HOTP slot](../../assets/images/picokeyapp/slots/slots-hotp.png)
 
 ---
 

@@ -4,7 +4,7 @@ This page documents the **security initialization options** available for **Pico
 
 These settings control **PIN policies, key protection mechanisms, and recovery options**.
 
-![Pico HSM initialization](../assets/images/picokeyapp/init-picohsm.png)
+![Pico HSM initialization](../../assets/images/picokeyapp/init-picohsm.png)
 
 ---
 
@@ -56,24 +56,25 @@ Enables **Distributed Key Encryption Key** (DKEK) shares.
 - Requires a threshold number of shares for recovery
 
 !!! note
-    DKEK improves resilience against single-point compromise.
+    This option is only useful when no key domains are configured. Otherwise, each
+    key domain can be configured independently with different DKEK shares.
 
 ---
 
 ### PUK authentications
 
-Enables PUK-based recovery.
+Defines the total number of public keys supported for authentication.
 
-- Allows PIN reset using the PUK
-- Adds an additional recovery mechanism
+- Used when PKA is enabled
+- Adds an additional authentication mechanism without PIN
 
 ---
 
 ### PUK minimum authentications
 
-Defines the minimum number of PUK authentications required.
+Defines the number of minimum of public keys for authentication.
 
-- Used when PUK-based recovery is enabled
+- Used when PKA is enabled
 
 ---
 
@@ -90,9 +91,15 @@ Enables key domain separation.
 
 ### Reset retry counter command
 
-Allows resetting the retry counter via command.
+Allows resetting the retry counter via command in case PIN is locked. It also
+allows PIN resetting.
 
 - Useful for controlled recovery scenarios
+
+!!! danger
+    If this option is disabled, Pico HSM will not be recoverable if PIN locked.
+    In this case, a Factory Reset will be necessary and all keys and data
+    will be lost permanently.
 
 ---
 
@@ -119,6 +126,22 @@ Requires both PIN and public key authentication.
 
 ---
 
+### Reset Retry Counter only resets error counter
+
+Reset Retry command only resets retry counter, not the PIN.
+
+!!! note
+    This option is usable only when Reset Retry Counter command is enabled.
+
+---
+
+### Force Device Certificate
+
+Downloads and resigns the attestation certificate. Do not use unless you experiment
+issues with 3rd party apps.
+
+---
+
 ## Initialization process
 
 After configuring all parameters:
@@ -128,15 +151,3 @@ After configuring all parameters:
 
 !!! danger
     Some options cannot be changed without reinitializing the device.
-
----
-
-## Summary
-
-Pico HSM security initialization defines:
-
-- Access control policies
-- Recovery mechanisms
-- Cryptographic isolation guarantees
-
-These options should be configured carefully according to the intended deployment model.
