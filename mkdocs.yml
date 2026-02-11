@@ -51,6 +51,7 @@ nav:
             - Overview: picokeyapp/hsm/management.md
             - Key management: picokeyapp/hsm/key-management.md
             - Cipher: picokeyapp/hsm/cipher.md
+            - Hierarchical derivation (HD): picokeyapp/hsm/hd.md
           - Initialization: picokeyapp/hsm/initialize.md
         - Slots management:
           - Overview: picokeyapp/slots.md
