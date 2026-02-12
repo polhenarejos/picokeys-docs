@@ -2,6 +2,15 @@
 
 ##  Generate keys
 
+Supported key families and curves include:
+
+- RSA: 1024 to 4096 bits
+- Weierstrass EC (ECDSA/ECDH): secp192r1, secp256r1, secp384r1, secp521r1, secp256k1, brainpoolP256r1, brainpoolP384r1, brainpoolP512r1
+- Edwards curves: Ed25519 and Ed448
+
+!!! note
+    Exact algorithm availability depends on firmware version/build and PKCS#11 middleware support.
+
 Generate an RSA key:
 
 ```bash

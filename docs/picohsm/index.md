@@ -64,7 +64,7 @@ Pico HSM enforces the following security properties:
 The exact set of supported operations depends on the firmware version, but typically includes:
 
 - Key generation
-- Digital signatures
+- Digital signatures (RSA, ECDSA, EdDSA)
 - Signature verification
 - Encryption and decryption
 - Key agreement

@@ -21,7 +21,11 @@ Supported key types include:
 
 - **ECDSA key generation**
   Supported curves include (but may not be limited to):
-  secp192r1, secp256r1, secp384r1, secp521r1, brainpoolP256r1, brainpoolP384r1, brainpoolP512r1, secp192k1, secp256k1, Curve25519, and Curve448.
+  secp192r1, secp256r1, secp384r1, secp521r1, brainpoolP256r1, brainpoolP384r1, brainpoolP512r1, secp192k1, and secp256k1.
+
+- **EdDSA key generation**
+  Supported Edwards curves include:
+  Ed25519 and Ed448.
 
 !!! warning
     Some curves (e.g., secp192k1) are considered insecure. Only use curves appropriate for your threat model.
@@ -40,6 +44,9 @@ Pico HSM can perform signatures using generated keys:
 
 - **ECDSA signatures**
   ECDSA signatures may be generated in raw or pre-hashed form.
+
+- **EdDSA signatures**
+  EdDSA signatures are supported with Ed25519 and Ed448 keys.
 
 ---
 
@@ -143,4 +150,3 @@ Depending on firmware build and version, Pico HSM may also support:
 ## Summary
 
 Pico HSM provides a **wide range of cryptographic primitives, interfaces, and hardware security features**, suitable for use as a compact hardware security module on supported microcontrollers.
-

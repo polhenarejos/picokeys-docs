@@ -7,6 +7,9 @@ Pico HSM supports:
 - RSA decryption with several padding schemes
 - ECDH shared key derivation
 
+!!! note
+    Ed25519/Ed448 (EdDSA) keys are intended for digital signatures, not for encryption/decryption flows.
+
 The examples below show how to encrypt and decrypt with RSA and derive shared keys with ECDH.
 
 ---

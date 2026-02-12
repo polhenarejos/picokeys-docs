@@ -12,6 +12,17 @@ Pico HSM supports:
 - AES encryption
 - AES decryption
 
+Supported AES cipher modes include:
+
+- ECB
+- CBC
+- CFB
+- OFB
+- CTR
+- XTS
+- GCM
+- CCM
+
 !!! note
     AES support in the standard OpenSC `sc-hsm` driver is limited, so examples below use `pkcs11-tool` or `sc-tool` with the proper module.
 

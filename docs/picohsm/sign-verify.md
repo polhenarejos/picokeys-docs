@@ -9,10 +9,20 @@ Pico HSM supports digital signatures using asymmetric keys.
 
 Supported signature types include:
 
-- RSA signatures
-- ECDSA signatures
+- RSA signatures (RSA-PSS, RSA-PKCS#1 v1.5, Raw RSA)
+- ECDSA signatures:
+  - ECDSA (raw / pre-hashed input)
+  - ECDSA-SHA1
+  - ECDSA-SHA224
+  - ECDSA-SHA256
+  - ECDSA-SHA384
+  - ECDSA-SHA512
+- EdDSA signatures (Ed25519, Ed448)
 
 Signing operations are executed inside the device, and private keys never leave the HSM.
+
+!!! note
+    Exact mechanisms exposed by `pkcs11-tool` may vary depending on firmware and middleware versions.
 
 ---
 
@@ -132,7 +142,7 @@ When using pkcs11-tool:
 
 Using Pico HSM for digital signatures allows you to:
 
-- Sign data with RSA or ECDSA keys stored securely
+- Sign data with RSA, ECDSA, or EdDSA keys stored securely
 - Verify signatures using standard OpenSSL tools
 - Keep private keys fully isolated inside the HSM
 
