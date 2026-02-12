@@ -1,123 +1,65 @@
 # Pico FIDO
 
-This document summarizes the core features and capabilities of the **Pico FIDO** firmware based on the official project README.
+Pico FIDO transforms supported hardware (such as Raspberry Pi Pico or ESP32) into a USB authenticator compatible with modern passkey workflows.
 
 ---
 
-## Purpose
-
-Pico FIDO transforms supported hardware (such as Raspberry Pi Pico or ESP32) into a **FIDO Passkey authenticator** that operates like a standard USB security key.
+## Purpose and scope
 
 Pico FIDO is designed for:
 
 - WebAuthn / FIDO2 authentication
-- U2F compatibility
-- Strong user authentication without passwords
-- Credential management
+- CTAP2 and legacy U2F compatibility
+- Discoverable credential management
+- OTP and OATH workflows in compatible configurations
 
 !!! note
-    Pico FIDO does **not** implement general-purpose cryptographic APIs outside the FIDO2/WebAuthn protocol.
+    Pico FIDO is an authenticator firmware, not a general-purpose cryptographic API.
 
 ---
 
-## Supported standards
-
-Pico FIDO implements these authentication standards and extensions:
-
-- CTAP 2.1 / CTAP 1 (FIDO2 protocols)
-- WebAuthn (browser/OS authentication API)
-- U2F (legacy FIDO support)
-
----
-
-## Credential and authenticator features
+## Supported standards and features
 
 Pico FIDO includes support for:
 
-- HMAC-Secret extension
-- CredProtect extension
-- User presence enforcement (physical button)
-- User verification with PIN
-- Discoverable credentials (resident keys)
-- Credential management (list, delete, etc.)
+- CTAP 2.1 and CTAP 1
+- WebAuthn and U2F flows
+- PIN-based user verification
+- User presence checks (physical confirmation)
+- Resident/discoverable credentials
+- Credential management operations
+- Extensions such as `hmac-secret`, `credProtect`, `minPinLength`, `credBlob`, and large blob support
 
 ---
 
-## Cryptographic algorithm support
+## Cryptography and curves
 
-Pico FIDO supports the following authentication key types and curves:
+Authentication keys support ECDSA (and EdDSA when enabled by firmware/build), including commonly used curves such as:
 
-- ECDSA (various curves)
-- EDDSA (when enabled)
-
-Supported curves include:
-
-- secp256r1
-- secp384r1
-- secp521r1
-- secp256k1
-- Ed25519
+- `secp256r1`
+- `secp384r1`
+- `secp521r1`
+- `secp256k1`
+- `Ed25519`
 
 ---
 
-## Usage capabilities
+## Security model highlights
 
-Beyond basic FIDO2/WebAuthn flows, Pico FIDO adds:
-
-- App registration and login support
-- Device selection for multiple authenticators
-- Support for vendor configuration parameters
-- Backup with 24-word mnemonic phrase
-- Secure Lock to protect against flash dumps
-
----
-
-## Extension support
-
-Pico FIDO implements various FIDO extensions:
-
-- minPinLength extension
-- Self-attestation
-- Enterprise attestation
-- credBlobs extension
-- largeBlobKey and large blob support (up to 2048 bytes)
-
----
-
-## OTP and challenge-response
-
-Pico FIDO also provides:
-
-- OATH support (based on YKOATH)
-- TOTP / HOTP generation
-- Yubikey-style One Time Password (OTP)
-- Challenge-response generation
-
----
-
-## Optional interfaces
-
-Pico FIDO supports additional interfaces:
-
-- Emulated keyboard interface for OTP entry
-
----
-
-## Security and hardware features
-
-Pico FIDO includes:
-
-- Permissions system (MC, GA, CM, ACFG, LBW)
-- Authenticator configuration UI support
-- Backup mnemonic support
+- Private keys stay on-device
+- PIN policy and retries are enforced by the authenticator
+- Optional secure lock / configuration controls are available depending on firmware
 
 !!! warning
-    Secure lock and certain configuration options may make the device permanently configured unless reset.
+    Some security options can be difficult or impossible to undo without reset and full reprovisioning.
 
 ---
 
-## Summary
+## Detailed guides
 
-Pico FIDO is a **full-featured FIDO2/WebAuthn authenticator** firmware for Raspberry Pico and ESP32 devices.
+For practical usage, see:
 
-It supports modern extensions, credential management, backup/rescue flows, and a variety of cryptographic curves, making it compatible with most WebAuthn and CTAP2 ecosystems.
+- [Initialization and policy](initialization.md)
+- [Passkeys](passkeys.md)
+- [Accounts (OATH)](accounts-oath.md)
+- [Slots & OTP](slots-otp.md)

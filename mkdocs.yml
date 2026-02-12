@@ -83,6 +83,10 @@ nav:
 
   - Pico FIDO:
       - Overview: picofido/index.md
+      - Initialization and policy: picofido/initialization.md
+      - Passkeys: picofido/passkeys.md
+      - Accounts (OATH): picofido/accounts-oath.md
+      - Slots & OTP: picofido/slots-otp.md
 
   - Pico OpenPGP:
       - Overview: pico-openpgp/index.md
