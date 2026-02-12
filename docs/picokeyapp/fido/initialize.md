@@ -4,7 +4,7 @@ This page describes the **security initialization and provisioning options** ava
 
 These options are **applied once during initialization** and directly affect the security model of the authenticator.
 
-![Pico FIDO initialization](../assets/images/picokeyapp/init-picofido.png)
+![Pico FIDO initialization](../../assets/images/picokeyapp/fido/initialize.png)
 
 ---
 

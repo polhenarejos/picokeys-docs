@@ -7,7 +7,7 @@ It provides a local user interface for:
 - Device detection
 - Device configuration and commissioning
 - Security-related settings (firmware-dependent)
-- Slots management in Pico Fido
+- FIDO management (passkeys, accounts, and slots)
 - App settings
 - License and board registration
 

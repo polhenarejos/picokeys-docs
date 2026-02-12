@@ -44,8 +44,18 @@ nav:
         - Device configuration: picokeyapp/configuration.md
         - Security boot & lock: picokeyapp/security.md
         - Firmware management: picokeyapp/firmware.md
-        - Initialization:
-          - Pico FIDO: picokeyapp/init-picofido.md
+        - FIDO:
+          - Management:
+            - Overview: picokeyapp/fido/management.md
+            - Passkeys: picokeyapp/fido/passkeys.md
+            - Accounts: picokeyapp/fido/accounts.md
+            - Slots:
+              - Overview: picokeyapp/fido/slots.md
+              - Challenge-response: picokeyapp/fido/slots/chalresp.md
+              - Static password: picokeyapp/fido/slots/static-password.md
+              - HOTP: picokeyapp/fido/slots/hotp.md
+              - YubiOTP: picokeyapp/fido/slots/yubiotp.md
+          - Initialization: picokeyapp/fido/initialize.md
         - HSM:
           - Management:
             - Overview: picokeyapp/hsm/management.md
@@ -53,12 +63,6 @@ nav:
             - Cipher: picokeyapp/hsm/cipher.md
             - Hierarchical derivation (HD): picokeyapp/hsm/hd.md
           - Initialization: picokeyapp/hsm/initialize.md
-        - Slots management:
-          - Overview: picokeyapp/slots.md
-          - Challenge-response: picokeyapp/slots/chalresp.md
-          - Static password: picokeyapp/slots/static-password.md
-          - HOTP: picokeyapp/slots/hotp.md
-          - YubiOTP: picokeyapp/slots/yubiotp.md
         - App settings: picokeyapp/app-settings.md
         - About: picokeyapp/about.md
         - License: picokeyapp/license.md

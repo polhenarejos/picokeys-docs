@@ -4,7 +4,7 @@ This page documents the **security initialization options** available for **Pico
 
 These settings control **PIN policies, key protection mechanisms, and recovery options**.
 
-![Pico HSM initialization](../../assets/images/picokeyapp/init-picohsm.png)
+![Pico HSM initialization](../../assets/images/picokeyapp/hsm/initialize.png)
 
 ---
 

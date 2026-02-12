@@ -4,7 +4,7 @@ This section describes the **slot management view** in PicoKeyApp.
 
 Slots are used to configure and manage **OTP, static password, and related features** supported by the device firmware.
 
-![Slots view](../assets/images/picokeyapp/slots.png)
+![Slots view](../../assets/images/picokeyapp/fido/slots.png)
 
 ---
 
@@ -18,6 +18,25 @@ Each slot can be in one of the following states:
 - Configured with a specific function
 
 Slots are independent from each other and can be configured individually.
+
+---
+
+## Slot activation
+
+Each slot is activated by pressing the **BOOTSEL** button **N consecutive times**, where `N` is the slot number.
+
+- Slot 1: press once
+- Slot 2: press twice in a row
+- Slot 3: press three times in a row
+- And so on for higher slot numbers
+
+!!! note
+    Presses must be consecutive so the device can map the sequence to the correct slot.
+
+For slots configured as **Static Password**, **YubiOTP**, or **HOTP**, activation makes the device type the generated secret/code on the host as if it were a USB keyboard.
+
+!!! note
+    This keyboard-style output does not apply to **Challenge-Response** slots.
 
 ---
 
