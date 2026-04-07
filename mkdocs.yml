@@ -92,9 +92,14 @@ nav:
       - Passkeys: picofido/passkeys.md
       - Accounts (OATH): picofido/accounts-oath.md
       - Slots & OTP: picofido/slots-otp.md
+      - Vendor Extensions:
+        - User PIN: picofido/vendor-extensions.md
 
   - Pico OpenPGP:
       - Overview: pico-openpgp/index.md
+      - Compatibility notes: pico-openpgp/compatibility-notes.md
+      - PIN and roles: pico-openpgp/pin-and-roles.md
+      - Operational limits: pico-openpgp/operational-limits.md
 
 markdown_extensions:
   - admonition

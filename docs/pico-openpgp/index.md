@@ -1,141 +1,108 @@
 # Pico OpenPGP
 
-This document summarizes the purpose and capabilities of the **Pico OpenPGP** firmware, based directly on the official project README.
+Pico OpenPGP turns supported microcontrollers into a USB smart card running an OpenPGP applet.
 
-Pico OpenPGP transforms compatible hardware — such as a Raspberry Pico or ESP32 microcontroller — into a **USB smart card with an integrated OpenPGP applet**.
+It is designed to follow the OpenPGP card 3.4.1 model used by common smart-card tooling.
 
 ---
 
-## Purpose
+## Scope
 
-Pico OpenPGP is designed to:
+Pico OpenPGP is intended for:
 
-- Provide a hardware-backed OpenPGP smart card implementation
+- Hardware-backed OpenPGP key storage
+- On-device key generation
+- Signing and asymmetric decryption workflows
+- Smart-card style management through APDU/CCID interfaces
 
-- Run the OpenPGP applet in a USB-CCID smart card environment
+It is not intended to replace:
 
-- Offer secure key storage and cryptographic operations for OpenPGP keys
+- Pico HSM (general HSM workflows)
+- Pico FIDO (WebAuthn/FIDO2 flows)
+
+---
+
+## Standards and interfaces
+
+Pico OpenPGP exposes a USB CCID smart-card interface and is designed to work with:
+
+- OpenSC middleware/tooling
+- PKCS#11-capable applications (`pkcs11-tool`, OpenSSL engines, similar)
+- GnuPG smart-card workflows (`gpg --edit-card --expert`)
+- PKCS#15 tooling (`pkcs15-tool`)
 
 !!! note
-    The firmware aims to follow the OpenPGP 3.4.1 specification as used in GnuPG.
+    Host-side PC/SC and CCID configuration is required for successful detection and operation.
 
 ---
 
-## What Pico OpenPGP is
+## Implemented feature highlights
 
-Pico OpenPGP is:
+Based on the official project README, Pico OpenPGP includes:
 
-- A firmware for converting appropriate microcontrollers into an OpenPGP smart card
-
-- An implementation of the OpenPGP protocol in a CCID smart card context
-
-- A tool for managing PGP keys securely on hardware
-
----
-
-## What Pico OpenPGP is not
-
-Pico OpenPGP is not:
-
-- A general-purpose hardware security module (HSM)
-
-- A FIDO2/WebAuthn authenticator (use **Pico FIDO** for that)
-
-- A software-only OpenPGP library
-
-!!!
-
----
-
-## Supported workflows
-
-With Pico OpenPGP, you can perform typical smart card operations such as:
-
-- Generating OpenPGP keys on the device
-
-- Signing data with private OpenPGP keys
-
-- Decrypting data using private OpenPGP keys
-
-- Managing certificates and key attributes via OpenPGP interfaces
-
-!!! note
-    The exact operations available depend on the OpenPGP applet implementation and the connected host tools.
+- Key generation and encrypted key storage
+- RSA key generation (1024 to 4096 bits)
+- ECDSA key generation (192 to 521 bits)
+- ECC curves:
+  - `secp256r1`, `secp384r1`, `secp521r1`
+  - `brainpoolP256r1`, `brainpoolP384r1`, `brainpoolP512r1`
+  - `secp256k1`
+- Digests: `SHA1`, `SHA224`, `SHA256`, `SHA384`, `SHA512`
+- RSA signature support (PKCS and raw)
+- ECDSA signature support (raw and hash)
+- ECDH key derivation
+- PIN authorization and KDF for PIN
+- User Interaction Flag (UIF) / press-to-confirm control
+- Manage Security Environment (MSE)
+- Card lifecycle operations (activation/termination)
+- Extended APDU support
+- Cardholder certificate support
+- USB/CCID support with smart-card toolchains
 
 ---
 
-## Interfaces
+## AES support
 
-Pico OpenPGP exposes itself as a **CCID smart card device** over USB.
+Pico OpenPGP also implements AES paths described in OpenPGP card flows (PSO encipher/decipher commands), including AES key generation.
 
-This enables compatibility with:
+The project notes that broad off-the-shelf OpenPGP software support for these AES paths is limited, so these operations are typically used through specialized tooling, PKCS#11 integration, or direct APDU workflows.
 
-- Smart card middleware
+---
 
-- PKCS#11 interfaces
+## Security architecture notes
 
-- GnuPG (`gpg`)
+From the project documentation:
 
-- Other OpenPGP-aware software
+- Sensitive key material is stored encrypted using a Device Encryption Key (DEK).
+- PIN is not stored as plain text in flash.
+- Additional hardening is available on platforms with stronger secure features (for example RP2350 / ESP32-S3 secure boot and secure lock capabilities).
+- OTP-backed storage is used for critical keying material in supported hardware profiles.
 
 !!! warning
-    Host support for CCID and smart card tools must be configured correctly to interact with the device.
+    Device security still depends on host security. If the host is compromised, user workflows can be at risk.
 
 ---
 
-## Hardware support
+## Hardware and deployment
 
-Pico OpenPGP runs on:
+Typical targets include Raspberry Pi Pico family and ESP32-S3 based boards.
 
-- Raspberry Pico boards
+Deployment options include:
 
-- ESP32 series boards
-
-!!! note
-    The exact list of supported boards may vary with firmware releases.
-
----
-
-## Smart card behavior
-
-As a USB smart card, Pico OpenPGP behaves like:
-
-- A physical smart card implementing the OpenPGP applet
-
-- A device that responds to APDU commands for OpenPGP operations
+- Flashing prebuilt firmware releases
+- Building from source with custom board and VID/PID settings
+- Commissioning and management through PicoKey App
 
 ---
 
-## Typical use cases
+## Practical usage in this docs set
 
-Common scenarios for Pico OpenPGP include:
+For UI-level operations, see PicoKey App OpenPGP pages:
 
-- Signing email messages and documents cryptographically
+- [OpenPGP Management](../picokeyapp/openpgp/management.md)
+- [PIV](../picokeyapp/openpgp/piv.md)
 
-- Decrypting OpenPGP-encrypted content
+For related firmware families:
 
-- Managing OpenPGP keys securely
-
-!!! tip
-    Using Pico OpenPGP with GnuPG provides a secure workflow for signing and encrypting email and files.
-
----
-
-## Security considerations
-
-When using Pico OpenPGP:
-
-- Protect access to the smart card PIN
-
-- Avoid exposing private keys outside the hardware
-
-- Use trusted host software (e.g., GnuPG)
-
-!!! danger
-    Compromise of the host machine could undermine the security of the OpenPGP workflow.
-
----
-
-## Summary
-
-Pico OpenPGP provides an **open-source implementation** of an OpenPGP smart card applet on small microcontrollers, with secure key storage and cryptographic operations compatible with standard smart card tools.
+- [Pico FIDO](../picofido/index.md)
+- [Pico HSM](../picohsm/index.md)

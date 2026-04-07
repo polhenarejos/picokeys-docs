@@ -61,5 +61,6 @@ For practical usage, see:
 
 - [Initialization and policy](initialization.md)
 - [Passkeys](passkeys.md)
+- [Vendor extensions](vendor-extensions.md)
 - [Accounts (OATH)](accounts-oath.md)
 - [Slots & OTP](slots-otp.md)
