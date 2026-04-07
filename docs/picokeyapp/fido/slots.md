@@ -1,6 +1,6 @@
 # Slots
 
-This section describes the **slot management view** in PicoKeyApp.
+This section describes the **slot management view** in PicoKey App.
 
 Slots are used to configure and manage **OTP, static password, and related features** supported by the device firmware.
 
@@ -90,3 +90,9 @@ Deletes the slot configuration.
 
 !!! danger
     Deleting a slot configuration permanently erases all data stored in the slot.
+
+---
+
+## Registration requirement
+
+This panel requires a registered board in PicoKey App. If the board is not registered, slot action buttons are disabled.

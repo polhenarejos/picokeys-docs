@@ -36,11 +36,11 @@ PicoKey App uses standard USB drivers where possible. If your device is not dete
 1. Download the AppImage.
 2. Make it executable:
    ```bash
-   chmod +x PicoKeyApp.AppImage
+   chmod +x PicoKey App.AppImage
    ```
 3. Run it:
     ```bash
-    ./PicoKeyApp.AppImage
+    ./PicoKey App.AppImage
     ```
 
 !!! tip

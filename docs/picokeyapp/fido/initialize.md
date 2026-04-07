@@ -64,11 +64,17 @@ Limits the set of allowed Relying Party IDs.
 
 After configuring the desired options:
 
-- Click **Initialize**
+- Click **Apply Changes**
 - The device is provisioned with the selected security parameters
 
 !!! warning
     Initialization is irreversible without a full device reset.
+
+---
+
+## Registration requirement
+
+This panel requires a registered board in PicoKey App. If the board is not registered, initialization actions are disabled.
 
 ---
 

@@ -1,4 +1,4 @@
-# Pico HSM Hierarchical Derivation (HD / BIP32)
+# Pico HSM Hierarchical Deterministic (HD / BIP32)
 
 This page documents **HSM > Management > BIP32** in PicoKey App.
 

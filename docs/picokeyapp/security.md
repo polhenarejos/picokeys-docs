@@ -29,3 +29,15 @@ Locks the boot keys permanently.
 
 !!! danger
     Secure Lock is irreversible. Enabling it incorrectly may permanently brick the device.
+
+---
+
+## Applying security options
+
+After selecting the desired settings, click **Enable Security Options** to apply them on device.
+
+---
+
+## Registration requirement
+
+This panel requires a registered board in PicoKey App before security actions can be applied.

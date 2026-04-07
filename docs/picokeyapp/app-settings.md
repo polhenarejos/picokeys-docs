@@ -1,6 +1,6 @@
 # App settings
 
-This section describes the **application-level settings** available in PicoKeyApp.
+This section describes the **application-level settings** available in PicoKey App.
 These settings affect how the application communicates with PicoKey devices and how certain advanced features are enabled.
 
 ![Application settings](../assets/images/picokeyapp/app-settings.png)
@@ -9,7 +9,7 @@ These settings affect how the application communicates with PicoKey devices and 
 
 ## Available readers
 
-Selects the smart card / USB reader interface used by PicoKeyApp.
+Selects the smart card / USB reader interface used by PicoKey App.
 
 - The list shows all detected compatible interfaces
 - The active reader is highlighted
@@ -26,7 +26,7 @@ Forces the application to use the **Rescue Interface** instead of the default PC
 
 When enabled:
 
-- PicoKeyApp bypasses the standard PC/SC stack
+- PicoKey App bypasses the standard PC/SC stack
 - Communication is performed through the Rescue Interface
 - This may be required if PC/SC is misconfigured or unavailable
 
@@ -41,7 +41,7 @@ Attempts to patch the local **pcscd service** to improve compatibility with Pico
 
 When enabled:
 
-- PicoKeyApp applies changes to the PC/SC service
+- PicoKey App applies changes to the PC/SC service
 - Compatibility issues with certain distributions may be resolved
 
 !!! danger
@@ -73,7 +73,7 @@ When enabled:
 
 ## Device status indicators
 
-At the bottom of the application, PicoKeyApp displays real-time status information:
+At the bottom of the application, PicoKey App displays real-time status information:
 
 - Device connection status (online/offline)
 - Recovery mode state

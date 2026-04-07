@@ -39,30 +39,35 @@ nav:
       - First steps: picokeyapp/first-steps.md
       - Quick start: picokeyapp/quickstart.md
       - Troubleshooting: picokeyapp/troubleshooting.md
+      - Release notes: picokeyapp/release-notes.md
       - Usage guide:
         - Home screen: picokeyapp/home.md
         - Device configuration: picokeyapp/configuration.md
         - Security boot & lock: picokeyapp/security.md
         - Firmware management: picokeyapp/firmware.md
         - FIDO:
-          - Management:
-            - Overview: picokeyapp/fido/management.md
-            - Passkeys: picokeyapp/fido/passkeys.md
-            - Accounts: picokeyapp/fido/accounts.md
-            - Slots:
-              - Overview: picokeyapp/fido/slots.md
-              - Challenge-response: picokeyapp/fido/slots/chalresp.md
-              - Static password: picokeyapp/fido/slots/static-password.md
-              - HOTP: picokeyapp/fido/slots/hotp.md
-              - YubiOTP: picokeyapp/fido/slots/yubiotp.md
-          - Initialization: picokeyapp/fido/initialize.md
+          - Dashboard: picokeyapp/fido/dashboard.md
+          - Passkeys: picokeyapp/fido/passkeys.md
+          - Vendor Features:
+            - User PIN: picokeyapp/fido/user-pin.md
+          - Slots:
+            - Overview: picokeyapp/fido/slots.md
+            - Challenge-response: picokeyapp/fido/slots/chalresp.md
+            - Static password: picokeyapp/fido/slots/static-password.md
+            - HOTP: picokeyapp/fido/slots/hotp.md
+            - YubiOTP: picokeyapp/fido/slots/yubiotp.md
+          - Accounts: picokeyapp/fido/accounts.md
+          - Initialize: picokeyapp/fido/initialize.md
         - HSM:
           - Management:
-            - Overview: picokeyapp/hsm/management.md
             - Key management: picokeyapp/hsm/key-management.md
             - Cipher: picokeyapp/hsm/cipher.md
-            - Hierarchical derivation (HD): picokeyapp/hsm/hd.md
+            - Hierarchical deterministic (HD): picokeyapp/hsm/hd.md
           - Initialization: picokeyapp/hsm/initialize.md
+        - OpenPGP:
+          - Management: picokeyapp/openpgp/management.md
+          - PIV: picokeyapp/openpgp/piv.md
+        - Audit: picokeyapp/audit.md
         - App settings: picokeyapp/app-settings.md
         - About: picokeyapp/about.md
         - License: picokeyapp/license.md

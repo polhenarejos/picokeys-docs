@@ -64,3 +64,9 @@ A status message indicates the result of the operation.
 !!! warning
     Commissioning modifies persistent device state.
     Ensure all selected options are correct before proceeding.
+
+---
+
+## Registration requirement
+
+This panel requires a registered board in PicoKey App to execute commissioning.

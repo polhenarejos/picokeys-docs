@@ -1,6 +1,6 @@
 # Slot: HOTP
 
-This page describes the **HOTP (HMAC-Based One-Time Password) slot type** available in PicoKeyApp.
+This page describes the **HOTP (HMAC-Based One-Time Password) slot type** available in PicoKey App.
 
 The HOTP slot generates a numeric one-time password derived from a shared secret and emits it as **keyboard input** when triggered.
 

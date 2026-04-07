@@ -1,6 +1,6 @@
 # Slot: Yubico OTP
 
-This page describes the **Yubico OTP slot type** available in PicoKeyApp.
+This page describes the **Yubico OTP slot type** available in PicoKey App.
 
 The Yubico OTP slot generates one-time passwords following the **Yubico OTP specification** and emits them as **keyboard input** when triggered.
 

@@ -24,6 +24,8 @@ Firmware updates are **explicit user actions** and are never performed automatic
 
 Depending on the device state and firmware, PicoKey App may support firmware updates when the device is **BOOTSEL / RESCUE mode**. For new or freshly flashed devices, **RESCUE mode is expected**.
 
+For regular firmware variants, upgrade actions require a registered board in PicoKey App. Rescue firmware update paths may still be available for recovery workflows.
+
 ---
 
 ## Before you start
@@ -58,11 +60,13 @@ Once in BOOTSEL / RESCUE mode, PicoKey App should detect the device again.
 The typical firmware update process is:
 
 1. Open the firmware update section in PicoKey App
-2. Select the firmware file to be installed
+2. Use **Search** to pick the firmware file to be installed
    (firmware files are usually provided as a binary image)
-3. Start the update process
+3. Click **Upgrade** to start the update process
 4. Wait until PicoKey App reports completion
 5. Reconnect the device if requested
+
+You can also load a **specific firmware file from local disk** using the file search/open action in the firmware panel (custom firmware path).
 
 During the update:
 
@@ -70,6 +74,19 @@ During the update:
 - The device may temporarily disconnect and reconnect
 
 ![Firmware upgrade](../assets/images/picokeyapp/firmware.png)
+
+---
+
+## Wipe entire flash (advanced)
+
+The firmware panel includes an optional **Wipe entire flash** checkbox.
+
+When enabled, PicoKey App erases flash sectors before writing the new firmware.
+
+Use this only when you explicitly need a full cleanup (for example recovery scenarios), because it removes previous flash contents.
+
+!!! warning
+    A full wipe is destructive and may require full reconfiguration or commissioning after flashing.
 
 ---
 

@@ -8,6 +8,7 @@ It provides a local user interface for:
 - Device configuration and commissioning
 - Security-related settings (firmware-dependent)
 - FIDO management (passkeys, accounts, and slots)
+- OpenPGP management (OpenPGP card and PIV slots)
 - App settings
 - License and board registration
 

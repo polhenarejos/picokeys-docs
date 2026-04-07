@@ -1,6 +1,6 @@
 # Slot: Challenge-Response
 
-This page describes the **Challenge-Response slot type** available in PicoKeyApp.
+This page describes the **Challenge-Response slot type** available in PicoKey App.
 
 This slot implements a **host-driven challenge–response mechanism**, where the host generates a challenge, the device signs it, and the host verifies the response.
 

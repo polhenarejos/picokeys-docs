@@ -32,6 +32,7 @@ The **Memory Info** section shows filesystem usage on the device:
 - Total memory
 - Number of files
 - Total filesystem size
+- Firmware size
 
 This information is useful to verify available space and to diagnose abnormal storage usage.
 
@@ -47,7 +48,7 @@ The **Reboot to BOOTSEL** button reboots the device into BOOTSEL (recovery) mode
 
 ## Device status indicators
 
-At the bottom of the application, PicoKeyApp displays real-time status information:
+At the bottom of the application, PicoKey App displays real-time status information:
 
 - Device connection status (online/offline)
 - Recovery mode state

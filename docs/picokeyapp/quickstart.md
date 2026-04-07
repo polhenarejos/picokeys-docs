@@ -77,7 +77,7 @@ This step:
 - Provisions the device
 - Writes persistent state to the device
 
-Wait for the confirmation message indicating success (for example, *PHY loaded successfully*).
+Wait for the confirmation message indicating success (for example, *Commissioned successfully*).
 
 !!! Warning
     Commissioning modifies persistent device state.

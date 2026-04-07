@@ -34,6 +34,11 @@ If you expand the `Session` section again, you can access maintenance actions:
 - **Reload**: reloads keys/domains/certificates for the current authenticated session.
 - **Change PIN**: opens the PIN change flow.
 
+When PIN is blocked, additional recovery actions are shown:
+
+- **Unblock PIN**
+- **Reset Retries**
+
 !!! note
     If unlock fails, management data is not loaded.
 
@@ -199,6 +204,7 @@ When the root `Certificates` node is selected, the right panel shows the import 
 Action:
 
 - **Import Certificate**: imports a certificate into the certificates store shown in the tree.
+- **Delete Certificate**: removes the selected certificate entry.
 
 ---
 
@@ -212,5 +218,13 @@ Available actions:
 
 - **Import Public Object**: imports a public data object from a file.
 - **Import Public Hex**: imports a public data object from hexadecimal input.
+- **Import Private Object**: imports a private data object from a file.
+- **Import Private Hex**: imports a private data object from hexadecimal input.
 
 `Data Objects > Private` is reserved for private objects and follows the same tree navigation pattern.
+
+---
+
+## Registration requirement
+
+This panel requires a registered board in PicoKey App. If the board is not registered, management actions are restricted.
