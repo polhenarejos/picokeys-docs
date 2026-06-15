@@ -1,110 +1,95 @@
 # PicoKeys Documentation
 
-This documentation covers the **PicoKeys ecosystem**, including the desktop application and the different firmware variants available for PicoKeys devices.
+This site documents the firmware families in the PicoKeys ecosystem first, and the management application second.
 
-The PicoKeys ecosystem is composed of:
+If you are here to decide which firmware to use, start with the firmware sections below. If you are already managing a device through the desktop app, keep the app pages as an operational reference, not as the source of truth for product capabilities.
 
-- A **desktop application** used to manage devices
-- One or more **firmware variants** that define the actual functionality of the device
+## Start here
 
-This documentation is intended for users who want to understand how to set up, manage, and use PicoKeys devices correctly.
+- [Pico FIDO](picofido/index.md): passkeys, FIDO2, U2F, OATH, OTP slots, and vendor extensions
+- [Pico OpenPGP](pico-openpgp/index.md): USB CCID smart card workflows for GnuPG, OpenSC, and PKCS#11
+- [Pico HSM](picohsm/index.md): key generation, signing, decryption, symmetric cryptography, and wrapped-key workflows
 
----
+## The ecosystem, plainly
 
-## Architecture overview
+PicoKeys is not one product. It is a family of firmwares that run on supported microcontroller boards.
 
-The PicoKeys ecosystem is split into two clearly separated layers:
+The split matters:
 
-### 1. PicoKey App (desktop application)
+- The firmware defines the real protocol surface, storage model, and security properties.
+- The desktop application helps with flashing, commissioning, policy changes, and diagnostics.
+- Host-side compatibility still depends on the protocol and middleware used by each firmware family.
 
-**PicoKey App** is the desktop application used to manage PicoKeys devices.
+That last point is where many docs sets become vague. This one should not:
 
-It is responsible for:
+- FIDO behavior is driven by what the authenticator reports through CTAP and what browsers or host tools actually consume.
+- OpenPGP and HSM behavior depend heavily on CCID, PC/SC, OpenSC, PKCS#11, and client-specific support.
+- RP2040, RP2350/RP2354, and ESP32-S3 do not offer the same hardware security baseline.
 
-- Device detection
-- Device configuration and commissioning
-- License installation and board registration
-- Diagnostics and troubleshooting
+## Which firmware should you pick?
 
-PicoKey App provides the **same user interface regardless of the installed firmware**.
+### Pico FIDO
 
-➡️ See:
+Use it when the device is primarily an authenticator:
 
-- [PicoKey App](picokeyapp/index.md)
-- [First steps](picokeyapp/first-steps.md)
-- [Quick start](picokeyapp/quickstart.md)
+- passkeys and WebAuthn
+- U2F / second-factor flows
+- OATH accounts
+- OTP slots and challenge-response
 
----
+Do not pick Pico FIDO because you need a general-purpose smart card or HSM API. That is not its job.
 
-### 2. Firmware variants (device functionality)
+### Pico OpenPGP
 
-The actual behavior and capabilities of a PicoKeys device are defined by the **firmware installed on the device**.
+Use it when the device should behave like an OpenPGP smart card:
 
-Each firmware variant provides different functionality, while sharing the same hardware and management interface.
+- GnuPG smart-card workflows
+- on-device signing and decryption
+- CCID / APDU / PKCS#11 style integration
 
-Available firmware variants include:
+Do not pick it for FIDO2/WebAuthn or broad symmetric/HSM workflows.
 
-- **Pico HSM**
-  A hardware security module firmware focused on secure key storage and cryptographic operations.
+### Pico HSM
 
-- **Pico FIDO**
-  A FIDO2 / WebAuthn firmware for passwordless and second-factor authentication.
+Use it when the device is meant to act as a compact HSM:
 
-- **Pico OpenPGP**
-  An OpenPGP-compatible smartcard firmware for encryption, signing, and authentication workflows.
+- private-key generation and retention
+- signatures and decryption through PKCS#11
+- AES, HMAC, KDF, wrapped-key import/export, and advanced key domains
 
-➡️ See:
+Do not treat it as a certified enterprise HSM. The feature set is broad, but the hardware and assurance model remain those of supported microcontroller boards.
 
-- [Pico HSM](picohsm/index.md)
-- [Pico FIDO](picofido/index.md)
-- [Pico OpenPGP](pico-openpgp/index.md)
+## Security baseline
 
----
+Across the firmware families, the most important practical distinction is hardware:
 
-## Typical usage flow
+- RP2040 boards do not provide the same hardware-backed at-rest protection described for RP2350/RP2354 and ESP32-S3 class devices.
+- Secure Boot, Secure Lock, and OTP-backed key material are meaningful only on the platforms that actually implement those mechanisms.
+- A host compromise can still drive operations on an unlocked device, regardless of firmware family.
 
-For most users, the typical workflow is:
+If your threat model includes funded physical attackers or certification requirements, you should assume these projects are outside that scope unless explicitly proven otherwise.
 
-1. Install PicoKey App
-2. Install a license
-3. Connect a PicoKeys device
-4. Select and register the correct board type
-5. Commission the device
-6. Use the device according to the installed firmware
-7. Select and flash the proper firmware
+## Production hardening
 
-The first-time setup includes **mandatory and irreversible steps**.
-Make sure to read the first-time use documentation before proceeding.
+Production hardening is intentionally not a top-level product tab. It is a cross-cutting subject that depends on the board family, the firmware image, and the provisioning state.
 
-➡️ See:
+Read these pages before burning irreversible state:
 
-- [First steps](picokeyapp/first-steps.md)
+- [OTP fuses](production/otp-fuses.md): which RP2350/RP2354 OTP rows and ESP32-S3 eFuses are used for PicoKeys root keys, secure boot, and secure lock.
+- [Anti-rollback](production/anti-rollback.md): why old signed firmware can still be dangerous, and what rollback floors are meant to prevent.
+- [Threat model](security/threat-model.md): what PicoKeys protects against, what remains host-dependent, and what is out of scope.
 
----
+!!! warning
+    Do not enable secure boot, secure lock, rollback, or fuse-based protection as a casual setup step. These are production decisions with irreversible hardware effects.
 
-## Scope of this documentation
+## How to read the docs
 
-This documentation covers:
+The firmware sections follow the same approach:
 
-- How to use PicoKey App
-- How to perform first-time setup safely
-- What functionality is provided by each firmware variant
-- Common concepts shared across the PicoKeys ecosystem
+- what the firmware is for
+- what upstream claims it implements
+- what host tooling is required
+- what is easy, what is awkward, and what is unsupported
+- where the sharp edges are
 
-This documentation does **not** cover:
-
-- Internal firmware implementation details
-- Cryptographic theory
-- Third-party tools documentation (e.g. GPG, browser-specific WebAuthn details)
-
----
-
-## Getting help
-
-If you encounter an issue with PicoKey App or the documentation:
-
-- Check the relevant section in this documentation
-- Review the troubleshooting information
-- If the issue persists, open a ticket at:
-
-[https://github.com/polhenarejos/picokeyapp/issues](https://github.com/polhenarejos/picokeyapp/issues)
+That is intentional. Glossy feature lists are easy to write and often misleading. Operational documentation is more useful.

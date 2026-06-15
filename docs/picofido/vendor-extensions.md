@@ -1,86 +1,58 @@
-# User PIN (Vendor Extension)
+# Vendor extensions
 
-This page documents Pico FIDO vendor extensions exposed in PicoKey App.
+This page covers Pico FIDO behavior that goes beyond baseline FIDO interoperability.
 
-These behaviors are not part of baseline FIDO interoperability requirements and should be treated as PicoKey-specific management features.
+That does not make these features bad. It means they should be documented honestly: useful, powerful, and less portable.
 
----
+## User PIN split
 
-## User PIN dual-context model
+The current PicoKeys docs describe a dual-context model:
 
-Pico FIDO can operate with two PIN contexts:
+- Admin PIN for full management
+- User PIN for a restricted subset of actions
 
-- **Admin PIN**: full management capabilities.
-- **User PIN**: restricted capabilities defined by Admin.
+That is not part of normal WebAuthn portability. It is a product-specific management model.
 
-Each context has its own PIN value.
+If you enable it, write down:
 
-When User PIN mode is enabled:
+- who holds the Admin PIN
+- what the User PIN is allowed to do
+- how operators recover when the wrong context is active
 
-- Default context on reconnect is **User**.
-- Admin can switch context and manage User permissions.
+## Permission-scoped management
 
-When User PIN mode is disabled:
+The documented permission mask includes capabilities such as:
 
-- Only Admin context is active.
-
----
-
-## User PIN permission set
-
-The User context permission mask supports:
-
-- Create credentials
-- Credential management
-- Authentication
+- creating credentials
+- credential management
+- authentication
 - Large Blob write
-- Configure authenticator
-- Persistent credential management
-- Reset authenticator
+- authenticator configuration
+- reset and persistent management actions
 
-Default behavior:
+This is powerful because it turns Pico FIDO into something closer to a policy-managed authenticator. It is also where assumptions about "works like any other FIDO key" stop being true.
 
-- All User permissions start enabled.
-- Authentication remains enabled to preserve normal login/authentication usability.
+## Extended credential views
 
----
+The current docs also describe app-level operations such as:
 
-## Extended passkey management
+- exporting metadata as JSON or CSV
+- listing creation dates, algorithms, counters, and `credProtect` state
+- filtering by RP, user, or credential identifier
+- per-credential Large Blob handling
 
-PicoKey App exposes extended passkey operations on top of standard credential management:
+These are management conveniences, not guaranteed cross-platform behaviors.
 
-- Copy credential ID
-- Export passkey metadata record (`JSON` / `CSV`)
-- Delete per credential
-- Delete all credentials for selected RP
-- Search/filter by RP, user, credential ID, and related fields
+## How to think about these features
 
-Displayed passkey metadata can include:
+Use vendor extensions when:
 
-- Creation date
-- Algorithm/curve details
-- `credProtect` state
-- Signature counter state
+- you control the operational environment
+- you need the added policy surface
+- you can rely on PicoKey-specific tooling
 
----
+Do not build a portability story around them unless you have tested the exact host tools you intend to support.
 
-## Per-credential Large Blob handling
+## Conservative rule
 
-For credentials with `largeBlobKey` support, PicoKey App provides per-credential Large Blob management (read/update style workflow).
-
-This is implemented as an application management workflow over authenticator large blob storage.
-
----
-
-## Dashboard capability view
-
-PicoKey App FIDO dashboard surfaces capability/status fields useful for vendor management workflows:
-
-- `AAGUID`
-- Max `credBlob`
-- Large blob entries count
-- Large blob usage
-- Reported options (active options highlighted)
-- Reported extensions
-
-Use these values to validate effective runtime capability before applying vendor policy/configuration decisions.
+If a feature is not part of the baseline CTAP/WebAuthn path, assume it needs explicit interoperability testing before you promise it to anyone else.

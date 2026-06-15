@@ -1,61 +1,25 @@
-# Sign and verify — Digital signatures
+# Sign and verify
 
-This document describes how to sign and verify data using keys stored in Pico HSM.
-The content is directly based on the official Pico HSM documentation.
+Signing is the most common proof that Pico HSM is working as intended: the host gets a signature, the private key stays inside the device.
 
-## Overview
+## Prepare sample data
 
-Pico HSM supports digital signatures using asymmetric keys.
-
-Supported signature types include:
-
-- RSA signatures (RSA-PSS, RSA-PKCS#1 v1.5, Raw RSA)
-- ECDSA signatures:
-  - ECDSA (raw / pre-hashed input)
-  - ECDSA-SHA1
-  - ECDSA-SHA224
-  - ECDSA-SHA256
-  - ECDSA-SHA384
-  - ECDSA-SHA512
-- EdDSA signatures (Ed25519, Ed448)
-
-Signing operations are executed inside the device, and private keys never leave the HSM.
-
-!!! note
-    Exact mechanisms exposed by `pkcs11-tool` may vary depending on firmware and middleware versions.
-
----
-
-## Prepare test data
-
-Create a test input file:
-
-```bash
+```sh
 echo "This is a test string. Be safe, be secure." > data
 ```
----
 
-## RSA signatures
+## RSA signature flow
 
-### Export public key
+Export the public key:
 
-First, export the RSA public key from Pico HSM:
-
-```bash
+```sh
 pkcs11-tool --read-object --type pubkey --id 1 --output-file rsa_pub.der
-```
-
-Convert it to PEM format:
-
-```bash
 openssl rsa -inform DER -pubin -in rsa_pub.der -out rsa_pub.pem
 ```
 
-### Sign data with RSA
+Sign:
 
-Sign the data using the private key stored in Pico HSM:
-
-```bash
+```sh
 pkcs11-tool \
   --sign \
   --id 1 \
@@ -65,45 +29,27 @@ pkcs11-tool \
   -o data.sig
 ```
 
+Verify:
+
+```sh
+openssl dgst -sha256 -verify rsa_pub.pem -signature data.sig data
+```
+
 !!! warning
-    RSA-PKCS is considered deprecated for new designs. Use RSA-PSS when possible.
+    `RSA-PKCS` is widely interoperable but not the first choice for new designs. Prefer RSA-PSS where your tooling supports it.
 
-### Verify RSA signature
+## ECDSA signature flow
 
-Verify the signature using OpenSSL:
+Export the public key:
 
-```bash
-openssl dgst -sha256 \
-  -verify rsa_pub.pem \
-  -signature data.sig \
-  data
-```
-
-If the signature is valid, OpenSSL will report success.
-
----
-
-## ECDSA signatures
-
-### Export EC public key
-
-Export the EC public key from Pico HSM:
-
-```bash
+```sh
 pkcs11-tool --read-object --type pubkey --id 11 --output-file ec_pub.der
-```
-
-Convert it to PEM:
-
-```bash
 openssl ec -inform DER -pubin -in ec_pub.der -out ec_pub.pem
 ```
 
-### Sign data with ECDSA
+Sign:
 
-Sign the data using the EC private key stored in Pico HSM:
-
-```bash
+```sh
 pkcs11-tool \
   --sign \
   --id 11 \
@@ -113,37 +59,16 @@ pkcs11-tool \
   -o data.sig
 ```
 
-### Verify ECDSA signature
+Verify:
 
-Verify the ECDSA signature using OpenSSL:
-
-```bash
-openssl dgst -sha256 \
-  -verify ec_pub.pem \
-  -signature data.sig \
-  data
+```sh
+openssl dgst -sha256 -verify ec_pub.pem -signature data.sig data
 ```
 
-If the signature is valid, OpenSSL will confirm it.
+## What to watch for
 
-### Notes on hashing
+- host tools differ on whether hashing is implicit or explicit
+- some mechanisms exist in firmware but are awkward in generic CLI tooling
+- signature success proves the session, PIN, and key object are all aligned correctly
 
-When using pkcs11-tool:
-
-- Hashing may be performed internally by the mechanism
-- Alternatively, the host may hash the data before signing
-
-!!! note
-    Ensure that the hashing strategy used for signing and verification is consistent.
-
----
-
-## Summary
-
-Using Pico HSM for digital signatures allows you to:
-
-- Sign data with RSA, ECDSA, or EdDSA keys stored securely
-- Verify signatures using standard OpenSSL tools
-- Keep private keys fully isolated inside the HSM
-
-All cryptographic signing operations are performed inside the device.
+That makes sign-and-verify one of the best diagnostic workflows after initial provisioning.

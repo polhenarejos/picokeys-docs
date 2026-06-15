@@ -1,7 +1,9 @@
 site_name: PicoKeys Documentation
-site_description: Documentation for Pico HSM, Pico FIDO, Pico OpenPGP and PicoKeyApp
+site_description: Firmware-first documentation for Pico FIDO, Pico OpenPGP, and Pico HSM
 site_url: https://docs.picokeys.com/
 site_dir: site
+exclude_docs: |
+  pico-novus/**
 
 theme:
   name: material
@@ -30,7 +32,75 @@ extra_css:
   - assets/stylesheets/extra.css
 
 nav:
-  - Home: index.md
+  - Home:
+      - Overview: index.md
+      - Production hardening:
+        - OTP fuses: production/otp-fuses.md
+        - Anti-rollback: production/anti-rollback.md
+        - Threat model: security/threat-model.md
+
+  - Pico FIDO:
+      - Overview: picofido/index.md
+      - Quick start: picofido/quickstart.md
+      - Setup and policy: picofido/initialization.md
+      - Using the device:
+        - FIDO2 / WebAuthn / U2F: picofido/passkeys.md
+        - SSH keys: picofido/ssh.md
+        - Git signing + auth: picofido/git.md
+        - OATH: picofido/accounts-oath.md
+        - OTP: picofido/slots-otp.md
+        - Vendor extensions: picofido/vendor-extensions.md
+      - Limitations: picofido/limitations.md
+      - Troubleshooting: picofido/troubleshooting.md
+
+  - Pico OpenPGP:
+      - Overview: pico-openpgp/index.md
+      - Host setup and compatibility: pico-openpgp/compatibility-notes.md
+      - PINs and roles: pico-openpgp/pin-and-roles.md
+      - Using the device:
+        - OpenPGP card: pico-openpgp/openpgp-card.md
+        - PIV: pico-openpgp/piv.md
+        - Key management: pico-openpgp/key-management.md
+        - Daily use: pico-openpgp/daily-use.md
+        - Recovery and reset: pico-openpgp/recovery-reset.md
+      - Operational limits: pico-openpgp/operational-limits.md
+      - Troubleshooting: pico-openpgp/troubleshooting.md
+
+  - Pico HSM:
+      - Overview: picohsm/index.md
+      - First steps: picohsm/first-steps.md
+      - Capability map: picohsm/features.md
+      - Key generation: picohsm/key-generation.md
+      - Sign and verify: picohsm/sign-verify.md
+      - Asymmetric ciphering: picohsm/asymmetric-ciphering.md
+      - AES: picohsm/aes.md
+      - Backup and restore: picohsm/backup-restore.md
+      - Store data: picohsm/store-data.md
+      - Public key authentication: picohsm/public-key-authentication.md
+      - Smart Card Shell 3: picohsm/scs3.md
+
+  # Pico Novus is not released yet. Re-enable this tab when publishing it.
+  # - Pico Novus:
+  #     - Overview: pico-novus/index.md
+  #     - Architecture: pico-novus/architecture.md
+  #     - Getting started: pico-novus/first-steps.md
+  #     - Signed sessions: pico-novus/signed-sessions.md
+  #     - API map: pico-novus/api-map.md
+  #     - Core model:
+  #       - Concepts: pico-novus/concepts.md
+  #       - Users and access: pico-novus/users-and-access.md
+  #       - Domains: pico-novus/domains.md
+  #       - Keys: pico-novus/keys.md
+  #     - Using the API:
+  #       - Crypto operations: pico-novus/crypto-operations.md
+  #       - Trust and transfer: pico-novus/trust-and-transfer.md
+  #       - Device management: pico-novus/device-management.md
+  #     - Development:
+  #       - Developer guide: pico-novus/developer-guide.md
+  #       - Errors and status codes: pico-novus/errors-and-status.md
+  #       - Testing: pico-novus/testing.md
+  #     - Limitations: pico-novus/limitations.md
+  #     - Troubleshooting: pico-novus/troubleshooting.md
 
   - PicoKey App:
       - Overview: picokeyapp/index.md
@@ -71,35 +141,6 @@ nav:
         - App settings: picokeyapp/app-settings.md
         - About: picokeyapp/about.md
         - License: picokeyapp/license.md
-
-  - Pico HSM:
-      - Overview: picohsm/index.md
-      - Supported features: picohsm/features.md
-      - Usage:
-        - First steps: picohsm/first-steps.md
-        - Key Generation: picohsm/key-generation.md
-        - AES: picohsm/aes.md
-        - Asymmetric Ciphering: picohsm/asymmetric-ciphering.md
-        - Sign & Verify: picohsm/sign-verify.md
-        - Public Key Authentication: picohsm/public-key-authentication.md
-        - Backup & Restore: picohsm/backup-restore.md
-        - Store Data: picohsm/store-data.md
-        - Smart Card Shell 3: picohsm/scs3.md
-
-  - Pico FIDO:
-      - Overview: picofido/index.md
-      - Initialization and policy: picofido/initialization.md
-      - Passkeys: picofido/passkeys.md
-      - Accounts (OATH): picofido/accounts-oath.md
-      - Slots & OTP: picofido/slots-otp.md
-      - Vendor Extensions:
-        - User PIN: picofido/vendor-extensions.md
-
-  - Pico OpenPGP:
-      - Overview: pico-openpgp/index.md
-      - Compatibility notes: pico-openpgp/compatibility-notes.md
-      - PIN and roles: pico-openpgp/pin-and-roles.md
-      - Operational limits: pico-openpgp/operational-limits.md
 
 markdown_extensions:
   - admonition

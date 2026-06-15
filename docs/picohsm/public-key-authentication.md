@@ -1,26 +1,21 @@
 # Public key authentication
 
-This document describes how to perform public key authentication using Pico HSM, based directly on the official Pico HSM documentation.
+Public-key authentication lets Pico HSM gate access with a challenge-response flow instead of relying only on an interactive PIN entry pattern.
 
-Public key authentication allows a host to authenticate itself to the device without using a PIN, relying instead on cryptographic challenge–response.
+That makes it useful for automation, but only if you model the trust boundary correctly.
 
-## Overview
+## High-level flow
 
-Public key authentication works by:
+1. generate or provision an authentication key
+2. export the public part
+3. sign a challenge with the private key in the device
+4. verify the signature with the public key
 
-- Storing an authentication key inside Pico HSM
-- Generating a random challenge on the device
-- Signing the challenge using the private key
-- Verifying the signature using the corresponding public key
-
-!!! note
-    This mechanism is useful for automated systems where interactive PIN entry is not possible.
+If verification succeeds, the holder of the device-controlled private key is authenticated.
 
 ## Generate an authentication key
 
-First, generate an EC key pair that will be used for authentication.
-
-```bash
+```sh
 pkcs11-tool \
   --keygen \
   --key-type EC:prime256v1 \
@@ -29,35 +24,21 @@ pkcs11-tool \
   --pin 648219
 ```
 
-This key will remain stored inside Pico HSM.
-
 ## Export the public key
 
-Export the public part of the authentication key:
-
-```bash
+```sh
 pkcs11-tool \
   --read-object \
   --type pubkey \
   --id 20 \
   --output-file auth_pub.der
+
+openssl ec -inform DER -pubin -in auth_pub.der -out auth_pub.pem
 ```
 
-Convert it to PEM format:
+## Sign a challenge
 
-```bash
-openssl ec \
-  -inform DER \
-  -pubin \
-  -in auth_pub.der \
-  -out auth_pub.pem
-```
-
-Authenticate using a challenge
-
-Request a random challenge from Pico HSM and sign it using the authentication key.
-
-```bash
+```sh
 pkcs11-tool \
   --sign \
   --id 20 \
@@ -67,59 +48,18 @@ pkcs11-tool \
   -o response.sig
 ```
 
-!!! note
-    The challenge data must match the data used during verification.
+## Verify it
 
-## Verify authentication response
-
-Verify the signature using the public key:
-
-```bash
-openssl dgst \
-  -sha256 \
-  -verify auth_pub.pem \
-  -signature response.sig \
-  challenge.bin
+```sh
+openssl dgst -sha256 -verify auth_pub.pem -signature response.sig challenge.bin
 ```
 
-If verification succeeds, authentication is considered valid.
+## Operational caution
 
----
+This is powerful for headless use, but do not overstate it:
 
-## Authentication flow summary
+- if the automation environment is compromised, it may still be able to invoke authorized operations
+- the public-key path removes some PIN friction, not the need for trust boundaries
+- key management for the authentication key now becomes part of your automation security story
 
-The complete authentication process is:
-
-- Device generates or receives a challenge
-- Host signs the challenge using the authentication key
-- Device or host verifies the signature
-- Access is granted if verification succeeds
-
-!!! tip
-    Public key authentication can be combined with PIN-based access for layered security.
-
----
-
-## Security considerations
-
-When using public key authentication:
-
-- Protect the authentication private key carefully
-- Use secure storage for public keys
-- Avoid reusing authentication keys across systems
-
-!!! warning
-    Compromise of the authentication private key allows impersonation.
-
----
-
-## Summary
-
-Public key authentication in Pico HSM provides:
-
-- Non-interactive authentication
-- Cryptographic challenge–response
-- Reduced reliance on PIN entry
-- Secure automation support
-
-This mechanism is particularly useful in headless or automated environments.
+Use it where non-interactive access is genuinely needed, not as a reflex replacement for PIN-gated workflows.

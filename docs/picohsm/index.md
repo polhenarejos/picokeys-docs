@@ -1,159 +1,62 @@
 # Pico HSM
 
-Pico HSM is a firmware variant that turns a PicoKeys device into a **hardware security module**.
+Pico HSM is the broadest and most ambitious firmware in the PicoKeys family. It is meant to turn a supported board into a compact hardware security module with smart-card style transport and a large cryptographic surface.
 
-It is designed to securely store cryptographic material and to perform cryptographic operations **inside the device**, without exposing private keys to the host system.
+That makes documentation quality more important, not less. A long feature list without boundaries is not useful.
 
----
+## Start here
 
-## Purpose
+- [First steps](first-steps.md): detect the device, verify middleware, and establish a safe baseline
+- [Capability map](features.md): what upstream says the firmware can do, grouped by function
+- [Key generation](key-generation.md): create keys without exporting private material
+- [Sign and verify](sign-verify.md): signature workflows
+- [Asymmetric ciphering](asymmetric-ciphering.md): RSA decryption and ECDH
+- [AES](aes.md): symmetric operations
+- [Backup and restore](backup-restore.md): wrapped-key workflows and DKEK assumptions
 
-The main goals of Pico HSM are:
+## What it is, plainly
 
-- Secure key storage
-- Hardware-backed cryptographic operations
-- Isolation of private keys from the host system
-- Integration with standard cryptographic interfaces
+Pico HSM is not just "a device that can sign." Upstream claims support for:
 
-!!! note
-    Pico HSM defines device behavior. PicoKey App is only used to manage and provision the device.
+- RSA, ECC, EdDSA, AES, HMAC, CMAC, KDFs, and secure messaging
+- wrapped-key import/export through DKEK-based workflows
+- key domains, threshold shares, attestation, counters, and public-key authentication
+- USB CCID transport and PKCS#11 integration
 
----
+This is closer to an HSM-style appliance than the other firmware families.
 
-## What Pico HSM is
+## What it is not
 
-Pico HSM is:
+It is not:
 
-- A firmware running on a PicoKeys device
-- A hardware-backed cryptographic endpoint
-- A solution for protecting long-term cryptographic keys
-- A component designed to work with external software via standard APIs
+- a certified enterprise HSM
+- a secure element
+- a guarantee that every advertised capability is equally well surfaced by generic desktop tooling
 
----
+There is real capability here, but host-tool maturity varies sharply by feature.
 
-## What Pico HSM is not
+## Security posture
 
-Pico HSM is not:
+The upstream README describes a model where:
 
-- A general-purpose smartcard emulator
-- A software-only cryptographic library
-- A replacement for full enterprise-grade HSMs
-- A key backup or recovery service
+- private and secret keys are stored encrypted in flash
+- the MKEK protects that storage
+- PIN-derived material gates key use
+- RP2350/RP2354 and ESP32-S3 class hardware can back that model with stronger secure-boot, secure-lock, and OTP-backed protection
 
-!!! warning
-    Loss of the device may result in permanent loss of stored private keys.
+The boundary is just as important:
 
----
+- a compromised host can still drive authorized operations
+- RP2040 does not offer the same at-rest protection story
+- physical and certification-grade threats are outside what these boards can honestly claim to solve
 
-## Key security properties
+## How to read the rest of this section
 
-Pico HSM enforces the following security properties:
+The practical order is:
 
-- Private keys never leave the device
-- Cryptographic operations are executed internally
-- Key usage is restricted by firmware policy
-- Persistent storage is protected by the device firmware
+1. establish host connectivity and PIN workflow
+2. generate or import only non-critical test material first
+3. validate the exact host tools you plan to use
+4. only then move on to backup, wrapped-key, or higher-assurance workflows
 
-!!! note
-    Security guarantees depend on correct usage and threat assumptions.
-
----
-
-## Supported cryptographic operations
-
-The exact set of supported operations depends on the firmware version, but typically includes:
-
-- Key generation
-- Digital signatures (RSA, ECDSA, EdDSA)
-- Signature verification
-- Encryption and decryption
-- Key agreement
-
-!!! note
-    Supported algorithms and curves are firmware-specific and may evolve over time.
-
----
-
-## Interfaces and integration
-
-Pico HSM is designed to integrate with host systems through **standard interfaces**.
-
-Typical integrations include:
-
-- PKCS#11-compatible software
-- Cryptographic middleware
-- Custom applications using supported APIs
-
-!!! tip
-    Using standard interfaces simplifies integration and reduces the need for custom tooling.
-
----
-
-## Host system requirements
-
-To use Pico HSM effectively, the host system typically requires:
-
-- A supported operating system
-- Appropriate user permissions for USB access
-- Required middleware or libraries (e.g. PKCS#11)
-
-!!! note
-    Host-side setup is outside the scope of PicoKey App and depends on the operating system.
-
----
-
-## Firmware lifecycle
-
-Using Pico HSM involves several stages:
-
-- Firmware installation
-- Board registration
-- Device commissioning
-- Operational use via host software
-
-!!! warning
-    Reinstalling or changing firmware may reset configuration or require re-commissioning.
-
----
-
-## Limitations
-
-Pico HSM has intentional limitations, including:
-
-- No key export functionality
-- No built-in key escrow or recovery
-- Finite storage capacity
-- Limited concurrency compared to large HSMs
-
-!!! danger
-    Keys stored on the device should be considered non-recoverable if the device is lost or damaged.
-
----
-
-## Typical use cases
-
-Pico HSM is suitable for use cases such as:
-
-- Protecting signing keys
-- Hardware-backed authentication
-- Secure automation credentials
-- Development and testing of HSM-based workflows
-
-It is not intended for:
-
-- High-throughput enterprise HSM workloads
-- Multi-tenant key hosting
-- Regulatory-certified HSM deployments
-
----
-
-## Next steps
-
-After installing Pico HSM firmware:
-
-- Review the supported features and algorithms
-- Configure host-side integration
-- Understand the security model and limitations
-
-!!! tip
-    Always test workflows with non-critical keys before deploying to production.
+That order avoids confusing "feature exists" with "feature is operationally ready for this deployment."

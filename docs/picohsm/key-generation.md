@@ -1,19 +1,21 @@
-# Key Generation
+# Key generation
 
-##  Generate keys
+Key generation is the cleanest Pico HSM workflow because it uses the device exactly as intended: create private material inside the device and export only what must be public.
 
-Supported key families and curves include:
+## Supported families
+
+According to upstream, Pico HSM supports:
 
 - RSA: 1024 to 4096 bits
-- Weierstrass EC (ECDSA/ECDH): secp192r1, secp256r1, secp384r1, secp521r1, secp256k1, brainpoolP256r1, brainpoolP384r1, brainpoolP512r1
+- Weierstrass EC: common NIST, Koblitz, and Brainpool curves
 - Edwards curves: Ed25519 and Ed448
+- AES secret keys
 
-!!! note
-    Exact algorithm availability depends on firmware version/build and PKCS#11 middleware support.
+Exact mechanism names exposed through a host tool may still vary by middleware version.
 
-Generate an RSA key:
+## Generate an RSA key
 
-```bash
+```sh
 pkcs11-tool \
   --keygen \
   --key-type rsa:2048 \
@@ -22,9 +24,11 @@ pkcs11-tool \
   --pin 648219
 ```
 
-or generate an EC key:
+Use RSA only when you need it. Large RSA keys cost real time on this class of hardware.
 
-```bash
+## Generate an EC key
+
+```sh
 pkcs11-tool \
   --keygen \
   --key-type EC:prime256v1 \
@@ -33,116 +37,46 @@ pkcs11-tool \
   --pin 648219
 ```
 
-!!! note
-    Key generation is performed entirely inside the device.
+For many deployments, this is the practical default.
 
-## Export public keys
+## Export the public part
 
-Export an RSA public key:
+For RSA:
 
-```bash
+```sh
 pkcs11-tool \
   --read-object \
   --type pubkey \
   --id 01 \
   --output-file rsa_pub.der
-```
-
-Convert to PEM:
-
-```bash
 openssl rsa -inform DER -pubin -in rsa_pub.der -out rsa_pub.pem
 ```
 
-## Sign data
+For EC:
 
-Sign a file using a private key:
-
-```bash
+```sh
 pkcs11-tool \
-  --sign \
-  --id 01 \
-  --pin 648219 \
-  --mechanism RSA-PKCS \
-  -i data \
-  -o data.sig
+  --read-object \
+  --type pubkey \
+  --id 11 \
+  --output-file ec_pub.der
+openssl ec -inform DER -pubin -in ec_pub.der -out ec_pub.pem
 ```
 
-!!! warning
-    RSA-PKCS is deprecated for new designs. Prefer RSA-PSS when available.
+## Validate immediately
 
-## Verify signatures
+Do not stop at generation. Immediately:
 
-Verify using OpenSSL:
+- list the object
+- export the public key
+- sign or decrypt one test payload
 
-```bash
-openssl dgst -sha256 \
-  -verify rsa_pub.pem \
-  -signature data.sig \
-  data
-```
+That confirms the key is usable, not only present.
 
-## Encrypt and decrypt
+## Practical cautions
 
-Asymmetric and symmetric encryption are supported.
+- RSA 3072 and 4096 are expensive enough to affect normal UX
+- unsupported or oddly named curve identifiers in host tools can mislead users
+- a generated key is only useful if your intended client stack can consume it later
 
-Refer to:
-
-- [Asymmetric Ciphering](asymmetric-ciphering.md)
-- [AES](aes.md)
-
-for detailed workflows and examples.
-
-## Backup and restore keys
-
-Keys can be exported and imported in wrapped form.
-
-Refer to:
-
-[Backup & Restore](backup-restore.md)
-
-!!! danger
-    Loss of backup material or DKEK shares may make keys unrecoverable.
-
-## Store arbitrary data
-
-Store and retrieve small data blobs:
-
-- Write data objects
-- Read data objects
-- Delete data objects
-
-Refer to:
-
-[Store data](store-data.md)
-
-## Low-level debugging
-
-For APDU-level interaction and debugging, use:
-
-[Smart card shell 3](scs3.md)
-
-Common issues
-
-If commands fail:
-
-- Verify the correct PIN
-- Ensure the device is not locked
-- Check USB permissions
-- Confirm the correct PKCS#11 module path
-
-!!! tip
-    Running tools with increased verbosity can help diagnose issues.
-
----
-
-## Summary
-
-Pico HSM usage typically involves:
-
-- Managing keys via PKCS#11
-- Performing cryptographic operations inside the device
-- Using standard tools such as OpenSSL and OpenSC
-- Keeping private key material fully isolated
-
-This workflow enables secure cryptographic operations without exposing sensitive keys to the host system.
+That last point is why key generation should always be followed by one end-to-end application test.

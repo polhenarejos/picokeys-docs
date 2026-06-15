@@ -1,62 +1,60 @@
-# Accounts (OATH)
+# OATH accounts
 
-This page describes the OATH account model in Pico FIDO (TOTP/HOTP).
+Pico FIDO also implements OATH-style one-time password storage. This is useful, but it is not why most people should choose the firmware.
 
----
+## What upstream claims
 
-## Overview
+The upstream README lists support for:
 
-Pico FIDO can store OATH accounts and generate one-time codes for:
+- OATH based on the YKOATH protocol
+- TOTP
+- HOTP
+- compatibility with Yubico Authenticator and `ykman` in supported configurations
 
-- TOTP (time-based OTP)
-- HOTP (counter-based OTP)
+This is a practical feature set for users who still need OTP-based services.
 
-Accounts are typically identified by issuer + account label and are managed on-device.
+## When OATH makes sense
 
----
+Use OATH accounts when:
 
-## TOTP accounts
+- the service does not support passkeys
+- you need TOTP or HOTP specifically
+- you want the secrets to live on the device instead of in a phone authenticator app
 
-TOTP codes are derived from:
+Do not confuse that with phishing resistance. OATH codes remain weaker than passkeys because the user can still be tricked into entering a valid code on the wrong site.
 
-- Shared secret
-- Time step (period, usually 30 seconds)
-- Output digit length (typically 6 or 8 digits)
+## TOTP vs HOTP
 
-Use TOTP when both authenticator and verifier share clock-based code rotation.
+### TOTP
 
----
+Time-based OTP is the common case:
 
-## HOTP accounts
+- rotating code derived from shared secret and current time step
+- typically 6 or 8 digits
+- simple for users, but depends on clock agreement
 
-HOTP codes are derived from:
+### HOTP
 
-- Shared secret
-- Moving counter
-- Output digit length (typically 6 or 8 digits)
+Counter-based OTP is narrower:
 
-Use HOTP when the verifier expects counter-synchronized OTP values.
+- rotating code derived from shared secret and moving counter
+- works without time synchronization
+- more operationally fragile if client and verifier counters drift
 
-!!! warning
-    HOTP verification depends on counter synchronization between device and server.
+If you do not explicitly need HOTP, TOTP is usually easier to live with.
 
----
+## Operational cautions
 
-## Account lifecycle
+- account storage is finite
+- account metadata may be managed differently depending on the tool
+- Yubico-oriented apps may care about VID/PID identity or device naming heuristics
 
-Typical lifecycle operations are:
+That means a feature can exist in firmware and still be awkward in a specific desktop toolchain.
 
-- Create account
-- List account metadata
-- Generate/emit OTP
-- Delete account
+## Security notes
 
-When account storage is locked by policy, unlock/verification may be required before listing or using accounts.
+- the secret stays on the device
+- the generated code does not
+- whoever sees a valid OTP quickly enough can usually replay it
 
----
-
-## Security considerations
-
-- Secrets are stored on-device.
-- Protect account management with PIN/policy where available.
-- Prefer TOTP/HOTP only for services that still require OTP workflows; use passkeys where possible for phishing-resistant auth.
+Treat OATH as a compatibility feature, not as the primary reason to adopt Pico FIDO.

@@ -1,28 +1,24 @@
 # Backup and restore
 
-This document describes how to backup and restore keys in Pico HSM using wrapped keys.
-The procedure is based directly on the official Pico HSM documentation.
+Backup in Pico HSM does not mean "export the private key as plaintext." It means "wrap key material under a DKEK-based scheme and move it under controlled conditions."
 
-Backup and restore operations allow exporting keys encrypted under a Device Key Encryption Key (DKEK), ensuring that private keys are never exposed in plaintext.
+That distinction is the whole point.
 
-## Overview
+## Core idea
 
-The backup and restore mechanism relies on:
+The upstream model relies on:
 
-- A Device Key Encryption Key (DKEK)
-- Wrapped key export
-- Controlled key import on compatible devices
+- a Device Key Encryption Key (DKEK)
+- wrapped export
+- controlled unwrap on a compatible destination
 
-!!! warning
-    Backup data must be protected carefully. Anyone with access to the wrapped keys and the DKEK may restore them.
+If you do not understand your DKEK story, you do not yet have a backup story.
 
-## Generate DKEK shares
+## Generate or provision the DKEK path
 
-The DKEK is split into multiple shares using an n-of-m scheme.
+The simplified example is:
 
-Generate the DKEK shares:
-
-```bash
+```sh
 pkcs11-tool \
   --generate-key \
   --key-type aes:32 \
@@ -31,24 +27,11 @@ pkcs11-tool \
   --pin 648219
 ```
 
-Export the DKEK shares:
+In real deployments, upstream also describes share-based and threshold workflows. Those need operational runbooks, not just commands.
 
-```bash
-pkcs11-tool \
-  --export-key \
-  --id 01 \
-  --pin 648219 \
-  --output-file dkek-share.bin
-```
+## Export a wrapped key
 
-!!! note
-    The DKEK itself never leaves the device unencrypted.
-
-## Backup (export) keys
-
-To backup a private or secret key, export it wrapped under the DKEK.
-
-```bash
+```sh
 pkcs11-tool \
   --export-key \
   --id 12 \
@@ -58,16 +41,11 @@ pkcs11-tool \
   --output-file key-backup.bin
 ```
 
-This produces an encrypted backup file.
+The output is still sensitive. It is just not plaintext key material.
 
-!!! tip
-    Store backup files offline and protect them with the same care as the original device.
+## Restore the wrapped key
 
-## Restore (import) keys
-
-To restore a previously backed-up key:
-
-```bash
+```sh
 pkcs11-tool \
   --import-key \
   --unwrap \
@@ -78,38 +56,15 @@ pkcs11-tool \
   --label restored-key
 ```
 
-If the DKEK matches, the key will be restored securely.
+Whether this succeeds depends on compatible policy, compatible capability, and the correct DKEK context.
 
-## Key compatibility
+## What can go wrong
 
-Backup files can only be restored:
+- DKEK shares are lost
+- the destination device is not prepared correctly
+- the team thinks "we have export files" means "we have tested recovery"
 
-- On devices with compatible firmware
-- Using the same DKEK
-- With matching cryptographic capabilities
-
-!!! warning
-    Restoring keys on incompatible devices may fail or result in unusable keys.
-
-## Security considerations
-
-When using backup and restore:
-
-- Limit access to DKEK shares
-- Avoid storing backups online
-- Test restore procedures before relying on backups
+Only the last point is avoidable by discipline alone, and it is also the most common.
 
 !!! danger
-    Loss of both the device and the DKEK makes key recovery impossible.
-
----
-
-## Summary
-
-The backup and restore mechanism in Pico HSM provides:
-
-- Secure encrypted key export
-- Controlled key import
-- Protection against plaintext key exposure
-
-This enables safe key migration and disaster recovery when used correctly.
+    A backup workflow that has never been restored on a test device is not a backup workflow. It is a hypothesis.

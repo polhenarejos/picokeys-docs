@@ -1,68 +1,54 @@
-# Slots and OTP
+# OTP slots
 
-This page documents slot-based OTP behavior in Pico FIDO compatible modes.
-
----
+Pico FIDO also exposes Yubico-style OTP slot behavior. Upstream documents four slots, each holding one configured function.
 
 ## Slot model
 
-Pico FIDO supports up to **4 slots**. Each slot stores one configured behavior.
+Each slot can be configured independently as one of:
 
-The 4 supported slot schemes are:
-
-- Static password
+- static password
 - HOTP
 - Yubico OTP
-- Challenge-response
+- challenge-response
 
-Each slot is independent and can be provisioned or deleted separately.
+That flexibility is useful, but it also means the USB keyboard path can easily outlive the use case that justified it.
 
-Slot state model:
+## Activation
 
-- Empty: no behavior configured
-- Configured: one of the 4 schemes is active
+The current docs describe BOOTSEL-based activation by repeated button presses:
 
----
+- slot 1: one press
+- slot 2: two presses
+- slot 3: three presses
+- slot 4: four presses
 
-## Activation with BOOTSEL
+Treat that as a physical UI contract. If you deploy it operationally, make sure users understand which slot does what before they start typing secrets into the wrong input field.
 
-Slots are activated by pressing the BOOTSEL button `N` consecutive times, where `N` is the slot number:
+## Output behavior
 
-- Slot 1: press once
-- Slot 2: press twice
-- Slot 3: press three times
-- And so on
+For static password, HOTP, and Yubico OTP modes, the device can emit characters through the USB keyboard interface.
 
-Presses must be consecutive so firmware can map the sequence to the intended slot.
+Challenge-response is different:
 
----
+- it is not meant to "type" a value
+- it computes a response from a host-supplied challenge
 
-## Keyboard-style output
+That difference is easy to gloss over and often confuses users.
 
-When a slot is configured as:
+## When these slots are a good fit
 
-- Static password
-- HOTP
-- Yubico OTP
+They make sense when you need compatibility with:
 
-Activation emits output through the USB HID keyboard interface, so the host receives characters as if typed by a keyboard.
+- older systems that still expect OTP
+- workflows already built around Yubico-style slot semantics
+- challenge-response integrations that are not WebAuthn
 
-!!! note
-    Challenge-response does not emit keyboard text in this way; it returns response data through protocol operations.
+They are not a better replacement for passkeys. They are a fallback for older ecosystems.
 
----
+## Security cautions
 
-## Operational differences by slot type
+- static passwords are only as safe as the place they are typed
+- OTP keyboard emission is vulnerable to input focus mistakes
+- physical possession may be enough to trigger output if extra controls are not enabled
 
-- Static password: emits fixed text.
-- HOTP: emits a new counter-based OTP code each activation.
-- Yubico OTP: emits Yubico-format OTP payload.
-- Challenge-response: processes host-provided challenge and returns a computed response.
-
----
-
-## Security notes
-
-- Anyone with physical access may trigger slot output unless extra controls are enabled.
-- Static passwords are convenient but weaker than modern passkeys.
-- For phishing resistance, prefer WebAuthn passkeys and keep OTP as compatibility fallback.
+If the goal is phishing-resistant authentication, use passkeys and keep slot features only where legacy compatibility forces the issue.

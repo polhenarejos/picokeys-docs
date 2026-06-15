@@ -1,33 +1,23 @@
-# Store arbitrary data
+# Store data
 
-This document explains how to store and retrieve arbitrary data objects in Pico HSM, based directly on the official Pico HSM documentation.
+Pico HSM can also store non-key data objects. This is useful, but it should be kept in proportion: the device is a secure cryptographic appliance, not a general object store.
 
-This feature allows using the device as a secure data store for small binary blobs protected by the HSM access control model.
+## Typical use cases
 
-## Overview
+Reasonable uses include:
 
-Pico HSM allows storing arbitrary binary data as objects.
+- certificates
+- small metadata blobs
+- application-bound configuration
+- auxiliary secrets tied to the same access-control model
 
-Stored data:
+Large arbitrary file storage is not the intended design target.
 
-- Is kept inside the device
-- Is protected by access control
-- Can be listed, read, and deleted
+## Write a data object
 
-!!! note
-    Stored data is not cryptographic key material, but it is protected by the same secure storage mechanisms.
-
-## Store data
-
-Create a file containing the data to be stored:
-
-```bash
+```sh
 echo "This is a test data" > data.bin
-```
 
-Store the data in Pico HSM:
-
-```bash
 pkcs11-tool \
   --write-object data.bin \
   --type data \
@@ -36,26 +26,18 @@ pkcs11-tool \
   --pin 648219
 ```
 
-The data is now stored inside the device.
+## List data objects
 
-## List stored data objects
-
-To list stored data objects:
-
-```bash
+```sh
 pkcs11-tool \
   --list-objects \
   --type data \
   --pin 648219
 ```
 
-This command shows all stored data objects with their identifiers and labels.
+## Read a data object
 
-## Read stored data
-
-To read a stored data object:
-
-```bash
+```sh
 pkcs11-tool \
   --read-object \
   --type data \
@@ -64,13 +46,9 @@ pkcs11-tool \
   --pin 648219
 ```
 
-The content of read-data.bin will match the original stored data.
+## Delete a data object
 
-## Delete stored data
-
-To delete a stored data object:
-
-```bash
+```sh
 pkcs11-tool \
   --delete-object \
   --type data \
@@ -78,47 +56,12 @@ pkcs11-tool \
   --pin 648219
 ```
 
-!!! warning
-    Deleting a data object is irreversible.
+## Practical caution
 
-## Data size limitations
+Data objects inherit the management complexity of the HSM:
 
-Stored data objects are subject to size limitations.
+- you still need the right session and PIN context
+- object identifiers need discipline
+- restore and migration expectations should be documented up front
 
-!!! note
-    Pico HSM is designed for small binary blobs, not large file storage.
-
-## Use cases
-
-Typical use cases for stored data include:
-
-- Configuration blobs
-- Certificates
-- Metadata
-- Application-specific secrets
-
-!!! tip
-    Use stored data for information that must remain bound to the device.
-
-## Security considerations
-
-When storing arbitrary data:
-
-- Use strong access control
-- Avoid storing sensitive data unnecessarily
-- Delete unused data objects
-
-!!! warning
-    Stored data is protected, but not encrypted per-object like private keys.
-
----
-
-## Summary
-
-The data storage feature in Pico HSM allows:
-
-- Secure storage of small binary data
-- Controlled access via PKCS#11
-- Simple read/write/delete operations
-
-This makes Pico HSM suitable for storing metadata and auxiliary information alongside cryptographic keys.
+Use them deliberately, not as a dumping ground.

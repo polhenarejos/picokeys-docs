@@ -1,69 +1,53 @@
 # Operational limits
 
-This page captures practical limits and expectations for Pico OpenPGP operations.
+Pico OpenPGP has two classes of limits:
 
----
+- performance limits
+- client and middleware limits
 
-## Performance profile
+Both matter in practice.
 
-Operation time depends on algorithm and key size.
+## RSA key generation is expensive
 
-In general:
+The upstream README publishes indicative timings that materially affect expectations:
 
-- ECC operations are faster
-- Larger RSA keys increase latency significantly
+| RSA key length | Key generation | Signature / decrypt |
+| --- | ---: | ---: |
+| 1024 bits | about 16 s | about 1 s |
+| 2048 bits | about 124 s | about 3 s |
+| 3072 bits | about 600 s | about 7 s |
+| 4096 bits | about 1000 s | about 15 s |
 
-Plan UX and automation timeouts accordingly, especially for high-bit RSA workflows.
+Those numbers are not cosmetic. They determine whether RSA is practical for your workflow at all.
 
----
+## ECC is usually the sensible default
 
-## Tooling limitations
+For most day-to-day OpenPGP use:
 
-Not every client tool exposes every card capability.
+- ECC generation is much faster
+- interactive workflows feel saner
+- automation is less likely to hit timeouts or impatient users
 
-For some advanced operations, support may depend on:
+If you do not have a specific RSA requirement, do not make large RSA your default choice.
 
-- specific middleware versions
-- PKCS#11 module behavior
-- direct APDU tooling
+## Firmware support is not client support
 
-UI availability is not always equivalent to firmware capability availability.
+This is the recurring mistake in OpenPGP docs.
 
-If a feature appears missing in one client, verify with an alternative tool path before concluding firmware regression.
+Examples:
 
----
+- AES may exist in firmware but not be easy to use in mainstream OpenPGP tools
+- advanced card functions may require lower-level tooling
+- GnuPG, OpenSC, and PKCS#11 clients do not surface the same feature set
 
-## Environment dependencies
+So "supported by Pico OpenPGP" must always be qualified by the client path.
 
-Runtime behavior is affected by:
+## Practical rule
 
-- host OS smart-card stack
-- PC/SC service state
-- USB reader/device recognition
-- board/firmware configuration choices
+Before you depend on a feature, verify all three:
 
-Treat these dependencies as part of deployment validation, not as optional post-setup checks.
+1. the firmware implements it
+2. the host middleware passes it through correctly
+3. the client you intend to use exposes it in a stable way
 
----
-
-## Capacity and workflow planning
-
-For reliable operations in production-like environments:
-
-- Prefer ECC when latency matters.
-- Reserve large RSA key operations for explicit cases that require them.
-- Budget time for unlock/retry/recovery flows in automation pipelines.
-- Separate “fast path” daily operations from “maintenance path” admin operations.
-
----
-
-## Troubleshooting priority order
-
-When operations fail or are unexpectedly slow, use this order:
-
-1. Confirm device/session state (connected, unlocked, correct role context).
-2. Confirm host middleware health (PC/SC, reader visibility).
-3. Re-test with a second client/tooling path.
-4. Then inspect firmware-specific behavior.
-
-This ordering reduces false positives and shortens incident triage time.
+If one of those fails, the feature is not operationally available for your deployment, whatever the firmware README says.

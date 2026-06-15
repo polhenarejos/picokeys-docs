@@ -1,105 +1,30 @@
-# Asymmetric encryption and decryption
+# Asymmetric ciphering
 
-These instructions follow the **Asymmetric encryption/decryption** examples from the official Pico HSM docs.
+Pico HSM exposes two different ideas under this heading:
 
-Pico HSM supports:
+- RSA decryption
+- ECDH shared-secret derivation
 
-- RSA decryption with several padding schemes
-- ECDH shared key derivation
+Those are related only in the sense that both use asymmetric keys.
 
-!!! note
-    Ed25519/Ed448 (EdDSA) keys are intended for digital signatures, not for encryption/decryption flows.
+## Prepare sample data
 
-The examples below show how to encrypt and decrypt with RSA and derive shared keys with ECDH.
-
----
-
-## Prepare test data
-
-Create a test input file:
-
-```bash
+```sh
 echo "This is a test string. Be safe, be secure." > data
 ```
 
----
+## RSA-OAEP is the sane default
 
-## RSA-PKCS (deprecated)
+First export the public key:
 
-This padding scheme is insecure and deprecated.
-
-First, extract the public key to PEM format:
-
-```bash
+```sh
 pkcs11-tool --read-object --pin 648219 --id 1 --type pubkey > 1.der
 openssl rsa -inform DER -outform PEM -in 1.der -pubin > 1.pub
 ```
 
-Encrypt it using OpenSSL:
+Encrypt on the host:
 
-```bash
-openssl rsautl -encrypt -inkey 1.pub -in data -pubin -out data.crypt
-```
-
-Then decrypt using Pico HSM:
-
-```bash
-pkcs11-tool \
-  --id 1 \
-  --pin 648219 \
-  --decrypt \
-  --mechanism RSA-PKCS \
-  -i data.crypt
-```
-
-The output will show the original data.
-
----
-
-## RSA-X-509
-
-This padding requires the plaintext to be padded up to the key size in bytes.
-
-Copy and pad the file:
-
-```bash
-cp data data_pad
-dd if=/dev/zero bs=1 count=227 >> data_pad
-```
-
-Encrypt the padded data:
-
-```bash
-openssl rsautl -encrypt \
-  -inkey 1.pub \
-  -in data_pad \
-  -pubin \
-  -out data.crypt \
-  -raw
-```
-
-Decrypt using Pico HSM:
-
-```bash
-cat data.crypt | pkcs11-tool \
-  --id 4 \
-  --pin 648219 \
-  --decrypt \
-  --mechanism RSA-X-509
-```
-
-!!! note
-    In RSA-X-509 mode the plaintext must match the key length byte count before encryption.
-
----
-
-## RSA-PKCS-OAEP (recommended)
-
-OAEP provides proper padding with SHA256:
-
-Encrypt with OpenSSL:
-
-```bash
+```sh
 openssl pkeyutl -encrypt \
   -inkey 1.pub \
   -pubin \
@@ -110,9 +35,9 @@ openssl pkeyutl -encrypt \
   -out data.crypt
 ```
 
-Decrypt inside Pico HSM:
+Decrypt in Pico HSM:
 
-```bash
+```sh
 pkcs11-tool \
   --id 1 \
   --pin 648219 \
@@ -121,25 +46,24 @@ pkcs11-tool \
   -i data.crypt
 ```
 
-!!! tip
-    RSA-OAEP with SHA256 is strongly preferred over RSA-PKCS.
+## RSA-PKCS and RSA-X.509 exist, but carefully
 
----
+Upstream examples also show `RSA-PKCS` and `RSA-X-509`.
 
-## ECDH shared secret derivation
+The documentation should be blunt here:
 
-ECC does not allow direct encryption; instead use ECDH to derive a shared secret:
+- `RSA-PKCS` exists largely for compatibility
+- `RSA-X-509` is low-level and easy to misuse
+- neither should be your first recommendation when OAEP is available
 
-Create a remote party keypair (Bob):
+## ECDH is not encryption
 
-```bash
+With elliptic-curve keys, the usual operation is shared-secret derivation:
+
+```sh
 openssl ecparam -genkey -name prime192v1 > bob.pem
 openssl ec -in bob.pem -pubout -outform DER > bob.der
-```
 
-Derive the shared secret:
-
-```bash
 pkcs11-tool \
   --pin 648219 \
   --id 11 \
@@ -148,30 +72,21 @@ pkcs11-tool \
   -o mine-bob.der
 ```
 
-Compute Bob’s shared secret locally:
+And compare against the host-side derived secret:
 
-```bash
-openssl pkeyutl -derive \
-  -out bob-mine.der \
-  -inkey bob.pem \
-  -peerkey 11.pub
-```
-
-Compare:
-
-```bash
+```sh
+openssl pkeyutl -derive -out bob-mine.der -inkey bob.pem -peerkey 11.pub
 cmp bob-mine.der mine-bob.der
 ```
 
-If nothing is printed, both keys match.
+If `cmp` prints nothing, the derived secrets match.
 
----
+## Practical caution
 
-## Summary
+Asymmetric ciphering is where users often discover that:
 
-This covers the main asymmetric ciphering flows in Pico HSM:
+- the firmware is capable
+- the host tool syntax is obscure
+- the intended application still needs adaptation
 
-- RSA (various padding schemes)
-- ECDH key agreement
-
-All private key operations occur inside the device; keys are never exposed externally.
+That is normal. Test the full application path, not just the raw cryptographic primitive.
