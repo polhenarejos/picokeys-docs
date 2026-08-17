@@ -30,6 +30,23 @@ The dashboard exposes key FIDO device metadata, including:
 
 These values help evaluate authenticator capabilities and current storage state.
 
+## Keyboard Interface
+
+The **Keyboard Interface** switch enables or disables the USB keyboard
+interface through the device's PHY settings.
+
+This interface is used by the OTP slots to type configured output when the
+device button is pressed. When it is disabled, PicoKey App disables the
+keyboard-dependent actions for slots 1–4:
+
+- Static Password
+- HOTP
+- Yubico OTP
+
+Challenge-response remains available because it does not type through the USB
+keyboard interface. Re-enable the switch before configuring or using the
+keyboard-dependent OTP actions.
+
 ---
 
 ## Options and extensions

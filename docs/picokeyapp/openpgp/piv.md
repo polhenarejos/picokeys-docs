@@ -122,7 +122,8 @@ Active keys can be moved to active or retired slots.
 - The key is reassigned to the selected destination slot.
 - Occupancy indicators in **Retired Slots** are updated when rotating keys into retired positions.
 - Disabled rotate actions in some slots indicate there is no key material available to move.
-- Keys moved to **Retired Slots** cannot be moved back to active slots.
+- Current firmware can move retired keys back to active slots; verify the
+  destination and certificate association before committing the move.
 - Choosing `Delete permanently` removes key material irreversibly.
 
 ---
@@ -142,7 +143,8 @@ Retired slots are archival positions used to store keys and certificates that ar
 Occupied retired slots are shown in green and empty ones in red.
 
 !!! danger
-    Material moved to retired slots cannot be returned to active slots. Deleting or rotating retired slot material can permanently impact certificate history and recovery workflows.
+    Moving, deleting, or rotating retired slot material can permanently impact
+    certificate history and recovery workflows.
 
 ---
 

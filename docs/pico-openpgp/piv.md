@@ -56,3 +56,21 @@ The exact module path depends on the operating system.
 - Imported keys and generated keys have different attestation and recovery properties.
 
 Treat PIV as its own applet with its own lifecycle.
+
+## Current policy defaults
+
+The current firmware reports slot metadata for PIN and touch policy, origin,
+and algorithm. Unless explicitly overridden, the defaults are:
+
+- signature slot: PIN required for every use;
+- card-authentication slot: PIN-free use;
+- other key slots: PIN required once per authenticated session; and
+- generated/imported keys: no touch requirement.
+
+These defaults are not a substitute for reviewing slot metadata. Set an
+explicit policy when your deployment requires touch or a different PIN
+boundary.
+
+The PIV attestation key and its metadata are exposed through slot `F9`. Retired
+keys can also be moved back to active slots in current firmware, so use the
+move operation deliberately and verify the destination slot before committing.

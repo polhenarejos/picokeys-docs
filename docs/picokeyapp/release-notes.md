@@ -87,3 +87,26 @@ Reference tag in `picokeyapp`: `v2.4` (`2026-02-16`).
 
 - This page summarizes documentation coverage updates, not full firmware/API changelogs.
 - For implementation-level history, use `git log` in the `picokeyapp` repository.
+
+## v3.0
+
+PicoKey App 3.0 includes:
+
+- a dedicated **FIDO > Vault** panel for local opaque credential packages;
+- export and import of selected resident credentials through an enrolled Pico
+  Vault;
+- four Vault encryption profile choices;
+- Vault metadata such as RP, user, algorithm, board serial, and Vault ID;
+- Vault groups packages from multiple Vault IDs and permits import only when the
+  board's active Vault ID matches;
+- bulk Vault import/export and per-credential Vault actions;
+- per-credential expiration and revocation actions;
+- PIN complexity policy configuration;
+- `alwaysUv`, `makeCredUvNotRqd`, and discoverable-credential controls;
+- a FIDO Dashboard switch for the Keyboard Interface used by OTP slots 1–4;
+- better FIDO transport fallback when the HID path is unavailable; and
+- improved OpenPGP/PIV panel behavior for mixed FIDO2 devices.
+
+The standalone [Pico Vault Enroller](https://github.com/polhenarejos/pico-vault-enroller)
+is required for board enrollment. PicoKey App manages exported packages after
+enrollment; it does not replace the enrollment ceremony.

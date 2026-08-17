@@ -60,3 +60,18 @@ The practical order is:
 4. only then move on to backup, wrapped-key, or higher-assurance workflows
 
 That order avoids confusing "feature exists" with "feature is operationally ready for this deployment."
+
+## Current storage behavior
+
+Recent firmware work moves HSM key material toward authenticated SDK object
+containers while retaining compatibility with supported legacy layouts. The
+practical consequences are:
+
+- firmware upgrades do not require treating every existing key as a new key;
+- protected key records carry authenticated metadata and policy facts;
+- authenticated PIN state is required before sensitive key-domain and key
+  material changes; and
+- the shared filesystem supports larger, multi-sector protected stores.
+
+This improves migration and crash recovery, but it does not replace a tested
+DKEK backup and restore procedure.

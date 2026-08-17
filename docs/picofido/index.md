@@ -8,6 +8,7 @@ It speaks the standard FIDO HID path, so browsers and host software usually care
 
 - [Setup and policy](initialization.md): flashing, first validation, PIN, and early policy choices
 - [Passkeys and CTAP](passkeys.md): resident credentials, algorithms, extensions, and reset behavior
+- [Pico Vault](vault.md): enrolled passkey export/import and recovery
 - [OATH accounts](accounts-oath.md): TOTP and HOTP accounts
 - [OTP slots](slots-otp.md): static password, HOTP, Yubico OTP, and challenge-response
 - [Vendor extensions](vendor-extensions.md): admin/user PIN split, permission masks, and app-level management paths
@@ -17,6 +18,7 @@ It speaks the standard FIDO HID path, so browsers and host software usually care
 Upstream claims support for:
 
 - CTAP 2.1 and CTAP 1
+- FIDO 2.3 behavior and related authenticator configuration
 - WebAuthn and U2F
 - discoverable credentials and credential management
 - user verification by PIN
@@ -26,6 +28,10 @@ Upstream claims support for:
 - self attestation and enterprise attestation
 - backup with 24 words
 - secure lock, secure boot, rescue paths, and OTP-backed secrets on stronger hardware families
+
+Pico FIDO 8 also adds per-credential expiration and revocation, configurable
+PIN complexity, `alwaysUv` and `makeCredUvNotRqd` policies, and the opt-in Pico
+Vault portability workflow.
 
 That is a large surface. It does not mean every host tool exposes every feature equally well.
 

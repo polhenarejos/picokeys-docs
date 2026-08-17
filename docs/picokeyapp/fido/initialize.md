@@ -46,6 +46,21 @@ Defines the minimum allowed PIN length.
 !!! tip
     Longer PINs significantly improve resistance against guessing attacks.
 
+### PIN complexity policy
+
+When supported by the firmware, **Pin Complexity Policy** adds a policy URL and
+one of these requirements. The policy switch must be enabled before the URL
+and policy controls are applied:
+
+- upper letters
+- lower letters
+- mixed letters
+- digits only
+- alphanumeric
+- alphanumeric plus symbols
+
+The policy is enforced by the authenticator when PINs are created or changed.
+
 ---
 
 ### RP IDs restriction
@@ -57,6 +72,19 @@ Limits the set of allowed Relying Party IDs.
 
 !!! danger
     Incorrect RP ID configuration may prevent authentication on valid services.
+
+### FIDO behavior toggles
+
+The initialization panel can also expose:
+
+- **Enable Discoverable Credentials** (`rk`): enables or disables resident
+  credential creation.
+- **Make Cred UV Not Required**: allows credential creation without user
+  verification when the relying-party request and device policy permit it.
+- **Enable Always UV**: requires user verification for applicable operations.
+
+Use **Apply Changes** after changing these switches. Verify the resulting
+options on the FIDO Dashboard before enrolling production credentials.
 
 ---
 

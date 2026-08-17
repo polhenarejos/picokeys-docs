@@ -87,3 +87,19 @@ The more advanced the feature, the more you should verify:
 - whether the client you intend to use can drive it without custom tooling
 
 That rule avoids most disappointment.
+
+## Storage and authorization changes
+
+Current firmware also hardens the operational boundary around the feature set:
+
+- HSM key objects use authenticated container records with legacy-layout
+  compatibility;
+- key-domain mutation, master-seed generation, and sensitive object changes
+  require the appropriate authenticated session;
+- usage counters are persisted and enforced across symmetric and derivation
+  operations; and
+- protected filesystem capacity and indexing have been expanded for larger
+  stores.
+
+These are firmware guarantees, not new PKCS#11 commands. Continue to validate
+the exact host tool and recovery workflow you depend on.

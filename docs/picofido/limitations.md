@@ -37,3 +37,16 @@ Treat them as fallback compatibility mechanisms, not the primary story.
 ## Recovery needs testing
 
 A device that has never been reset, reprovisioned, or re-enrolled in testing does not yet have a proven recovery story.
+
+## Pico Vault is deliberately limited
+
+Pico Vault is not a general private-key export mechanism and is not part of
+ordinary WebAuthn interoperability.
+
+- Enrollment requires the separate Vault enroller, a license, PIN
+  authorization, and physical presence.
+- Import requires the destination board to belong to the same Vault domain.
+- The local enrollment envelope and its passphrase are both required for
+  replacement-board recovery.
+- A credential must be exported while the source board and Vault material are
+  available; Vault does not reconstruct credentials after both are lost.

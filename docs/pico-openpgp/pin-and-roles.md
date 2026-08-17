@@ -62,3 +62,22 @@ Before any sensitive operation, know which context you are in:
 3. reconnects can clear the context you assumed was still active
 
 Most "the card refused the command" reports reduce to one of those.
+
+## Admin-less mode
+
+Some current firmware builds support an optional admin-less mode inspired by
+[Gnuk](https://wiki.debian.org/GNUK). In that mode, `PW3` can remain
+unconfigured and the configured user PIN can also authorize operations
+normally associated with `PW3`. Configuring a distinct `PW3` disables that
+relationship.
+
+Treat this as a deliberate policy choice, not as a shortcut around the role
+model:
+
+- enable it only when a single operator credential is acceptable;
+- verify the mode after changing PINs or migrating KDF settings; and
+- use separate `PW1` and `PW3` credentials when administrative separation is
+  required.
+
+Pico OpenPGP implements the mode with its own storage and KDF migration path;
+the Gnuk behavior is the design precedent, not a shared implementation.

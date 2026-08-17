@@ -1,6 +1,8 @@
 # PicoKey App
 
-PicoKe App is the desktop application used to manage **PicoKeys devices**.
+PicoKey App is the desktop application used to manage **PicoKeys devices**.
+
+The current release is **PicoKey App 3.0**.
 
 It provides a local user interface for:
 

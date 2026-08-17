@@ -43,6 +43,9 @@ nav:
       - Overview: picofido/index.md
       - Quick start: picofido/quickstart.md
       - Setup and policy: picofido/initialization.md
+      - Pico Vault: picofido/vault.md
+      - Changelog:
+        - Pico FIDO 8: picofido/release-notes.md
       - Using the device:
         - FIDO2 / WebAuthn / U2F: picofido/passkeys.md
         - SSH keys: picofido/ssh.md
@@ -118,6 +121,7 @@ nav:
         - FIDO:
           - Dashboard: picokeyapp/fido/dashboard.md
           - Passkeys: picokeyapp/fido/passkeys.md
+          - Vault: picokeyapp/fido/vault.md
           - Vendor Features:
             - User PIN: picokeyapp/fido/user-pin.md
           - Slots:

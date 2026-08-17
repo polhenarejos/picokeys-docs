@@ -21,6 +21,8 @@ Upstream claims support for:
 - `secp256r1`, `secp384r1`, `secp521r1`, `brainpoolP256r1`, `brainpoolP384r1`, `brainpoolP512r1`, and `secp256k1`
 - RSA signatures, ECDSA signatures, and ECDH
 - KDF for PIN, UIF, MSE, card lifecycle operations, certificates, extended APDU, and AES encipher/decipher support
+- optional admin-less operation, where the user PIN can also authorize the
+  administrative context when the firmware policy enables it
 
 That is a broad feature set. It still needs to be separated into two buckets:
 
@@ -60,3 +62,16 @@ The default use case is still the familiar OpenPGP card workflow:
 - on-device keys sign, decrypt, or authenticate
 
 These docs now follow that flow much more directly.
+
+## Recent firmware changes
+
+Recent firmware work adds migration-aware authenticated storage for OpenPGP
+and PIV key material, stricter PIN and APDU validation, and more complete PIV
+metadata and attestation handling. The PIV applet reports version 5.7 in the
+current source tree.
+
+For PIV, current defaults are deliberately role-specific: signature use
+defaults to PIN verification, card-authentication keys can be PIN-free, and
+generated/imported keys default to no touch unless a touch policy is supplied.
+Review the reported slot metadata rather than assuming every slot has the same
+policy.

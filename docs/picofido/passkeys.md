@@ -105,6 +105,27 @@ This is exactly the kind of area where host support is uneven. A good rule is:
 
 Test the exact combination you plan to depend on.
 
+## Credential policy in Pico FIDO 8
+
+Pico FIDO 8 adds policy controls that are visible through vendor management
+tools such as PicoKey App:
+
+- **Always UV** can require user verification for every applicable operation.
+- **Make credential UV not required** can relax the user-verification flag for
+  newly created credentials when policy allows it.
+- **Resident credential policy** can disable discoverable credentials when a
+  deployment allows only non-resident credentials.
+- **PIN complexity** can require uppercase letters, lowercase letters, digits,
+  symbols, or selected combinations.
+- **Credential expiration** causes a credential to be rejected after its
+  configured date.
+- **Credential revocation** permanently prevents further assertions with the
+  revoked credential.
+
+These are device policy controls, not WebAuthn relying-party settings. Record
+them as part of device commissioning because they can change registration and
+login behavior.
+
 ## Attestation
 
 Upstream also claims:
