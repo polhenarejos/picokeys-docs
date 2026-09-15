@@ -34,6 +34,26 @@ user information, and credential ID. They are separate from **Export
 Credential**, which creates an opaque Vault package. Revoked credentials
 cannot be changed.
 
+![Manage Credential dialog](../../assets/images/picokeyapp/fido/expiration.png)
+
+## Individual credential lifecycle
+
+The gear opens the **Manage Credential** dialog for that specific credential.
+
+- **Set expiration** stores an optional expiration date and time. The board
+  requires a configured RTC to set this value. When the RTC reaches the
+  expiration time, the credential becomes `EXPIRED` and Pico FIDO rejects
+  assertions for it.
+- **Revoke** immediately marks the credential as `REVOKED` and prevents it
+  from being used for assertions.
+
+Expired and revoked credentials remain listed so their status can be audited;
+they are not deleted automatically. The operation applies only to the
+selected credential, so other credentials on the board remain unaffected.
+Neither operation removes the corresponding registration at a relying party,
+and the current firmware does not provide a way to reactivate an expired or
+revoked credential.
+
 ![Large Blob management](../../assets/images/picokeyapp/fido/largeblobs.png)
 
 ---
