@@ -2,7 +2,7 @@
 
 PIV is a smart-card application model for X.509 certificates, client authentication, smart-card login, PKCS#11, and related workflows.
 
-This page exists because the `RS-Key` documentation has a PIV section and PicoKeys tooling has PIV-oriented workflows. For a standalone Pico OpenPGP deployment, verify that your firmware image actually includes the PIV applet before treating any command here as applicable.
+For a standalone Pico OpenPGP deployment, verify that your firmware image actually includes the PIV applet before treating any command here as applicable.
 
 ## Applicability check
 
