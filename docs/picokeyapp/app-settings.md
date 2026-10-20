@@ -50,6 +50,20 @@ When enabled:
 
 ---
 
+## Enable Notifications
+
+Enables or disables the display or notifications when an event is processed by the device. Known events:
+
+- A site is requesting your presence by touching the button.
+- A credential has been created.
+- An assertion for a specific credential has been succeed.
+
+!!! note
+    Notifications are sent to the Notification Center in macOS, Linux and Windows when PicoKey App is running. Enable
+    PicoKey Agent for background monitoring when the main app is closed.
+
+---
+
 ## Agent
 
 ### Enable Agent
@@ -65,6 +79,8 @@ When enabled:
   - Device time synchronization
 
   - Audit or traceability features
+
+  - Notification handling like user presence, credential creation or credential assertion.
 
 !!! note
     PicoKey Agent runs as a background service and must be installed separately.
