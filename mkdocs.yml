@@ -28,6 +28,26 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
 
+extra:
+  analytics:
+    provider: google
+    property: G-K3H7HREJGY
+  consent:
+    title: Cookie consent
+    description: >-
+      We use Google Analytics to understand how visitors use this documentation.
+      Analytics cookies stay off until a visitor enables them.
+    actions:
+      - accept
+      - manage
+    cookies:
+      analytics:
+        name: Google Analytics
+        checked: false
+
+copyright: >
+  <a href="#__consent">Cookie settings</a>
+
 extra_css:
   - assets/stylesheets/extra.css
 
