@@ -1,12 +1,10 @@
 # User PIN (Vendor Feature)
 
-This page describes the PicoKey vendor feature that adds a second FIDO PIN context with separate permissions.
+The User PIN feature adds a second FIDO PIN context with its own permissions.
 
 ## Purpose
 
-This feature is designed for **multi-user FIDO Passkeys** scenarios.
-
-It allows an Admin to decide which operations are allowed for a User context and which are not.
+This feature supports **multi-user FIDO passkeys** by letting an Admin choose which operations the User context can perform.
 
 Typical use case: an organization configures the key with a manager/admin account first, then hands the key to a worker account with reduced administration permissions.
 
@@ -16,7 +14,7 @@ Typical use case: an organization configures the key with a manager/admin accoun
 
 ## What this feature adds
 
-This is **not** a standard FIDO behavior. It is a vendor extension implemented by PicoKey firmware and PicoKey App.
+This vendor extension is implemented by PicoKey firmware and PicoKey App; it is outside the standard FIDO behavior.
 
 The device can operate with two PIN contexts:
 
@@ -29,7 +27,7 @@ Each context has its **own PIN value**.
 
 ## Permission model
 
-When `User PIN` is enabled, Admin can define what User is allowed to do in Passkeys management.
+When `User PIN` is enabled, Admin can set which Passkeys management actions the User context may perform.
 
 The following permissions can be enabled or disabled for User context:
 
@@ -41,7 +39,7 @@ The following permissions can be enabled or disabled for User context:
 - Persistent credential management
 - Reset authenticator
 
-Default behavior:
+By default:
 
 - All permissions are enabled by default.
 - **Authentication is always enabled** and cannot be effectively removed, otherwise the user would not be able to authenticate to any service.
@@ -55,17 +53,15 @@ Admin context keeps full access regardless of User restrictions.
 - If `User PIN` is **disabled**: only Admin context is active.
 - If `User PIN` is **enabled**: device defaults to **User context** after each connect/reconnect.
 
-This means opening PicoKey App with an enabled User PIN starts in User context unless you explicitly switch.
+When User PIN is enabled, PicoKey App opens in User context after each connection unless you switch to Admin.
 
 ---
 
 ## Context switching in PicoKey App
 
-Context selection is done in **FIDO > Passkeys** using the context switch.
+Switch contexts in **FIDO > Passkeys**.
 
-Precondition:
-
-- A PIN must already be configured for the active context. If PIN is not set up, context switch is not available.
+The switch is available only after a PIN has been configured for the active context.
 
 Operational sequence:
 
@@ -80,6 +76,6 @@ If you need to disable User PIN, switch to Admin context first, then disable Use
 
 ## Practical notes
 
-- Treat Admin and User PIN as separate credentials.
-- Define User permissions with least privilege.
-- If management actions are unavailable, verify current context before troubleshooting.
+- Keep the Admin and User PINs as separate credentials.
+- Give the User context only the permissions it needs.
+- If management actions are unavailable, check the current context before troubleshooting.

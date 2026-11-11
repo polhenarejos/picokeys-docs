@@ -1,15 +1,13 @@
 # First-time use
 
-This section describes the **mandatory steps required the first time you use PicoKey App with a new device**.
-
-These steps are only performed once per device and include **irreversible operations**.
-Read this section carefully before proceeding.
+The first time you use PicoKey App with a new device, complete the steps below.
+Some actions are **irreversible**, so check each selection before continuing.
 
 ---
 
 ## Overview
 
-When using PicoKey App for the first time, the following actions are required:
+You will need to:
 
 1. Install a valid license
 2. Connect a compatible PicoKeys device
@@ -21,7 +19,7 @@ Some of these steps **cannot be undone**.
 
 ---
 
-## Step 1 – Install a license
+## Step 1: Install a license
 
 Before a device can be registered, a **valid license must be installed**.
 
@@ -33,14 +31,14 @@ Before a device can be registered, a **valid license must be installed**.
 
 ![Register License](../assets/images/picokeyapp/register-license.png)
 
-At this stage:
+After installing the license:
 
 - The license is installed locally
 - No device is registered yet
 
 ---
 
-## Step 2 – Connect the device
+## Step 2: Connect the device
 
 1. Plug the PicoKeys device into a USB port
 2. Use a direct USB connection whenever possible
@@ -59,11 +57,11 @@ If the device is not detected:
 
 ---
 
-## Step 3 – Select the board type (mandatory)
+## Step 3: Select the board type (mandatory)
 
 Before registering the board, **you must explicitly select the correct board type**.
 
-This step is **required** and **user-controlled**.
+You must choose the board type yourself before registering it.
 
 - The board type defines the hardware variant associated with the license
 - PicoKey App cannot automatically infer the correct board in all cases
@@ -73,8 +71,6 @@ This step is **required** and **user-controlled**.
     Once the board type is selected and the board is registered,
     **the board type cannot be changed**.
 
-Take special care at this step.
-
 !!! info
     Do not attempt to register the board in BOOTSEL mode. Proceed with a
     PicoKey firmware running normally.
@@ -83,7 +79,7 @@ Take special care at this step.
 
 ---
 
-## Step 4 – Register the board
+## Step 4: Register the board
 
 After selecting the board type:
 
@@ -92,16 +88,16 @@ After selecting the board type:
 3. Click **Register Board**
 4. Wait for confirmation
 
-Once completed:
+After registration:
 
 - The license is bound to the selected board
 - The board status changes to **Registered**
 
-This operation is **final for that license and board**.
+This license-to-board binding cannot be undone.
 
 ---
 
-## Step 5 – Commission the device
+## Step 5: Commission the device
 
 After board registration, the device must be commissioned.
 
@@ -110,7 +106,7 @@ After board registration, the device must be commissioned.
 3. Click **Commission device**
 4. Wait for the confirmation message
 
-Commissioning:
+Commissioning then:
 
 - Applies the selected configuration
 - Writes persistent state to the device
@@ -140,7 +136,7 @@ Include:
 
 ## Summary
 
-For first-time use, the following points are critical:
+Before you finish, confirm that:
 
 - Installing a license is mandatory
 - The board type must be selected manually by the user

@@ -1,8 +1,8 @@
 # Backup and restore
 
-Backup in Pico HSM does not mean "export the private key as plaintext." It means "wrap key material under a DKEK-based scheme and move it under controlled conditions."
-
-That distinction is the whole point.
+Pico HSM backs up private keys by wrapping them under a DKEK-based scheme and
+moving them under controlled conditions. It does not export private keys as
+plaintext.
 
 ## Core idea
 
@@ -12,7 +12,7 @@ The upstream model relies on:
 - wrapped export
 - controlled unwrap on a compatible destination
 
-If you do not understand your DKEK story, you do not yet have a backup story.
+Before relying on backups, make sure you understand how DKEK shares are created, stored, and recovered.
 
 ## Generate or provision the DKEK path
 
@@ -27,7 +27,7 @@ pkcs11-tool \
   --pin 648219
 ```
 
-In real deployments, upstream also describes share-based and threshold workflows. Those need operational runbooks, not just commands.
+For real deployments, the upstream project also describes share-based and threshold workflows; document those procedures in an operational runbook.
 
 ## Export a wrapped key
 
@@ -64,7 +64,7 @@ Whether this succeeds depends on compatible policy, compatible capability, and t
 - the destination device is not prepared correctly
 - the team thinks "we have export files" means "we have tested recovery"
 
-Only the last point is avoidable by discipline alone, and it is also the most common.
+The third problem is avoidable: restore a backup on a test device before relying on it.
 
 !!! danger
     A backup workflow that has never been restored on a test device is not a backup workflow. It is a hypothesis.

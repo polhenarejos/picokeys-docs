@@ -1,10 +1,10 @@
 # PicoKey App
 
-PicoKey App is the desktop application used to manage **PicoKeys devices**.
+PicoKey App is the desktop application for managing **PicoKeys devices**.
 
 The current release is **PicoKey App 3.0**.
 
-It provides a local user interface for:
+Use it to:
 
 - Device detection
 - Device configuration and commissioning
@@ -14,7 +14,7 @@ It provides a local user interface for:
 - App settings
 - License and board registration
 
-PicoKey App communicates directly with the device over USB and exposes only the features supported by the currently installed firmware.
+PicoKey App communicates with the device over USB and shows the features supported by its installed firmware.
 
 ---
 

@@ -1,8 +1,6 @@
 # Slot: Yubico OTP
 
-This page describes the **Yubico OTP slot type** available in PicoKey App.
-
-The Yubico OTP slot generates one-time passwords following the **Yubico OTP specification** and emits them as **keyboard input** when triggered.
+A **Yubico OTP slot** generates one-time passwords according to the **Yubico OTP specification** and types them as **keyboard input** when triggered.
 
 ![Yubico OTP slot](../../../assets/images/picokeyapp/fido/slots-yubiotp.png)
 
@@ -10,14 +8,9 @@ The Yubico OTP slot generates one-time passwords following the **Yubico OTP spec
 
 ## Overview
 
-The Yubico OTP slot allows the device to:
-
-- Store Yubico-compatible identifiers and secret keys
-- Generate Yubico OTP values
-- Emit the OTP as keystrokes
-- Behave as a USB keyboard when activated
-
-The generated OTPs are compatible with systems expecting standard Yubico OTP authentication.
+The device stores Yubico-compatible identifiers and secret keys, then uses
+them to generate OTP values when the slot is activated. It types each code
+through its USB keyboard interface for services that support Yubico OTP.
 
 ---
 
@@ -25,12 +18,8 @@ The generated OTPs are compatible with systems expecting standard Yubico OTP aut
 
 The Yubico OTP slot is activated through the **OTP / button interface**.
 
-Activation works as follows:
-
-- The user presses the BOOTSEL button **N times**
-- `N` corresponds to the slot number
-- The device generates a Yubico OTP
-- The OTP is typed on the host system as keyboard input
+Press the BOOTSEL button **N times**, where `N` is the slot number. The device
+then generates a Yubico OTP and types it into the host as keyboard input.
 
 !!! note
     No additional software is required on the host beyond USB HID keyboard support.
@@ -41,21 +30,16 @@ Activation works as follows:
 
 ### Public ID
 
-Defines the **public identifier** for the Yubico OTP.
-
-- Sent in clear as part of the OTP
-- Used by the verification service to identify the device
-- Limited in length by the Yubico specification
+Enter the **public identifier** that the verification service uses to identify
+the device. It is sent in clear as part of the OTP and is limited in length by
+the Yubico specification.
 
 ---
 
 ### Private ID (hex)
 
-Defines the **private identifier**.
-
-- Stored securely on the device
-- Used internally during OTP generation
-- Must be provided in hexadecimal format
+Enter the **private identifier** in hexadecimal format. The device stores it
+securely and uses it internally when generating OTP values.
 
 !!! warning
     The private ID cannot be retrieved once stored.
@@ -64,11 +48,8 @@ Defines the **private identifier**.
 
 ### Key (hex)
 
-Defines the **secret key** used to generate the Yubico OTP.
-
-- Stored securely on the device
-- Must be provided in hexadecimal format
-- Never exposed outside the device
+Enter the **secret key** in hexadecimal format. The device stores it securely
+and does not expose it outside the device.
 
 !!! danger
     Losing the secret key prevents OTP verification and cannot be recovered.
@@ -77,10 +58,8 @@ Defines the **secret key** used to generate the Yubico OTP.
 
 ### Append Enter
 
-When enabled:
-
-- An Enter key is sent after the OTP
-- Useful for automatic form submission
+When enabled, the device sends Enter after the OTP, which can submit a form
+automatically.
 
 !!! tip
     Enable this option when authenticating on web login forms.
@@ -89,8 +68,8 @@ When enabled:
 
 ## Save and cancel
 
-- **Save** stores the Yubico OTP configuration permanently
-- **Cancel** discards the configuration
+- **Save** stores the Yubico OTP configuration permanently.
+- **Cancel** discards the changes.
 
 !!! danger
     Saving overwrites any existing slot configuration.
@@ -99,11 +78,8 @@ When enabled:
 
 ## Security considerations
 
-The Yubico OTP slot:
-
-- Follows Yubico OTP specifications
-- Does not expose secrets over software interfaces
-- Emits OTPs only as keyboard input
+The slot follows the Yubico OTP specification and keeps its secrets out of
+software interfaces. It emits OTPs only as keyboard input.
 
 !!! warning
     Anyone with physical access to the device may trigger OTP generation.
@@ -112,7 +88,7 @@ The Yubico OTP slot:
 
 ## Typical use cases
 
-Common use cases include:
+Use Yubico OTP slots for:
 
 - Authentication against Yubico-compatible servers
 - Legacy systems using Yubico OTP
@@ -125,9 +101,8 @@ Common use cases include:
 
 ## Limitations
 
-- Requires a compatible Yubico OTP verification service
-- Keyboard-based emission only
-- No host-side confirmation from the device
+The service must support Yubico OTP, and the device emits the code through its
+keyboard interface without host-side confirmation.
 
 !!! note
     This slot is intended for compatibility with existing Yubico OTP infrastructures.

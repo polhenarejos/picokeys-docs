@@ -2,7 +2,7 @@
 
 PIV is a smart-card application model for X.509 certificates, client authentication, smart-card login, PKCS#11, and related workflows.
 
-For a standalone Pico OpenPGP deployment, verify that your firmware image actually includes the PIV applet before treating any command here as applicable.
+Before following these steps on a standalone Pico OpenPGP device, check that its firmware image includes the PIV applet.
 
 ## Applicability check
 
@@ -14,7 +14,7 @@ ykman piv info
 
 or use OpenSC/PCSC tooling to inspect available applications.
 
-If the command cannot find a PIV applet, this page is not applicable to that firmware image.
+If the command cannot find a PIV applet, the instructions below do not apply to that firmware image.
 
 ## Defaults and provisioning
 
@@ -25,7 +25,7 @@ PIV deployments normally include:
 - management key
 - key slots such as `9a`, `9c`, `9d`, and `9e`
 
-Change defaults before real use. Public defaults are provisioning state, not production state.
+Change the published default credentials before production use.
 
 ## Generate a key
 
@@ -47,7 +47,7 @@ ssh-keygen -D /usr/lib/opensc-pkcs11.so
 ssh -I /usr/lib/opensc-pkcs11.so you@host
 ```
 
-The exact module path depends on the operating system.
+The PKCS#11 module path varies by operating system.
 
 ## Caveats
 
@@ -55,7 +55,7 @@ The exact module path depends on the operating system.
 - PIV support is not the same thing as OpenPGP support.
 - Imported keys and generated keys have different attestation and recovery properties.
 
-Treat PIV as its own applet with its own lifecycle.
+PIV has a separate applet and lifecycle, so manage it independently from OpenPGP.
 
 ## Current policy defaults
 
@@ -67,7 +67,7 @@ and algorithm. Unless explicitly overridden, the defaults are:
 - other key slots: PIN required once per authenticated session; and
 - generated/imported keys: no touch requirement.
 
-These defaults are not a substitute for reviewing slot metadata. Set an
+Review the reported slot metadata before relying on these defaults. Set an
 explicit policy when your deployment requires touch or a different PIN
 boundary.
 

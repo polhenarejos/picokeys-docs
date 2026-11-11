@@ -1,18 +1,18 @@
 # Daily use
 
-Once the card is provisioned, the day-to-day workflows are the ordinary OpenPGP ones:
+Once the card is provisioned, you can use it for the usual OpenPGP workflows:
 
 - signing
 - decryption
 - authentication
 
-The card should feel boring here. If it does not, the host setup or role model is probably still wrong.
+These workflows should behave predictably. If they do not, check the host setup and the credential role in use.
 
 ## Signing
 
 The signature key is used for normal OpenPGP signing operations through GnuPG or another card-aware client.
 
-Verify one signing flow early with the exact client you intend to use later. This is the fastest way to confirm:
+Test a signing flow early with the client you plan to use. This confirms that:
 
 - the card is visible
 - `PW1` works
@@ -22,11 +22,11 @@ Verify one signing flow early with the exact client you intend to use later. Thi
 
 The decryption path is where performance and middleware issues become more visible, especially with larger RSA keys.
 
-Test one full decrypt workflow, not just card enumeration, before calling a platform "supported."
+Before treating a platform as supported, test a complete decryption workflow as well as card detection.
 
 ## Authentication
 
-Authentication workflows often depend on host-agent setup as much as on the card itself. If you use the card for SSH or similar agent-backed paths, treat that as its own validation item.
+Authentication workflows depend on the host agent as well as the card. If you use the card for SSH or another agent-backed path, validate that workflow separately.
 
 ## UIF and confirmation
 

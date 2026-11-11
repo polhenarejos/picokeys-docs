@@ -1,8 +1,6 @@
 # Audit
 
-The **Audit** section is designed to analyze commands and usage activity on the PicoKey.
-
-Its purpose is to keep operational control of events that occur on the device.
+The **Audit** section lets you review command and usage activity recorded by the PicoKey, so you can track operations performed on the device.
 
 ![Audit](../assets/images/picokeyapp/audit.png)
 
@@ -10,7 +8,7 @@ Its purpose is to keep operational control of events that occur on the device.
 
 ## What Audit provides
 
-The Audit Log view shows a chronological list of operations with:
+The Audit Log lists operations in chronological order and shows:
 
 - Operation number (`#`)
 - Event name
@@ -18,13 +16,13 @@ The Audit Log view shows a chronological list of operations with:
 - Result (`OK` / `Fail`)
 - Timestamp
 
-It also shows the **Total operations** counter with the accumulated number of recorded events.
+The **Total operations** counter shows how many events have been recorded.
 
 ---
 
 ## Access protection (Audit PIN)
 
-Audit access can be protected with a dedicated PIN (**Audit PIN**).
+You can protect audit access with a dedicated **Audit PIN**.
 
 From this panel you can:
 
@@ -36,7 +34,7 @@ From this panel you can:
 
 ## Log actions
 
-The panel provides direct log administration actions:
+Use the panel controls to manage the log:
 
 - **Refresh**
 - **Export Log**
@@ -47,7 +45,7 @@ The panel provides direct log administration actions:
 
 ## Event indicators and status flags
 
-Audit includes status indications to quickly detect relevant situations, such as:
+Status indicators call out conditions that may affect the log, including:
 
 - Log truncated
 - Log cleared
@@ -56,4 +54,4 @@ Audit includes status indications to quickly detect relevant situations, such as
 - Clock not synchronized
 - Write errors while storing log entries
 
-In the screenshot example, indicators like **Log cleared**, **Firmware changed**, and **Log protected** are visible.
+The screenshot shows indicators for **Log cleared**, **Firmware changed**, and **Log protected**.

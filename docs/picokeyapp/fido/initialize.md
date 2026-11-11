@@ -1,8 +1,8 @@
 # Pico FIDO Initialization
 
-This page describes the **security initialization and provisioning options** available when using **Pico FIDO** with PicoKey App.
+Use PicoKey App to set the **security initialization and provisioning options** for **Pico FIDO**.
 
-These options are **applied once during initialization** and directly affect the security model of the authenticator.
+These options are **applied during initialization** and shape the authenticator's security model.
 
 ![Pico FIDO initialization](../../assets/images/picokeyapp/fido/initialize.png)
 
@@ -12,7 +12,7 @@ These options are **applied once during initialization** and directly affect the
 
 ### PIN
 
-Sets the **user verification PIN** for the authenticator.
+Set the authenticator's **user verification PIN** here.
 
 - The PIN is required for user verification when enabled
 - It protects resident credentials and sensitive operations
@@ -24,7 +24,7 @@ Sets the **user verification PIN** for the authenticator.
 
 ### Attestation
 
-Enables authenticator attestation.
+Enable authenticator attestation here.
 
 When enabled:
 
@@ -38,7 +38,7 @@ When enabled:
 
 ### Minimum PIN length
 
-Defines the minimum allowed PIN length.
+Set the minimum allowed PIN length.
 
 - Enforced at PIN setup time
 - Applies to all future PIN changes
@@ -48,9 +48,9 @@ Defines the minimum allowed PIN length.
 
 ### PIN complexity policy
 
-When supported by the firmware, **Pin Complexity Policy** adds a policy URL and
-one of these requirements. The policy switch must be enabled before the URL
-and policy controls are applied:
+When supported by the firmware, **PIN Complexity Policy** lets you set a policy
+URL and choose one of these requirements. Enable the policy switch before
+applying the URL or selecting a requirement:
 
 - upper letters
 - lower letters
@@ -65,7 +65,7 @@ The policy is enforced by the authenticator when PINs are created or changed.
 
 ### RP IDs restriction
 
-Limits the set of allowed Relying Party IDs.
+Restrict which Relying Party IDs the authenticator accepts.
 
 - RP IDs must be explicitly listed
 - Multiple RP IDs are separated by commas
@@ -90,7 +90,7 @@ options on the FIDO Dashboard before enrolling production credentials.
 
 ## Initialization process
 
-After configuring the desired options:
+After choosing the options you need:
 
 - Click **Apply Changes**
 - The device is provisioned with the selected security parameters
@@ -102,15 +102,13 @@ After configuring the desired options:
 
 ## Registration requirement
 
-This panel requires a registered board in PicoKey App. If the board is not registered, initialization actions are disabled.
+Register the board in PicoKey App before using this panel; otherwise, initialization actions are disabled.
 
 ---
 
 ## Summary
 
-Security initialization defines the **trust model** of Pico FIDO.
-
-Careful selection of these options ensures:
+Security initialization defines the **trust model** of Pico FIDO, so choose these options to set:
 
 - Strong authentication guarantees
 - Resistance against firmware tampering

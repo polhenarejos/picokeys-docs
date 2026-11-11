@@ -1,6 +1,6 @@
 # Limitations
 
-This page is about the gaps and boundaries that matter in practice.
+These are the limits most likely to affect a deployment.
 
 ## Hardware security is not uniform
 
@@ -26,17 +26,17 @@ The firmware may advertise:
 - large blobs
 - `minPinLength`
 
-That still does not mean the relying party, browser, and OS all use them meaningfully.
+The relying party, browser, and operating system must also support an extension before it affects a login flow.
 
 ## Legacy OTP features are compatibility features
 
 OATH, Yubico OTP, and static-password slots are useful. They are not more modern or more phishing-resistant than passkeys.
 
-Treat them as fallback compatibility mechanisms, not the primary story.
+Use them to support older systems, while keeping passkeys as the primary choice when the service supports them.
 
 ## Recovery needs testing
 
-A device that has never been reset, reprovisioned, or re-enrolled in testing does not yet have a proven recovery story.
+Test a reset, reprovisioning, and re-enrollment before relying on the device's recovery process.
 
 ## Pico Vault is deliberately limited
 

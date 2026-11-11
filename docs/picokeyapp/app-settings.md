@@ -1,7 +1,6 @@
 # App settings
 
-This section describes the **application-level settings** available in PicoKey App.
-These settings affect how the application communicates with PicoKey devices and how certain advanced features are enabled.
+The **application-level settings** control how PicoKey App communicates with devices and enables certain advanced features.
 
 ![Application settings](../assets/images/picokeyapp/app-settings.png)
 
@@ -9,11 +8,11 @@ These settings affect how the application communicates with PicoKey devices and 
 
 ## Available readers
 
-Selects the smart card / USB reader interface used by PicoKey App.
+Choose the smart-card or USB reader interface that PicoKey App should use.
 
-- The list shows all detected compatible interfaces
-- The active reader is highlighted
-- The refresh button forces a new scan of available readers
+- The list shows each compatible interface that the app detects.
+- The active reader is highlighted.
+- Click refresh to scan for readers again.
 
 !!! note
     In most cases, the default reader selection is sufficient and should not be changed.
@@ -22,13 +21,12 @@ Selects the smart card / USB reader interface used by PicoKey App.
 
 ## Force Rescue Interface
 
-Forces the application to use the **Rescue Interface** instead of the default PC/SC interface.
+Select this option to use the **Rescue Interface** instead of the default PC/SC interface.
 
 When enabled:
 
-- PicoKey App bypasses the standard PC/SC stack
-- Communication is performed through the Rescue Interface
-- This may be required if PC/SC is misconfigured or unavailable
+- PicoKey App bypasses the standard PC/SC stack and communicates through the Rescue Interface.
+- Use it when PC/SC is unavailable or misconfigured.
 
 !!! warning
     The Rescue Interface provides reduced functionality compared to PC/SC.
@@ -37,12 +35,12 @@ When enabled:
 
 ## Patch PC/SC
 
-Attempts to patch the local **pcscd service** to improve compatibility with PicoKey devices on some Linux distributions.
+This option attempts to patch the local **pcscd service** to improve compatibility with PicoKey devices on some Linux distributions.
 
 When enabled:
 
-- PicoKey App applies changes to the PC/SC service
-- Compatibility issues with certain distributions may be resolved
+- PicoKey App changes the PC/SC service configuration.
+- This may resolve compatibility issues on some distributions.
 
 !!! danger
     This operation requires root privileges and may affect other smart card devices.
@@ -52,11 +50,11 @@ When enabled:
 
 ## Enable Notifications
 
-Enables or disables the display or notifications when an event is processed by the device. Known events:
+Choose whether PicoKey App displays notifications when the device processes an event. Known events include:
 
 - A site is requesting your presence by touching the button.
 - A credential has been created.
-- An assertion for a specific credential has been succeed.
+- An assertion succeeds for a specific credential.
 
 !!! note
     Notifications are sent to the Notification Center in macOS, Linux and Windows when PicoKey App is running. Enable
@@ -68,13 +66,12 @@ Enables or disables the display or notifications when an event is processed by t
 
 ### Enable Agent
 
-Enables communication with **PicoKey Agent**.
+Enable communication with **PicoKey Agent** here.
 
 When enabled:
 
-- The device can communicate with the local PicoKey Agent
-- Advanced operations become available
-- Required for features such as:
+- This lets the device communicate with the local agent and enables advanced operations.
+- The agent is required for features such as:
 
   - Device time synchronization
 
@@ -89,11 +86,11 @@ When enabled:
 
 ## Device status indicators
 
-At the bottom of the application, PicoKey App displays real-time status information:
+The bottom of the application shows the device's current status:
 
 - Device connection status (online/offline)
 - Recovery mode state
 - Current device time
 
 !!! tip
-    Device time is updated automatically when the agent is enabled.
+    When the agent is enabled, it updates the device time automatically.

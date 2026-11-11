@@ -1,6 +1,6 @@
 # PINs and roles
 
-Pico OpenPGP follows the usual OpenPGP card split between user and admin credentials. If you ignore that split, many later failures look mysterious when they are not.
+Pico OpenPGP separates user and admin credentials, and many apparent command failures come from using the wrong role.
 
 ## The three domains
 
@@ -12,7 +12,7 @@ The important credentials are:
 | `PW3` | administrative operations |
 | `RC` | user-PIN recovery or reset path |
 
-The exact UI differs by tool, but the role boundary does not.
+Tools present these credentials differently, but the roles stay the same.
 
 ## `PW1`
 
@@ -44,14 +44,14 @@ If you keep it equal to an easily known admin secret or fail to document who hol
 
 ## Retry counters and lockouts
 
-This is where many users get surprised:
+Keep these retry-counter behaviors in mind:
 
 - each PIN domain has its own retry logic
 - a wrong attempt decrements the relevant counter
 - a correct entry resets that counter
 - a blocked admin path is far more painful than a blocked user path
 
-That is not Pico-specific. It is still worth stating explicitly because it defines the recovery runbook.
+These rules apply to the OpenPGP card model generally, and they should be reflected in your recovery runbook.
 
 ## Practical rule
 
@@ -61,7 +61,7 @@ Before any sensitive operation, know which context you are in:
 2. a user session does not imply an admin session
 3. reconnects can clear the context you assumed was still active
 
-Most "the card refused the command" reports reduce to one of those.
+When a command is refused, check these three conditions before looking for a firmware fault.
 
 ## Admin-less mode
 
@@ -71,8 +71,7 @@ unconfigured and the configured user PIN can also authorize operations
 normally associated with `PW3`. Configuring a distinct `PW3` disables that
 relationship.
 
-Treat this as a deliberate policy choice, not as a shortcut around the role
-model:
+Choose this mode deliberately and document how it changes the role model:
 
 - enable it only when a single operator credential is acceptable;
 - verify the mode after changing PINs or migrating KDF settings; and

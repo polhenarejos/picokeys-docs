@@ -1,6 +1,6 @@
 # OpenPGP Management
 
-This page documents the **OpenPGP > Management** view in PicoKey App.
+Use **OpenPGP > Management** in PicoKey App to check card status and manage OpenPGP keys.
 
 ![OpenPGP management overview](../../assets/images/picokeyapp/openpgp/management-basic-1.png)
 
@@ -8,7 +8,7 @@ This page documents the **OpenPGP > Management** view in PicoKey App.
 
 ## Overview
 
-The OpenPGP management view is organized into:
+The view groups its controls into:
 
 - **OpenPGP Card Status** (card metadata and PIN/session state)
 - **Operation modes**:
@@ -32,9 +32,9 @@ OpenPGP management can be unlocked with:
 - `PW1` (user context)
 - `PW3` (admin context)
 
-Admin-level operations require `PW3` unlock. This includes key generation/export workflows and editing protected card settings.
+Unlock with `PW3` to generate or export keys and edit protected card settings.
 
-When only `PW1` is unlocked, the panel remains readable but admin-write actions stay restricted.
+With only `PW1` unlocked, you can still read the panel, while admin-level changes remain restricted.
 
 ---
 
@@ -54,7 +54,7 @@ The **OpenPGP Card Status** section shows:
 - `Login data`
 - `PIN retries` for `PW1`, `RC`, and `PW3`
 
-The panel also displays this hint:
+The panel also reminds you that:
 
 - `Tip: Click editable values to edit`
 
@@ -71,14 +71,14 @@ OpenPGP management provides two operation modes:
 
 ### Basic mode
 
-In **Basic** mode, key operations are global for the OpenPGP keyset:
+In **Basic** mode, each key operation applies to the entire OpenPGP keyset:
 
 - **Generate** creates/regenerates key material for all three slots (`SIG`, `DEC`, `AUT`).
 - **Export** exports public keys for all three slots in one global operation.
 
 ### Advanced mode
 
-In **Advanced** mode, operations are granular per slot:
+In **Advanced** mode, you can work with each slot separately:
 
 - **Generate** is available independently for each slot (`SIG`, `DEC`, `AUT`).
 - **Export** can be executed for a single slot, exporting only that slot's public key.
@@ -92,7 +92,7 @@ In **Advanced** mode, operations are granular per slot:
 
 ## Key slots (SIG / DEC / AUT)
 
-Each slot panel exposes:
+For each slot, the panel shows:
 
 - **Fingerprint** (or `[none]` when empty)
 - **Key attributes** selector (algorithm/key type)
@@ -144,4 +144,4 @@ When exporting OpenPGP public keys, PicoKey App saves them in:
 
 ## Registration requirement
 
-This panel requires a registered board in PicoKey App. If the board is not registered, controls are restricted.
+Register the board in PicoKey App before using this panel; otherwise, controls are restricted.

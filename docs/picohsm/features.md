@@ -1,6 +1,7 @@
 # Capability map
 
-This page groups the Pico HSM feature set into operational categories. It is based on the upstream README and should be read as "firmware claims", not as "every generic tool exposes this equally well."
+The upstream README groups Pico HSM capabilities by use. These are firmware
+claims, and generic host tools may expose only part of the feature set.
 
 ## Key generation and storage
 
@@ -39,7 +40,7 @@ The upstream README lists support for:
 - ChaCha20-Poly1305
 - HKDF, PBKDF2, and X9.63 KDF
 
-That is a large surface area for a microcontroller-based device. Test the specific mechanisms you need before assuming tool support is mature.
+Because this is a broad feature set for a microcontroller-based device, test each mechanism you plan to use with your chosen host tools.
 
 ## Wrapped-key and domain workflows
 
@@ -51,7 +52,7 @@ Pico HSM's more distinctive features include:
 - wrapped-key export and import
 - XKEK-style sharing schemes
 
-These are powerful, but they are also the part least likely to be well represented by generic PKCS#11 frontends.
+These workflows offer more control, although generic PKCS#11 frontends are less likely to expose them fully.
 
 ## Data and metadata
 
@@ -62,7 +63,7 @@ Upstream also claims support for:
 - attestation objects
 - RTC-backed time functions
 
-This lets the device carry more than keys, but it does not turn it into a general file store.
+The device can therefore store some supporting data alongside keys, although it is not a general file store.
 
 ## Transport and platform features
 
@@ -86,7 +87,7 @@ The more advanced the feature, the more you should verify:
 - whether the middleware exposes it
 - whether the client you intend to use can drive it without custom tooling
 
-That rule avoids most disappointment.
+Checking each layer before deployment helps avoid surprises.
 
 ## Storage and authorization changes
 

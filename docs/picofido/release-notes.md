@@ -1,7 +1,7 @@
 # Pico FIDO 8 release notes
 
-Pico FIDO 8 adds authenticated passkey portability, broader FIDO 2.3
-behavior, stronger credential policy controls, and more resilient protected
+Pico FIDO 8 adds authenticated passkey portability and broader FIDO 2.3
+behavior, along with more credential policy controls and stronger protected
 storage.
 
 ## Pico Vault
@@ -16,8 +16,8 @@ storage.
 - Use the standalone [Pico Vault Enroller](https://github.com/polhenarejos/pico-vault-enroller)
   to create the encrypted enrollment envelope and provision a board.
 
-Vault is a gated vendor capability. It does not change ordinary WebAuthn or
-CTAP credential behavior.
+Vault is an opt-in vendor capability that leaves ordinary WebAuthn and CTAP
+credential behavior unchanged.
 
 ## FIDO and WebAuthn
 
@@ -46,7 +46,7 @@ CTAP credential behavior.
 
 The release includes expanded FIDO 2.3, credential-management, OATH, OTP,
 storage-compatibility, and Vault tests. An internal conformance run recorded
-251 passes and 0 failures; this is test evidence, not FIDO Alliance
+251 passes and 0 failures, which is test evidence rather than FIDO Alliance
 certification.
 
 Pico FIDO 8 changes internal credential storage. Keep a tested recovery path

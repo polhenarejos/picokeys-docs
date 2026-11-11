@@ -1,8 +1,8 @@
 # Pico HSM Cipher
 
-This page documents **HSM > Management > Cipher** in PicoKey App.
+Use **HSM > Management > Cipher** in PicoKey App to run operations with an existing key.
 
-The `Cipher` tab executes crypto operations using an existing key (`Key ID`).
+The `Cipher` tab runs cryptographic operations using the selected `Key ID`.
 
 ![Cipher sign](../../assets/images/picokeyapp/hsm/cipher-sign.png)
 
@@ -10,7 +10,7 @@ The `Cipher` tab executes crypto operations using an existing key (`Key ID`).
 
 ## Prerequisite
 
-Before running cipher operations:
+Before you run an operation:
 
 1. Go to `HSM > Management`.
 2. Enter `PIN`.
@@ -36,7 +36,7 @@ Before running cipher operations:
 
 ## I/O flow
 
-Two input/output modes are available.
+Choose between two input and output modes.
 
 ### File flow
 
@@ -44,11 +44,8 @@ Use files as input and output.
 
 ![Cipher file flow](../../assets/images/picokeyapp/hsm/cipher-flow-file.png)
 
-Behavior:
-
-- Input is read from **Input file** (or drop zone)
-- Output is written to **Output file**
-- **Browse** buttons select input/output paths
+The file flow reads from **Input file** or the drop zone, then writes the result
+to **Output file**. Use the **Browse** buttons to choose the paths.
 
 ### Text box flow
 
@@ -56,11 +53,9 @@ Use a single text area for both input and output.
 
 ![Cipher text flow](../../assets/images/picokeyapp/hsm/cipher-flow-text.png)
 
-Behavior:
-
-- You write plaintext/data/signing input in the text box
-- After execution, the same box is replaced with the result
-- The `Text input/output is hex` toggle switches between plain string mode and hex mode
+Enter plaintext, data, or signing input in the text box. After the operation,
+the app replaces the input with the result. Use `Text input/output is hex` to
+switch between plain text and hexadecimal input/output.
 
 ---
 
@@ -154,4 +149,4 @@ Behavior:
 - `X963-SHA512`
 
 !!! note
-    If a selected key type does not support an operation, the corresponding algorithms are not offered in the selector.
+    The selector omits algorithms for operations that the selected key type does not support.

@@ -2,7 +2,7 @@
 
 Pico FIDO can be used with OpenSSH security-key keys: `ed25519-sk` and `ecdsa-sk`.
 
-The private key operation is performed by the authenticator. The file stored on disk is a handle that points OpenSSH back to the device; it is not useful by itself without the Pico FIDO device.
+The authenticator performs private-key operations. The file on disk is only a handle that lets OpenSSH find the device, so it cannot be used without Pico FIDO.
 
 ## Requirements
 
@@ -17,7 +17,7 @@ Check whether your SSH client knows security-key key types:
 ssh -Q key | grep sk
 ```
 
-On macOS, Apple's system OpenSSH may lag or omit the needed provider path. If enrollment fails before the device is touched, test with a current OpenSSH build before blaming the firmware.
+On macOS, Apple's system OpenSSH may be missing a required provider path. If enrollment fails before the device is touched, try a current OpenSSH build before investigating the firmware.
 
 ## Enroll a key
 
@@ -36,7 +36,7 @@ The resulting files have different roles:
 - `id_ed25519_sk` is the handle file
 - `id_ed25519_sk.pub` is the public key for `authorized_keys`
 
-Copy the handle file only to machines you SSH from. The server only needs the public key.
+Copy the handle file to each machine you use for SSH; the server needs only the public key.
 
 ## Common enrollment options
 
@@ -74,7 +74,7 @@ Then connect:
 ssh -i ~/.ssh/id_ed25519_sk you@server
 ```
 
-Expect user presence, and expect a PIN as well if the key or relying policy requires user verification.
+The authenticator may require user presence, and it will also request a PIN when the key or relying policy requires user verification.
 
 ## Resident keys
 
@@ -96,7 +96,7 @@ Host server
     IdentitiesOnly yes
 ```
 
-`IdentitiesOnly yes` avoids OpenSSH offering a pile of unrelated keys before it reaches the hardware-backed one.
+`IdentitiesOnly yes` tells OpenSSH to skip unrelated keys and offer the hardware-backed key directly.
 
 ## Troubleshooting
 

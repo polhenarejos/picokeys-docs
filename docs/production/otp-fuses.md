@@ -1,8 +1,8 @@
 # OTP fuses
 
-Here, OTP means one-time-programmable chip fuses, not Yubico one-time passwords.
+Here, OTP refers to one-time-programmable chip fuses, not Yubico one-time passwords.
 
-PicoKeys uses the same logical idea on RP2350/RP2354 and ESP32-S3 class devices, but the hardware names are different:
+PicoKeys uses one-time-programmable storage on both RP2350/RP2354 and ESP32-S3 devices, although each platform names its hardware differently:
 
 - RP2350/RP2354: OTP rows and page locks.
 - ESP32-S3: eFuse key blocks, purpose fields, secure-boot enable bits, revoke bits, and debug-disable bits.
@@ -19,7 +19,6 @@ Do not confuse these:
 - **Chip OTP/eFuse**: irreversible hardware state used for root keys, secure boot, lockout, and sealing.
 - **Pico FIDO OTP slots**: Yubico OTP, HOTP, static password, and challenge-response credentials.
 
-This page is only about chip OTP/eFuse state.
 
 ## Logical keys
 
@@ -30,11 +29,11 @@ PicoKeys initializes two 32-byte hardware-backed values when the relevant OTP/eF
 | Key 1 | `otp_key_1` | Random 32-byte key used as the device root / MKEK masking material. |
 | Key 2 | `otp_key_2` | Generated secp256k1 private key used by rescue / secure operations that need a device private key. |
 
-The exact storage differs by platform.
+The tables below show how that storage maps to each platform.
 
 ## RP2350 / RP2354
 
-For RP2350-class builds, the SDK defines:
+For RP2350-class builds, the SDK defines these rows:
 
 | Logical value | OTP row | Notes |
 | --- | ---: | --- |
@@ -43,7 +42,7 @@ For RP2350-class builds, the SDK defines:
 | old MKEK migration source | `0xEF0` | Read if present, migrated to `0xE90`, then invalidated. |
 | old DEVK migration source | `0xED0` | Read if present, migrated to `0xE80`, then invalidated. |
 
-After writing each new key, the firmware writes anti-imaging chaff:
+After writing each key, the firmware also writes anti-imaging chaff:
 
 | Key row | Chaff row |
 | ---: | ---: |
@@ -54,7 +53,7 @@ The chaff is the bitwise complement of the raw key data, written at `row + 32`.
 
 ### RP2350 page lock
 
-After writing or migrating the MKEK/DEVK material, the firmware locks the OTP page containing those rows:
+After writing or migrating MKEK/DEVK material, the firmware locks the OTP page containing those rows:
 
 | Page | Rows covered | Why |
 | --- | --- | --- |
@@ -64,7 +63,7 @@ The code calls `otp_lock_page(OTP_MKEK_ROW >> 6)`, and `0xE90 >> 6` is page `58`
 
 ### RP2350 secure boot
 
-When secure boot is enabled through `otp_enable_secure_boot()`, these RP2350 OTP areas are modified:
+When you enable secure boot through `otp_enable_secure_boot()`, the firmware modifies these RP2350 OTP areas:
 
 | Region / constant | What is burned |
 | --- | --- |
@@ -78,7 +77,9 @@ The secure-boot key hash currently used by the SDK is the fixed 32-byte value al
 
 ### RP2350 anti-rollback
 
-The current PicoKeys SDK code inspected here enables secure boot and secure lock, but this documentation should not claim a PicoKeys-specific rollback fuse map unless the provisioning tool for the target firmware exposes and documents it.
+The inspected PicoKeys SDK code enables secure boot and secure lock, but it
+does not establish a PicoKeys-specific rollback fuse map. Rely on such a map
+only when the target firmware's provisioning tool exposes and documents it.
 
 The RP2350 boot ROM has rollback support, but burning rollback state is a separate production decision from burning MKEK/DEVK and secure-boot state.
 
@@ -100,7 +101,7 @@ After writing either key block, the firmware write-protects:
 
 ### ESP32-S3 secure boot
 
-When `otp_enable_secure_boot()` is called on ESP32-S3:
+When the firmware calls `otp_enable_secure_boot()` on ESP32-S3, it burns:
 
 | eFuse state | What is burned |
 | --- | --- |
@@ -112,7 +113,7 @@ If a digest for the requested index already exists, the code verifies that it ma
 
 ### ESP32-S3 secure lock
 
-If secure lock is requested, the SDK additionally burns:
+If you request secure lock, the SDK also burns:
 
 | eFuse state | Effect |
 | --- | --- |
@@ -156,7 +157,7 @@ The code intentionally leaves ROM download mode enabled: the call to `esp_efuse_
 
 ## Conservative operating rule
 
-Before any fuse-burning workflow:
+Before burning any fuses:
 
 1. confirm the exact chip family
 2. confirm the exact firmware build and provisioning command

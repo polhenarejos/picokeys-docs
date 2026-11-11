@@ -1,12 +1,12 @@
 # About and diagnostics
 
-The **About** section contains application-level information and diagnostic tools.
+Use the **About** section to check application details and open diagnostic tools.
 
 ---
 
 ## About
 
-Provides basic information about the PicoKey App version and build.
+The **About** tab shows the PicoKey App version and build information.
 
 ---
 
@@ -14,4 +14,4 @@ Provides basic information about the PicoKey App version and build.
 
 The **Diagnostics** tab provides diagnostic and debug information useful for troubleshooting.
 
-The exact content depends on the application build and the installed firmware.
+The diagnostics shown depend on the application build and installed firmware.

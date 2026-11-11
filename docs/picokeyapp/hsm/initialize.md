@@ -1,8 +1,8 @@
 # Pico HSM Initialization
 
-This page documents the **security initialization options** available for **Pico HSM** when using PicoKey App.
+Use PicoKey App to set the **security initialization options** for **Pico HSM**.
 
-These settings control **PIN policies, key protection mechanisms, and recovery options**.
+These settings define **PIN policies, key protection, and recovery options**.
 
 ![Pico HSM initialization](../../assets/images/picokeyapp/hsm/initialize.png)
 
@@ -12,7 +12,7 @@ These settings control **PIN policies, key protection mechanisms, and recovery o
 
 ### User PIN
 
-Defines the primary user PIN.
+Set the primary user PIN here.
 
 - Required for cryptographic operations
 - Protects private keys and stored objects
@@ -24,7 +24,7 @@ Defines the primary user PIN.
 
 ### SO PIN
 
-Defines the Security Officer PIN.
+Set the Security Officer PIN here.
 
 - Used for administrative operations
 - Required for certain reset and recovery commands
@@ -36,7 +36,7 @@ Defines the Security Officer PIN.
 
 ### PIN retries
 
-Configures the number of allowed incorrect PIN attempts.
+Choose how many incorrect PIN attempts are allowed.
 
 - Applies to both user PIN and SO PIN
 - Exceeding the limit blocks access
@@ -63,7 +63,7 @@ Enables **Distributed Key Encryption Key** (DKEK) shares.
 
 ### PUK authentications
 
-Defines the total number of public keys supported for authentication.
+Set how many public keys can be used for authentication.
 
 - Used when PKA is enabled
 - Adds an additional authentication mechanism without PIN
@@ -72,7 +72,7 @@ Defines the total number of public keys supported for authentication.
 
 ### PUK minimum authentications
 
-Defines the number of minimum of public keys for authentication.
+Set the minimum number of public keys required for authentication.
 
 - Used when PKA is enabled
 
@@ -91,8 +91,8 @@ Enables key domain separation.
 
 ### Reset retry counter command
 
-Allows resetting the retry counter via command in case PIN is locked. It also
-allows PIN resetting.
+Allows a command to reset the retry counter when the PIN is blocked, and can
+also allow a PIN reset.
 
 - Useful for controlled recovery scenarios
 
@@ -105,7 +105,7 @@ allows PIN resetting.
 
 ### Transport PIN
 
-Allows setting a temporary PIN during transport or provisioning.
+Allows you to set a temporary PIN for transport or provisioning.
 
 !!! warning
     Transport PINs should be changed immediately after deployment.
@@ -114,13 +114,13 @@ Allows setting a temporary PIN during transport or provisioning.
 
 ### PKA replaceable
 
-Allows replacement of public key authentication data.
+Allows public-key authentication data to be replaced.
 
 ---
 
 ### Combined PIN & PKA authentication
 
-Requires both PIN and public key authentication.
+Require both the PIN and public-key authentication.
 
 - Provides multi-factor protection
 
@@ -128,7 +128,7 @@ Requires both PIN and public key authentication.
 
 ### Reset Retry Counter only resets error counter
 
-Reset Retry command only resets retry counter, not the PIN.
+The Reset Retry command clears the retry counter without changing the PIN.
 
 !!! note
     This option is usable only when Reset Retry Counter command is enabled.
@@ -137,14 +137,14 @@ Reset Retry command only resets retry counter, not the PIN.
 
 ### Force Device Certificate
 
-Downloads and resigns the attestation certificate. Do not use unless you experiment
-issues with 3rd party apps.
+Downloads and re-signs the attestation certificate. Use this only if you
+encounter issues with third-party applications.
 
 ---
 
 ## Initialization process
 
-After configuring all parameters:
+After setting the parameters:
 
 - Click **Initialize**
 - The device is provisioned with the selected security configuration

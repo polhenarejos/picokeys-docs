@@ -10,7 +10,7 @@ Start with:
 gpg --card-status
 ```
 
-If this does not work, fix PC/SC, CCID, or scdaemon setup before trying key generation.
+If the card is not visible, check PC/SC, CCID, and scdaemon before trying to generate keys.
 
 ## PINs
 
@@ -22,7 +22,7 @@ The OpenPGP card model uses:
 | `PW3` | admin operations: key generation, import, settings |
 | reset code | recovery path for blocked user PIN, if configured |
 
-Change defaults before real use:
+Change the default credentials before using the card with important material:
 
 ```sh
 gpg --card-edit
@@ -39,7 +39,7 @@ gpg/card> key-attr
 gpg/card> generate
 ```
 
-`key-attr` is selected per role. Use it deliberately:
+Choose attributes separately for each role, and check which slot you are configuring:
 
 - signing key
 - decryption key
@@ -59,7 +59,7 @@ gpg> keytocard
 gpg> save
 ```
 
-This keeps the operational trade-off explicit:
+The choice depends on your recovery needs:
 
 - on-card generation minimizes exposure
 - import lets you maintain an off-card recovery story
@@ -90,11 +90,11 @@ gpg --export-ssh-key YOURKEY > ~/.ssh/id_openpgp_card.pub
 
 Upstream claims User Interaction Flag support. If enabled for a slot, PIN alone is not enough; the device also requires physical confirmation.
 
-Use it where silent signing or decryption by a compromised host is a concern, and document it so operators understand the wait.
+Enable it when you want a physical confirmation before signing or decrypting, and tell operators why the device may wait for a touch.
 
 ## Reset
 
-A factory reset of the OpenPGP applet should be treated as destructive:
+A factory reset is destructive and may clear:
 
 - keys are wiped
 - PIN state is reset

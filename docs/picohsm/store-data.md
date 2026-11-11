@@ -1,6 +1,6 @@
 # Store data
 
-Pico HSM can also store non-key data objects. This is useful, but it should be kept in proportion: the device is a secure cryptographic appliance, not a general object store.
+Pico HSM can store non-key data objects alongside cryptographic keys. Use this for small supporting data, since the device is not designed as a general object store.
 
 ## Typical use cases
 
@@ -64,4 +64,4 @@ Data objects inherit the management complexity of the HSM:
 - object identifiers need discipline
 - restore and migration expectations should be documented up front
 
-Use them deliberately, not as a dumping ground.
+Use data objects deliberately and keep their identifiers, access rules, and recovery expectations documented.

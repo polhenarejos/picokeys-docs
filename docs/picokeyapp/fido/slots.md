@@ -1,8 +1,8 @@
 # Slots
 
-This section describes the **slot management view** in PicoKey App.
+Use the **slot management view** in PicoKey App to configure OTP and related features.
 
-Slots are used to configure and manage **OTP, static password, and related features** supported by the device firmware.
+Each slot can hold an **OTP, static password, or related function** supported by the device firmware.
 
 ![Slots view](../../assets/images/picokeyapp/fido/slots.png)
 
@@ -12,10 +12,10 @@ Slots are used to configure and manage **OTP, static password, and related featu
 
 The Slots view shows all available slots supported by the device.
 
-Each slot can be in one of the following states:
+Each slot is either:
 
-- Empty
-- Configured with a specific function
+- empty; or
+- configured with a specific function.
 
 Slots are independent from each other and can be configured individually.
 
@@ -23,7 +23,7 @@ Slots are independent from each other and can be configured individually.
 
 ## Slot activation
 
-Each slot is activated by pressing the **BOOTSEL** button **N consecutive times**, where `N` is the slot number.
+To activate a slot, press the **BOOTSEL** button **N consecutive times**, where `N` is the slot number.
 
 - Slot 1: press once
 - Slot 2: press twice in a row
@@ -33,7 +33,7 @@ Each slot is activated by pressing the **BOOTSEL** button **N consecutive times*
 !!! note
     Presses must be consecutive so the device can map the sequence to the correct slot.
 
-For slots configured as **Static Password**, **YubiOTP**, or **HOTP**, activation makes the device type the generated secret/code on the host as if it were a USB keyboard.
+For **Static Password**, **YubiOTP**, and **HOTP** slots, activation types the configured output on the host through the USB keyboard interface.
 
 !!! note
     This keyboard-style output does not apply to **Challenge-Response** slots.
@@ -44,17 +44,14 @@ For slots configured as **Static Password**, **YubiOTP**, or **HOTP**, activatio
 
 ### Empty
 
-An empty slot:
-
-- Does not contain any configuration
-- Is available for new provisioning
-- Does not perform any action when triggered
+An empty slot has no configuration, so you can provision it for a new
+function. Triggering it has no effect.
 
 ---
 
 ### Configured
 
-A configured slot shows:
+A configured slot shows its number, function, and any other available details:
 
 - The slot number
 - The configuration type
@@ -72,7 +69,7 @@ Examples of configured slots include:
 
 ## Slot actions
 
-Each slot exposes a set of actions through icons:
+Use the icons to configure or manage a slot:
 
 - [Challenge-response](slots/chalresp.md)
 - [Static password](slots/static-password.md)
@@ -83,7 +80,7 @@ Each slot exposes a set of actions through icons:
 
 ### Delete slot configuration
 
-Deletes the slot configuration.
+Delete the slot configuration to:
 
 - Returns the slot to the empty state
 - Removes all associated data
@@ -95,4 +92,4 @@ Deletes the slot configuration.
 
 ## Registration requirement
 
-This panel requires a registered board in PicoKey App. If the board is not registered, slot action buttons are disabled.
+Register the board in PicoKey App before using the slot actions; otherwise, the buttons are disabled.

@@ -1,6 +1,6 @@
 # Home
 
-The **Home** section provides an overview of the currently connected device.
+The **Home** section shows an overview of the connected device.
 
 ![Home](../assets/images/picokeyapp/home.png)
 
@@ -8,24 +8,24 @@ The **Home** section provides an overview of the currently connected device.
 
 ## Device detection
 
-When a device is correctly detected, PicoKey App displays the following information:
+When PicoKey App detects a device, it shows:
 
-- **Type** – Device family (e.g. `PICOKEY`)
-- **Connection** – Current connection mode (e.g. `RESCUE`)
-- **Product** – Firmware-reported product type
-- **Platform** – MCU platform (e.g. `RP2350`)
-- **Version** – Firmware version
-- **Serial number** – Unique device identifier
-- **Board status** – Registration state (Registered / Not registered)
-- **Board model** – Hardware model identifier
+- **Type:** device family (e.g. `PICOKEY`)
+- **Connection:** current connection mode (e.g. `RESCUE`)
+- **Product:** firmware-reported product type
+- **Platform:** MCU platform (e.g. `RP2350`)
+- **Version:** firmware version
+- **Serial number:** unique device identifier
+- **Board status:** registration state (Registered / Not registered)
+- **Board model:** hardware model identifier
 
-A green *Device detected* indicator confirms that communication with the device is working correctly.
+The green *Device detected* indicator confirms that the app can communicate with the device.
 
 ---
 
 ## Memory information
 
-The **Memory Info** section shows filesystem usage on the device:
+The **Memory Info** section reports the device's filesystem usage:
 
 - Free memory
 - Used memory
@@ -34,13 +34,13 @@ The **Memory Info** section shows filesystem usage on the device:
 - Total filesystem size
 - Firmware size
 
-This information is useful to verify available space and to diagnose abnormal storage usage.
+Use these values to check available space or investigate unusual storage usage.
 
 ---
 
 ## Reboot to BOOTSEL
 
-The **Reboot to BOOTSEL** button reboots the device into BOOTSEL (recovery) mode.
+Click **Reboot to BOOTSEL** to restart the device in BOOTSEL recovery mode.
 
 !!! warning
     BOOTSEL mode should only be used when required (firmware update or recovery).
@@ -48,11 +48,11 @@ The **Reboot to BOOTSEL** button reboots the device into BOOTSEL (recovery) mode
 
 ## Device status indicators
 
-At the bottom of the application, PicoKey App displays real-time status information:
+The bottom of the application shows the device's current status:
 
 - Device connection status (online/offline)
 - Recovery mode state
 - Current device time
 
 !!! tip
-    Device time is updated automatically when the agent is enabled.
+    When the agent is enabled, it updates the device time automatically.

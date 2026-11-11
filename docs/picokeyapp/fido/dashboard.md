@@ -1,6 +1,6 @@
 # FIDO Dashboard
 
-This page describes the **FIDO dashboard** in PicoKey App.
+The **FIDO dashboard** is the starting point for FIDO features in PicoKey App.
 
 ![FIDO dashboard](../../assets/images/picokeyapp/fido/dashboard.png)
 
@@ -8,36 +8,36 @@ This page describes the **FIDO dashboard** in PicoKey App.
 
 ## Overview
 
-The dashboard is the main entry point for FIDO features and provides direct access to:
+From here, you can open:
 
 - Passkeys management
 - OTP slots management
 - OATH accounts management
 - Initialization and provisioning actions
 
-Use this screen to decide which FIDO area you want to manage for the connected device.
+Choose the area that matches what you want to manage on the connected device.
 
 ---
 
 ## Device information shown
 
-The dashboard exposes key FIDO device metadata, including:
+The dashboard also shows FIDO device details, including:
 
 - **AAGUID**
 - Maximum **credBlob** size
 - Number of **largeBlobs** entries
 - **largeBlob** storage usage
 
-These values help evaluate authenticator capabilities and current storage state.
+Use these values to check the authenticator's capabilities and storage state.
 
 ## Keyboard Interface
 
-The **Keyboard Interface** switch enables or disables the USB keyboard
-interface through the device's PHY settings.
+The **Keyboard Interface** switch controls the USB keyboard interface through
+the device's PHY settings.
 
 This interface is used by the OTP slots to type configured output when the
 device button is pressed. When it is disabled, PicoKey App disables the
-keyboard-dependent actions for slots 1–4:
+keyboard-dependent actions for slots 1 to 4:
 
 - Static Password
 - HOTP
@@ -51,16 +51,16 @@ keyboard-dependent OTP actions.
 
 ## Options and extensions
 
-The dashboard also lists:
+The dashboard lists:
 
 - Pico FIDO options reported by the authenticator
 - Supported FIDO/WebAuthn extensions
 
-Options shown in **green** are currently active on the connected device.
+Options shown in **green** are active on the connected device.
 
 ---
 
 ## Notes
 
-- Available actions can vary depending on firmware capabilities.
-- Some actions require PIN verification before sensitive data is shown.
+- The available actions depend on the installed firmware.
+- Some actions require PIN verification before the app shows sensitive data.

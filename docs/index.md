@@ -1,8 +1,8 @@
 # PicoKeys Documentation
 
-This site documents the firmware families in the PicoKeys ecosystem first, and the management application second.
+This site focuses first on the PicoKeys firmware families, then on the desktop application used to manage them.
 
-If you are here to decide which firmware to use, start with the firmware sections below. If you are already managing a device through the desktop app, keep the app pages as an operational reference, not as the source of truth for product capabilities.
+If you are choosing firmware, start with the firmware sections below. If you already manage a device through the desktop app, use its pages as an operational reference; the firmware documentation defines each product's capabilities.
 
 ## Start here
 
@@ -12,15 +12,15 @@ If you are here to decide which firmware to use, start with the firmware section
 
 ## The ecosystem, plainly
 
-PicoKeys is not one product. It is a family of firmwares that run on supported microcontroller boards.
+PicoKeys is a family of firmwares for supported microcontroller boards, with each firmware defining a different device role.
 
-The split matters:
+The responsibilities are split across three layers:
 
 - The firmware defines the real protocol surface, storage model, and security properties.
 - The desktop application helps with flashing, commissioning, policy changes, and diagnostics.
 - Host-side compatibility still depends on the protocol and middleware used by each firmware family.
 
-That last point is where many docs sets become vague. This one should not:
+Host compatibility also depends on the protocol and middleware each firmware uses:
 
 - FIDO behavior is driven by what the authenticator reports through CTAP and what browsers or host tools actually consume.
 - OpenPGP and HSM behavior depend heavily on CCID, PC/SC, OpenSC, PKCS#11, and client-specific support.
@@ -37,7 +37,7 @@ Use it when the device is primarily an authenticator:
 - OATH accounts
 - OTP slots and challenge-response
 
-Do not pick Pico FIDO because you need a general-purpose smart card or HSM API. That is not its job.
+Pico FIDO is built for authentication. Choose another firmware if you need a general-purpose smart-card or HSM API.
 
 ### Pico OpenPGP
 
@@ -47,7 +47,7 @@ Use it when the device should behave like an OpenPGP smart card:
 - on-device signing and decryption
 - CCID / APDU / PKCS#11 style integration
 
-Do not pick it for FIDO2/WebAuthn or broad symmetric/HSM workflows.
+Choose another firmware for FIDO2/WebAuthn or broad symmetric-key and HSM workflows.
 
 ### Pico HSM
 
@@ -57,7 +57,7 @@ Use it when the device is meant to act as a compact HSM:
 - signatures and decryption through PKCS#11
 - AES, HMAC, KDF, wrapped-key import/export, and advanced key domains
 
-Do not treat it as a certified enterprise HSM. The feature set is broad, but the hardware and assurance model remain those of supported microcontroller boards.
+Its feature set is broad, while its hardware and assurance model remain those of supported microcontroller boards; it is not a certified enterprise HSM.
 
 ## Security baseline
 
@@ -67,11 +67,11 @@ Across the firmware families, the most important practical distinction is hardwa
 - Secure Boot, Secure Lock, and OTP-backed key material are meaningful only on the platforms that actually implement those mechanisms.
 - A host compromise can still drive operations on an unlocked device, regardless of firmware family.
 
-If your threat model includes funded physical attackers or certification requirements, you should assume these projects are outside that scope unless explicitly proven otherwise.
+These projects do not claim protection against well-funded physical attackers or certification-level requirements unless a specific capability has been demonstrated.
 
 ## Production hardening
 
-Production hardening is intentionally not a top-level product tab. It is a cross-cutting subject that depends on the board family, the firmware image, and the provisioning state.
+Production hardening applies across products, and the right procedure depends on the board family, firmware image, and provisioning state.
 
 Read these pages before burning irreversible state:
 
@@ -92,4 +92,4 @@ The firmware sections follow the same approach:
 - what is easy, what is awkward, and what is unsupported
 - where the sharp edges are
 
-That is intentional. Glossy feature lists are easy to write and often misleading. Operational documentation is more useful.
+This structure keeps the focus on how each firmware works in practice, including the host tools it needs and the limits you may encounter.

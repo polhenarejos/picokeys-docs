@@ -1,8 +1,8 @@
 # Security initialization
 
-This page describes the **security initialization and provisioning options** available with PicoKey App.
+Use PicoKey App to configure these **security initialization and provisioning options**.
 
-These options are **applied once during initialization** and directly affect the security model of the authenticator.
+These options are **applied during initialization** and shape the device's security model.
 
 ![Home](../assets/images/picokeyapp/security.png)
 
@@ -34,10 +34,10 @@ Locks the boot keys permanently.
 
 ## Applying security options
 
-After selecting the desired settings, click **Enable Security Options** to apply them on device.
+After choosing the settings, click **Enable Security Options** to apply them to the device.
 
 ---
 
 ## Registration requirement
 
-This panel requires a registered board in PicoKey App before security actions can be applied.
+Register the board in PicoKey App before applying security settings from this panel.

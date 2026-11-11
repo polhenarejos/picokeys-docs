@@ -2,21 +2,21 @@
 
 ## The browser does not see the device
 
-Start with the obvious checks:
+First check the USB connection and confirm the board booted into firmware:
 
 - replug the board
 - confirm the board really booted into firmware rather than USB mass-storage mode
 - test with a second browser or a CLI FIDO tool
 
-If the browser cannot see any FIDO device at all, do not debug passkeys yet.
+If neither the browser nor a CLI tool sees a FIDO device, resolve detection before debugging passkey registration.
 
 ## Registration prompts for a PIN unexpectedly
 
-That is often expected. A PIN-gated flow is not a failure; it is the authenticator enforcing user verification or management authorization.
+This prompt is often expected because the authenticator requires user verification or management authorization for the requested operation.
 
 ## A Yubico-oriented tool cannot see the device
 
-This may be an identity or reader-name issue rather than a FIDO protocol issue. Verify whether the tool depends on a YubiKey-like USB identity or reader naming convention.
+The tool may be relying on a YubiKey-like USB identity or reader name. Check those requirements before treating the issue as a FIDO protocol failure.
 
 ## A relying party rejects an algorithm or extension
 
@@ -26,11 +26,11 @@ Do not assume firmware failure first. Check:
 2. what the browser requests
 3. what the relying party accepts
 
-These are three different layers.
+The authenticator, browser, and relying party each apply their own support rules.
 
 ## Resident credential management is inconsistent between clients
 
-That is common. Test resident-credential listing and deletion with the exact management path you plan to support operationally.
+Clients expose resident-credential management differently. Test listing and deletion with the exact management path you plan to support.
 
 ## Security features behave differently across boards
 

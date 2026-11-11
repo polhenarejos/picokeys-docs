@@ -1,6 +1,6 @@
 # Accounts
 
-This page describes the **Accounts panel** in PicoKey App FIDO management.
+Use the **Accounts panel** to manage OATH accounts stored on the device.
 
 ![Accounts view](../../assets/images/picokeyapp/fido/accounts.png)
 
@@ -8,29 +8,25 @@ This page describes the **Accounts panel** in PicoKey App FIDO management.
 
 ## Overview
 
-The Accounts panel manages OATH accounts stored on the device.
+The panel lets you:
 
-- List existing accounts
-- Add TOTP accounts
-- Add HOTP accounts
-- Rename existing accounts
-- Delete existing accounts
-- Review account status before provisioning
+- list existing accounts;
+- add TOTP and HOTP accounts;
+- rename or delete accounts; and
+- review account status before provisioning.
 
 ---
 
 ## Access control (OATH password)
 
-The OATH applet can be protected with an access password.
-
-Depending on device state, the panel exposes:
+You can protect the OATH applet with an access password. Depending on the device state, the panel offers:
 
 - **Set Access**: define an OATH access password
 - **Unlock**: unlock the OATH session
 - **Change Access**: rotate the OATH access password
 - **Clear Access**: remove the OATH access password
 
-When locked, account content is hidden until unlock.
+When the applet is locked, account details remain hidden until you unlock it.
 
 ---
 
@@ -38,7 +34,7 @@ When locked, account content is hidden until unlock.
 
 ### Add TOTP
 
-Use the TOTP form to create time-based OTP entries.
+Use the TOTP form to add an entry that generates time-based codes.
 
 ![Add TOTP account](../../assets/images/picokeyapp/fido/accounts-add-totp.png)
 
@@ -57,7 +53,7 @@ Use the TOTP form to create time-based OTP entries.
 
 ### Add HOTP
 
-Use the HOTP form to create counter-based OTP entries.
+Use the HOTP form to add an entry that generates counter-based codes.
 
 ![Add HOTP account](../../assets/images/picokeyapp/fido/accounts-add-hotp.png)
 
@@ -72,28 +68,28 @@ Use the HOTP form to create counter-based OTP entries.
 - **Require touch**: requires user touch/presence for code use.
 
 !!! note
-    HOTP codes advance when the counter increases, while TOTP codes rotate based on time.
+    HOTP codes use a counter that advances with each code; TOTP codes rotate over time.
 
 ---
 
 ## Account operations
 
-For each account, management actions include:
+For each account, you can:
 
 - **Rename**
 - **Delete**
 
-For OTP usage:
+When you use the codes:
 
-- TOTP entries are refreshed automatically with the period timer.
-- Clicking a TOTP/HOTP code chip copies the current code to clipboard.
-- For HOTP, clicking the chip also triggers a new counter-based calculation.
+- TOTP entries refresh automatically according to their period.
+- Click a TOTP or HOTP code chip to copy the current code to the clipboard.
+- For HOTP, clicking the chip also calculates the next counter-based code.
 
 ---
 
 ## Locked state
 
-When the OATH applet is protected, account data is hidden until unlock.
+When the OATH applet is protected, unlock it before viewing account data.
 
 ![Accounts locked](../../assets/images/picokeyapp/fido/accounts-locked.png)
 
@@ -101,4 +97,4 @@ When the OATH applet is protected, account data is hidden until unlock.
 
 ## Registration requirement
 
-This panel requires a registered board in PicoKey App. If the board is not registered, account management actions are restricted.
+The board must be registered in PicoKey App before you can manage accounts. Otherwise, account actions are restricted.

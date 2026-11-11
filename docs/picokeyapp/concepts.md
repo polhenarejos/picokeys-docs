@@ -1,26 +1,23 @@
 # Core concepts
 
-This section explains the **core concepts** used throughout the PicoKeys ecosystem.
-
-Understanding these concepts is essential to correctly use PicoKey App and the different firmware variants.
+Before configuring a device, it helps to understand how PicoKey App, firmware,
+board registration, and commissioning fit together.
 
 ---
 
 ## PicoKey App vs firmware
 
-The PicoKeys ecosystem is split into two distinct layers.
+PicoKeys has two layers: the desktop application and the firmware on the device.
 
 ### PicoKey App (desktop application)
 
 PicoKey App is the **management interface**.
 
-It is responsible for:
+PicoKey App handles the management work:
 
-- Detecting devices
-- Displaying device and firmware information
-- Configuring and commissioning devices
-- Installing licenses and registering boards
-- Providing diagnostics and troubleshooting tools
+- It detects devices and displays device and firmware information.
+- It configures and commissions devices, and manages licenses and board registration.
+- It also provides diagnostic and troubleshooting tools.
 
 !!! note
     PicoKey App does not implement cryptographic functionality.
@@ -29,13 +26,13 @@ It is responsible for:
 
 ### Firmware (device functionality)
 
-The firmware installed on the device defines **what the device actually does**.
+The installed firmware defines **what the device does**.
 
-Different firmware variants provide different functionality, such as:
+Each firmware variant provides a different set of functions, for example:
 
-- Hardware security module features (Pico HSM)
-- FIDO2 / WebAuthn authentication (Pico FIDO)
-- OpenPGP smartcard functionality (Pico OpenPGP)
+- Pico HSM provides hardware security module features.
+- Pico FIDO provides FIDO2 and WebAuthn authentication.
+- Pico OpenPGP provides OpenPGP smart-card functions.
 
 !!! note
     The same PicoKey App interface is used regardless of the installed firmware.
@@ -44,13 +41,13 @@ Different firmware variants provide different functionality, such as:
 
 ## Device, board, and firmware
 
-Several terms are used to describe different aspects of the hardware.
+The words *device*, *board*, and *firmware* refer to different parts of the setup.
 
 ### Device
 
-A **device** refers to the physical PicoKeys unit connected via USB.
+A **device** is the physical PicoKeys unit connected over USB.
 
-Each device has:
+It has:
 
 - A unique serial number
 - A hardware platform
@@ -60,9 +57,9 @@ Each device has:
 
 ### Board
 
-A **board** describes the exact hardware variant.
+A **board** identifies the exact hardware variant.
 
-Board information is used to:
+PicoKey App uses this information to:
 
 - Apply correct configuration
 - Bind a license to compatible hardware
@@ -75,9 +72,9 @@ Board information is used to:
 
 ### Firmware
 
-The **firmware** is the software running on the device.
+The **firmware** is the software that runs on the device.
 
-Firmware determines:
+It determines:
 
 - Supported features
 - Available security options
@@ -89,11 +86,11 @@ Changing firmware may change device capabilities without changing the hardware.
 
 ## License vs board registration
 
-Licensing involves **two distinct steps**.
+Licensing has **two steps**, and installing the license does not register a board.
 
 ### License installation
 
-Installing a license means:
+When you install a license:
 
 - The license data is stored locally
 - No device is modified yet
@@ -105,7 +102,7 @@ Installing a license means:
 
 ### Board registration
 
-Registering a board means:
+When you register a board:
 
 - Binding a license to a specific board
 - Making the license effective for that device
@@ -119,15 +116,15 @@ Registering a board means:
 
 ## Commissioning
 
-Commissioning is the process of **finalizing device setup**.
+Commissioning **finalizes device setup** by applying configuration and writing persistent state.
 
-Commissioning typically:
+It typically:
 
 - Applies configuration settings
 - Writes persistent state to the device
 - Prepares the device for normal operation
 
-Commissioning is usually performed after:
+You normally commission the device after:
 
 - Firmware installation
 - Board registration
@@ -143,7 +140,7 @@ A PicoKeys device can appear in different connection modes.
 
 ### RESCUE / BOOTSEL mode
 
-This mode is typically used for:
+Use this mode for:
 
 - Initial setup
 - Firmware updates
@@ -156,7 +153,7 @@ This mode is typically used for:
 
 ### Normal operation mode
 
-In normal operation mode:
+In normal mode:
 
 - The device runs the installed firmware
 - Features exposed depend on the firmware variant
@@ -165,7 +162,7 @@ In normal operation mode:
 
 ## Irreversible actions
 
-Some actions in the PicoKeys ecosystem **cannot be undone**.
+Some PicoKeys actions **cannot be undone**. These include:
 
 Examples include:
 
@@ -180,25 +177,11 @@ Examples include:
 
 ## Responsibility model
 
-The PicoKeys ecosystem follows a **user-controlled model**.
-
-This means:
+PicoKeys follows a **user-controlled model**, where:
 
 - The user explicitly selects actions
 - PicoKey App does not auto-correct critical decisions
 - Irreversible operations require explicit confirmation
 
 !!! note
-    This model is intentional and prioritizes transparency and control over automation.
-
----
-
-## Summary
-
-To use PicoKeys devices correctly, remember:
-
-- PicoKey App is the management interface
-- Firmware defines actual device functionality
-- Board selection and registration are irreversible
-- Commissioning finalizes device setup
-- Understanding these concepts prevents configuration errors
+    This model prioritizes transparency and user control over automation.

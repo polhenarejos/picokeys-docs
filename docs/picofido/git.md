@@ -5,7 +5,7 @@ Pico FIDO can participate in two different Git workflows:
 - SSH commit/tag signing
 - SSH authentication for push and pull
 
-Those are separate credentials even if they live on the same physical device.
+These workflows use separate credentials, even when both keys are stored on the same device.
 
 ## SSH signing
 
@@ -25,7 +25,7 @@ git commit -m "signed with Pico FIDO"
 git log --show-signature -1
 ```
 
-Each signature invokes the authenticator.
+Git asks the authenticator to create a signature for each commit or tag.
 
 ## Local verification
 
@@ -42,13 +42,13 @@ git config --global gpg.ssh.allowedSignersFile ~/.config/git/allowed_signers
 git verify-commit HEAD
 ```
 
-If Git can sign but cannot verify locally, the allowed signers file is usually the missing piece.
+If Git signs successfully but cannot verify the result locally, check that the allowed signers file is configured.
 
 ## GitHub and GitLab signing
 
 Add the public key as a signing key in the forge account settings.
 
-Do not confuse this with an authentication key. Most forges treat signing keys and SSH login keys as separate account records.
+Signing and SSH login keys serve different purposes, and most forges store them as separate account records.
 
 ## Push and pull over SSH
 
@@ -59,7 +59,7 @@ git remote set-url origin git@github.com:you/repo.git
 git push
 ```
 
-Each new SSH connection may require user presence, and possibly a PIN.
+Each new SSH connection may require user presence, and it may also require a PIN.
 
 For fewer repeated prompts during a burst of Git operations, use SSH connection reuse:
 
@@ -80,7 +80,7 @@ For browser-side account challenges, register Pico FIDO as:
 - a passkey, if the forge supports it
 - a security key / WebAuthn second factor otherwise
 
-That is separate from commit signing and separate from SSH push/pull authentication.
+This account 2FA registration is independent of commit signing and SSH push/pull authentication.
 
 ## OpenPGP alternative
 

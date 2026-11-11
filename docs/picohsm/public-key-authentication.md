@@ -2,7 +2,7 @@
 
 Public-key authentication lets Pico HSM gate access with a challenge-response flow instead of relying only on an interactive PIN entry pattern.
 
-That makes it useful for automation, but only if you model the trust boundary correctly.
+This can simplify automation, provided you account for the trust boundary around the device and its authentication key.
 
 ## High-level flow
 
@@ -11,7 +11,7 @@ That makes it useful for automation, but only if you model the trust boundary co
 3. sign a challenge with the private key in the device
 4. verify the signature with the public key
 
-If verification succeeds, the holder of the device-controlled private key is authenticated.
+Successful verification shows that the device-controlled private key signed the challenge.
 
 ## Generate an authentication key
 
@@ -62,4 +62,4 @@ This is powerful for headless use, but do not overstate it:
 - the public-key path removes some PIN friction, not the need for trust boundaries
 - key management for the authentication key now becomes part of your automation security story
 
-Use it where non-interactive access is genuinely needed, not as a reflex replacement for PIN-gated workflows.
+Use this flow when non-interactive access is needed, and keep PIN-gated workflows where human authorization is required.

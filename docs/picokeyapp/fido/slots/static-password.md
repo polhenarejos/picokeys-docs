@@ -1,8 +1,6 @@
 # Slot: Static Password
 
-This page describes the **Static Password slot type** available in PicoKey App.
-
-The Static Password slot stores a fixed password that is emitted by the device as **keyboard input** when triggered.
+A **Static Password slot** stores a fixed password and types it as **keyboard input** when triggered.
 
 ![Static Password slot](../../../assets/images/picokeyapp/fido/slots-staticpassword.png)
 
@@ -10,13 +8,9 @@ The Static Password slot stores a fixed password that is emitted by the device a
 
 ## Overview
 
-The Static Password slot allows the device to:
-
-- Store a static password securely
-- Emit the password as keystrokes
-- Behave as a USB keyboard when activated
-
-This mechanism is compatible with systems that accept keyboard input.
+The device stores a fixed password and types it through its USB keyboard
+interface when the slot is activated. This works with systems that accept
+keyboard input.
 
 ---
 
@@ -24,12 +18,8 @@ This mechanism is compatible with systems that accept keyboard input.
 
 The Static Password slot is activated through the **OTP / button interface**.
 
-Activation works as follows:
-
-- The user presses the BOOTSEL button **N times**
-- `N` corresponds to the slot number
-- Once activated, the device types the stored password
-- The password is sent as if typed on a physical keyboard
+Press the BOOTSEL button **N times**, where `N` is the slot number. The device
+then types the stored password into the host as keyboard input.
 
 !!! note
     No software on the host is required beyond standard USB HID keyboard support.
@@ -40,11 +30,9 @@ Activation works as follows:
 
 ### Password
 
-Defines the static password stored in the slot.
-
-- The password is stored securely on the device
-- The password cannot be retrieved once stored
-- The maximum length is limited by the slot implementation
+Enter the fixed password for this slot. The device stores it securely and
+does not return it after setup; the slot implementation also limits its
+maximum length.
 
 !!! warning
     Losing the password means it cannot be recovered from the device.
@@ -53,10 +41,8 @@ Defines the static password stored in the slot.
 
 ### Append Enter
 
-When enabled:
-
-- A newline (Enter key) is sent after the password
-- Useful for automatic form submission
+When enabled, the device sends Enter after the password, which can submit a
+form automatically.
 
 !!! tip
     Enable this option when logging into terminals or login forms.
@@ -65,10 +51,8 @@ When enabled:
 
 ### Keyboard layout
 
-Defines how characters are translated into keyboard scancodes.
-
-- Different layouts affect how characters are typed
-- The selected layout must match the host system keyboard layout
+The selected layout controls how characters map to keyboard scancodes. Match
+it to the host's keyboard layout to avoid incorrect characters.
 
 !!! warning
     A mismatched keyboard layout may produce incorrect characters.
@@ -77,8 +61,8 @@ Defines how characters are translated into keyboard scancodes.
 
 ## Save and cancel
 
-- **Save** stores the password permanently in the slot
-- **Cancel** discards the configuration
+- **Save** stores the password permanently in the slot.
+- **Cancel** discards the changes.
 
 !!! danger
     Saving overwrites any existing slot configuration.
@@ -87,11 +71,9 @@ Defines how characters are translated into keyboard scancodes.
 
 ## Security considerations
 
-The Static Password slot:
-
-- Does not expose the password over software interfaces
-- Emits the password only as keyboard input
-- Can be triggered without host authentication
+The device does not expose the password through software interfaces; it types
+it through the keyboard interface and does not require host authentication to
+trigger the slot.
 
 !!! warning
     Anyone with physical access to the device may trigger the slot.
@@ -100,7 +82,7 @@ The Static Password slot:
 
 ## Typical use cases
 
-Common use cases include:
+Static Password slots can help with:
 
 - Login to systems without password managers
 - Unlocking encrypted volumes
@@ -114,10 +96,9 @@ Common use cases include:
 
 ## Limitations
 
-- No challenge-response
-- No host-side verification
-- Password is static
-- Susceptible to shoulder surfing or screen recording
+This slot does not use challenge-response or host-side verification. Because
+the password is fixed and typed visibly, it can be exposed through shoulder
+surfing or screen recording.
 
 !!! note
     This slot prioritizes convenience over cryptographic authentication.

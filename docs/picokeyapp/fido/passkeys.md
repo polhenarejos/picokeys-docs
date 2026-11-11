@@ -1,6 +1,6 @@
 # Passkeys
 
-This page describes the **Passkeys panel** in PicoKey App FIDO management.
+Use the **Passkeys panel** to review and manage resident FIDO credentials stored on the device.
 
 ![Passkeys view](../../assets/images/picokeyapp/fido/passkeys.png)
 
@@ -8,7 +8,7 @@ This page describes the **Passkeys panel** in PicoKey App FIDO management.
 
 ## Overview
 
-The Passkeys panel lists resident FIDO credentials stored on the device and their metadata.
+The panel lists resident FIDO credentials with their metadata, and provides actions for each credential.
 
 - Credential source and relying party information
 - Username / user handle when available
@@ -18,7 +18,7 @@ The Passkeys panel lists resident FIDO credentials stored on the device and thei
 
 ## Per-credential actions
 
-Each credential row has these actions:
+Each row includes these actions when they are available:
 
 - **Copy Credential ID**
 - **Large Blob**: manage the credential’s Large Blob when it has one
@@ -38,7 +38,7 @@ cannot be changed.
 
 ## Individual credential lifecycle
 
-The gear opens the **Manage Credential** dialog for that specific credential.
+Click the gear to open the **Manage Credential** dialog for the selected credential.
 
 - **Set expiration** stores an optional expiration date and time. The board
   requires a configured RTC to set this value. When the RTC reaches the
@@ -60,7 +60,7 @@ revoked credential.
 
 ## Credential details shown
 
-The Passkeys list includes additional metadata to help administration and troubleshooting:
+The list also shows metadata that can help with administration and troubleshooting:
 
 - Algorithm
 - Curve
@@ -75,16 +75,16 @@ The Passkeys list includes additional metadata to help administration and troubl
 
 ## Selection and bulk operations
 
-The panel supports filtering credentials by common fields, including:
+Filter credentials by common fields such as:
 
 - RP (Relying Party)
 - User
 - Credential ID
 - Other searchable credential fields shown in the table
 
-Each credential row has a selection switch. Use **Select all** to select the
-currently displayed credentials, then choose one of these actions from the
-bulk-action menu:
+Each row has a selection switch. To apply an action to several credentials,
+use **Select all** for the displayed results, then choose an action from the
+bulk menu:
 
 - **Export selected**: exports the selected credentials to Vault using the
   chosen export algorithm.

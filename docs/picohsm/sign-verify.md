@@ -1,6 +1,6 @@
 # Sign and verify
 
-Signing is the most common proof that Pico HSM is working as intended: the host gets a signature, the private key stays inside the device.
+Signing is a useful first check of Pico HSM: the host receives a signature while the private key stays inside the device.
 
 ## Prepare sample data
 
@@ -71,4 +71,4 @@ openssl dgst -sha256 -verify ec_pub.pem -signature data.sig data
 - some mechanisms exist in firmware but are awkward in generic CLI tooling
 - signature success proves the session, PIN, and key object are all aligned correctly
 
-That makes sign-and-verify one of the best diagnostic workflows after initial provisioning.
+For this reason, sign-and-verify is a useful diagnostic workflow after provisioning.

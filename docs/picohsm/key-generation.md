@@ -1,6 +1,6 @@
 # Key generation
 
-Key generation is the cleanest Pico HSM workflow because it uses the device exactly as intended: create private material inside the device and export only what must be public.
+Key generation is a straightforward way to use Pico HSM: create private material inside the device and export only its public part.
 
 ## Supported families
 
@@ -37,7 +37,7 @@ pkcs11-tool \
   --pin 648219
 ```
 
-For many deployments, this is the practical default.
+For many deployments, an EC key is the practical default.
 
 ## Export the public part
 
@@ -65,7 +65,7 @@ openssl ec -inform DER -pubin -in ec_pub.der -out ec_pub.pem
 
 ## Validate immediately
 
-Do not stop at generation. Immediately:
+After generation, check that the key is usable:
 
 - list the object
 - export the public key
@@ -79,4 +79,4 @@ That confirms the key is usable, not only present.
 - unsupported or oddly named curve identifiers in host tools can mislead users
 - a generated key is only useful if your intended client stack can consume it later
 
-That last point is why key generation should always be followed by one end-to-end application test.
+For that reason, follow key generation with an end-to-end test in the application that will use the key.

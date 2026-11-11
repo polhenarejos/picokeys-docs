@@ -1,12 +1,12 @@
 # Threat model
 
-This page states what the PicoKeys firmware families can reasonably protect against and where the boundary ends.
-
-It is intentionally conservative.
+PicoKeys firmware provides different protections depending on the product and
+hardware. This model also identifies the threats that remain outside their
+scope, using conservative assumptions about those protections.
 
 ## Assets
 
-Depending on firmware, the assets include:
+Depending on the firmware, protected assets may include:
 
 - FIDO master seed
 - resident passkeys
@@ -28,7 +28,7 @@ Defenses include:
 - retry counters and lockouts
 - applet-specific management keys or policy gates
 
-What remains true:
+Even with those defenses:
 
 - a compromised host can request operations while the device is connected
 - if the user authorizes an operation, the device may perform it
@@ -42,7 +42,7 @@ At-rest protection depends heavily on hardware:
 - RP2350/RP2354 and ESP32-S3 class devices provide stronger primitives
 - OTP-backed sealing and secure boot are meaningful only after correct provisioning
 
-Do not describe a device as hardened merely because the firmware supports hardening in theory.
+Describe a device as hardened only when the required protections have been provisioned and verified on that hardware.
 
 ## Firmware replacement
 
@@ -62,7 +62,7 @@ Out of scope:
 - power and EM side channels
 - invasive lab extraction
 
-If your threat model includes a funded lab, use certified secure hardware.
+For threats involving a well-funded laboratory, use certified secure hardware.
 
 ## Network
 
@@ -79,4 +79,4 @@ When documenting a security claim, include:
 - the provisioning state
 - the host tool path used to verify it
 
-Without those four pieces, the claim is probably too vague.
+Include all four details so readers can understand exactly what the claim covers.

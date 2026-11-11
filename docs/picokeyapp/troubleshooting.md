@@ -1,14 +1,12 @@
 # Troubleshooting
 
-This section lists the most common issues encountered when using **PicoKey App**, together with their causes and recommended actions.
-
-Read this section carefully before opening a support ticket.
+Use this guide to check common PicoKey App problems before opening a support ticket.
 
 ---
 
 ## Device not detected
 
-PicoKey App does not detect any connected device.
+PicoKey App does not detect the connected device.
 
 ### Possible causes
 
@@ -37,7 +35,7 @@ The device is detected, but the **Connection** field shows an unexpected value.
 
 ### Explanation
 
-Depending on the firmware and device state, the connection mode may vary.
+The connection mode depends on the firmware and device state.
 
 Common modes include:
 
@@ -46,9 +44,9 @@ Common modes include:
 
 ### What to do
 
-- For new or freshly flashed devices, `RESCUE` mode is expected
-- If the device should be in normal mode, try reconnecting it
-- If unsure, proceed with commissioning only when instructed
+- A new or freshly flashed device is expected to be in `RESCUE` mode.
+- If the device should be in normal mode, reconnect it and check again.
+- If you are unsure, commission the device only when instructed.
 
 !!! note
     Connection mode alone does not indicate a faulty device.
@@ -61,9 +59,8 @@ A license is installed, but the board status remains **Not registered**.
 
 ### Explanation
 
-Installing a license and registering a board are **two separate steps**.
-
-A license must be installed first, and then explicitly bound to a board.
+Installing a license and registering a board are **separate steps**. Install
+the license first, then bind it to the selected board.
 
 ### Recommended actions
 
@@ -83,9 +80,8 @@ The wrong board type was selected during registration.
 
 ### Explanation
 
-Board type selection is **user-controlled** and **irreversible**.
-
-Once a board is registered, the selected board type **cannot be changed**.
+Board type selection is **user-controlled** and **irreversible**. Once the
+board is registered, you cannot change the selected type.
 
 !!! danger
     Selecting an incorrect board type cannot be undone.
@@ -94,8 +90,8 @@ Once a board is registered, the selected board type **cannot be changed**.
 
 ### What to do
 
-- Do **not** attempt to work around this by selecting a similar board
-- Do **not** attempt to re-register the board
+- Do **not** select a similar board as a workaround.
+- Do **not** try to register the board again.
 
 Instead, open a support ticket and explain the situation.
 
@@ -103,7 +99,7 @@ Instead, open a support ticket and explain the situation.
 
 ## My board does not appear in the board list
 
-The board model you are using does not appear in the board selection list.
+The board selection list does not include your board model.
 
 ### Recommended actions
 
@@ -130,7 +126,7 @@ Include:
 
 ## Firmware update fails
 
-A firmware update does not complete successfully.
+The firmware update does not complete successfully.
 
 ### Possible causes
 
@@ -157,9 +153,9 @@ Some features are missing after installing or updating firmware.
 
 ### Explanation
 
-Available features depend on the **installed firmware**, not on PicoKey App itself.
+Available features depend on the **installed firmware** rather than PicoKey App.
 
-Installing a different firmware variant may:
+Installing another firmware variant may:
 
 - Enable new features
 - Disable features available in a previous firmware
@@ -182,7 +178,7 @@ The device is detected, but operations fail on Linux.
 
 ### Explanation
 
-Linux systems may require additional USB permissions.
+Linux may require additional USB permissions before the device can be used.
 
 ### Recommended actions
 
@@ -197,7 +193,7 @@ Linux systems may require additional USB permissions.
 
 ## When to open a support ticket
 
-Open a support ticket if:
+Open a support ticket when:
 
 - The correct board model is not listed
 - Firmware recovery is not possible
@@ -207,4 +203,4 @@ Use the official issue tracker:
 
 [https://github.com/polhenarejos/picokeyapp/issues](https://github.com/polhenarejos/picokeyapp/issues)
 
-Provide as much detail as possible to speed up resolution.
+Include the details above so the support team can investigate the issue.

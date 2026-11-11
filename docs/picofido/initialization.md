@@ -1,6 +1,6 @@
 # Setup and policy
 
-From zero to a working Pico FIDO device: flash it, confirm the host sees it, and set the policies that matter before you enroll real credentials.
+To prepare a Pico FIDO device, flash it, confirm that the host can see it, and choose the policies you need before enrolling real credentials.
 
 ## Build or download
 
@@ -23,7 +23,7 @@ make
 
 If you omit `PICO_BOARD`, `USB_VID`, and `USB_PID`, upstream says the defaults are `pico` and `FEFF:FCFD`.
 
-The upstream README also documents `VIDPID=value` presets such as `Yubikey5`, `NitroFIDO2`, and others. Those presets are useful for interop testing. They should not be confused with permission to redistribute firmware under someone else's USB identity.
+The upstream README also documents `VIDPID=value` presets such as `Yubikey5` and `NitroFIDO2` for interoperability testing. Use these presets for testing, and obtain permission before redistributing firmware under someone else's USB identity.
 
 ## Flash the board
 
@@ -40,7 +40,7 @@ For ESP32-S3 boards, upstream sends users through the ESP32 flasher flow instead
 
 Pico FIDO uses the FIDO HID interface for WebAuthn and CTAP. That means basic FIDO use does not depend on CCID or smart-card middleware.
 
-Check the minimum first:
+Start by checking that the host can see the device:
 
 - open a browser and try a WebAuthn registration flow
 - or use a libfido2-based tool such as `fido2-token -L`
@@ -50,7 +50,7 @@ If you are testing `ykman`, Yubico Authenticator, or Nitrokey-oriented tools, be
 
 ## Set a PIN early
 
-Do this before real enrollment if the device will hold anything important.
+Set a PIN before enrolling important credentials, because:
 
 The reasons are the same as on other FIDO authenticators:
 
@@ -58,7 +58,7 @@ The reasons are the same as on other FIDO authenticators:
 - relying parties may request user verification
 - a device with no PIN is easier to misuse locally
 
-Upstream also claims support for `minPinLength`. That is useful, but it is only useful if your operators understand the policy and your clients behave correctly once it is enforced.
+Upstream also claims support for `minPinLength`. It helps only when operators understand the policy and clients behave correctly after it is enforced.
 
 ## Attestation and policy choices
 
@@ -68,12 +68,12 @@ Upstream advertises:
 - enterprise attestation
 - RP-scoped restrictions and related policy controls
 
-Use these deliberately.
+Choose these settings deliberately, since they affect relying-party trust and privacy:
 
 !!! note
     "The firmware can emit attestation" is not the same thing as "your relying parties should trust or require it."
 
-Restrictive RP policy is similar: it is valuable only if you document it well enough that later failures are explainable.
+Document any restrictive RP policy so operators can explain later authentication failures.
 
 ## Hardware note
 

@@ -1,6 +1,6 @@
 # OTP slots
 
-Pico FIDO also exposes Yubico-style OTP slot behavior. Upstream documents four slots, each holding one configured function.
+Pico FIDO also provides Yubico-style OTP slots. Upstream documents four slots, and each slot holds one configured function.
 
 ## Slot model
 
@@ -11,18 +11,18 @@ Each slot can be configured independently as one of:
 - Yubico OTP
 - challenge-response
 
-That flexibility is useful, but it also means the USB keyboard path can easily outlive the use case that justified it.
+This flexibility helps with older integrations, although the USB keyboard behavior may remain enabled after the original use case has changed.
 
 ## Activation
 
-The current docs describe BOOTSEL-based activation by repeated button presses:
+On supported firmware, activate a slot by pressing the BOOTSEL button repeatedly:
 
 - slot 1: one press
 - slot 2: two presses
 - slot 3: three presses
 - slot 4: four presses
 
-Treat that as a physical UI contract. If you deploy it operationally, make sure users understand which slot does what before they start typing secrets into the wrong input field.
+This button sequence is part of the physical interface. Explain each slot to users so they know what will be typed before they press the button.
 
 ## Output behavior
 
@@ -33,7 +33,7 @@ Challenge-response is different:
 - it is not meant to "type" a value
 - it computes a response from a host-supplied challenge
 
-That difference is easy to gloss over and often confuses users.
+Explain this distinction to users who expect every slot to type its output.
 
 ## When these slots are a good fit
 
@@ -43,7 +43,7 @@ They make sense when you need compatibility with:
 - workflows already built around Yubico-style slot semantics
 - challenge-response integrations that are not WebAuthn
 
-They are not a better replacement for passkeys. They are a fallback for older ecosystems.
+Use these slots for compatibility with older systems; passkeys remain the better choice for phishing-resistant authentication.
 
 ## Security cautions
 

@@ -11,25 +11,25 @@ The normal workflow is:
 3. generate or import the keys
 4. verify that the resulting card state matches expectations
 
-Upstream claims support for:
+The upstream project lists support for:
 
 - RSA generation from 1024 to 4096 bits
 - ECDSA generation from 192 to 521 bits
 - common NIST curves, Brainpool curves, and `secp256k1`
 
-That is the firmware claim. The practical client experience still depends on what GnuPG or other tooling exposes cleanly.
+Those are firmware capabilities; the client experience still depends on what GnuPG and other host tools expose.
 
 ## Import vs generate
 
-The usual trade-off remains:
+Choose between generation and import based on how you manage private keys:
 
 - generate on-card when you want the private key never to have existed elsewhere
 - import when you already have a controlled key hierarchy or recovery plan
 
-The documentation should not pretend those are the same operational decision.
+These choices have different recovery and key-custody consequences, so document which one your workflow uses.
 
 ## Certificates and metadata
 
-Upstream also claims certificate handling and cardholder data support. The important operational point is that not every host UI exposes those capabilities equally well.
+The upstream project also lists certificate handling and cardholder data support, although host interfaces expose those capabilities unevenly.
 
 Validate the exact client workflow you intend to support before documenting it as smooth or routine.

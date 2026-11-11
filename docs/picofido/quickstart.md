@@ -1,6 +1,6 @@
 # Quick start
 
-From zero to a working Pico FIDO device in a short test cycle: flash it, set a PIN, register one passkey, and verify one recovery path.
+This quick start takes a Pico FIDO device from flashing through passkey registration and one recovery check.
 
 ## What you need
 
@@ -24,7 +24,7 @@ For ESP32-S3 boards, use the upstream flasher flow.
 
 ## 2. Confirm the host sees a FIDO authenticator
 
-The simplest check is a standard WebAuthn site. If the browser sees the device, the FIDO path is alive.
+Start with a standard WebAuthn site; if the browser detects the device, the FIDO connection is working.
 
 An alternative CLI-level check is a libfido2-based tool such as:
 
@@ -36,7 +36,7 @@ If the device is not visible here, stop and fix detection first.
 
 ## 3. Set a PIN
 
-Set a PIN before real enrollment. The exact tool depends on the host path you use, but the outcome should be the same:
+Set a PIN before enrolling real credentials. The tool depends on your host setup, but you should confirm that:
 
 - a PIN exists
 - the device prompts for it when a UV-gated operation requires it
@@ -50,7 +50,6 @@ Use a standard WebAuthn registration flow and verify:
 - physical confirmation works
 - login with the same credential succeeds
 
-This proves the core FIDO path, not just enumeration.
 
 ## 5. Test one management action
 
@@ -59,7 +58,7 @@ Before calling the setup done, also test one stored-credential management action
 - list a resident credential
 - or delete one test credential and confirm the relying party behavior
 
-The point is to verify not only authentication but also the management path you expect to use later.
+This confirms that both authentication and the management path you plan to use are working.
 
 ## 6. Test one destructive recovery path on non-critical hardware
 
@@ -70,4 +69,4 @@ Before trusting a deployment model, test at least one reset flow on a disposable
 - reset
 - confirm what survived and what did not
 
-This is the difference between "we assume recovery works" and "we have seen it work."
+This test gives you evidence that recovery works on the setup you plan to use.

@@ -1,8 +1,6 @@
 # Slot: HOTP
 
-This page describes the **HOTP (HMAC-Based One-Time Password) slot type** available in PicoKey App.
-
-The HOTP slot generates a numeric one-time password derived from a shared secret and emits it as **keyboard input** when triggered.
+An **HOTP (HMAC-Based One-Time Password) slot** generates a numeric code from a shared secret and types it as **keyboard input** when triggered.
 
 ![HOTP slot](../../../assets/images/picokeyapp/fido/slots-hotp.png)
 
@@ -10,14 +8,9 @@ The HOTP slot generates a numeric one-time password derived from a shared secret
 
 ## Overview
 
-The HOTP slot allows the device to:
-
-- Store a shared secret securely
-- Generate a one-time password (HOTP)
-- Emit the generated code as keystrokes
-- Behave as a USB keyboard when activated
-
-The generated code follows the HOTP model and is intended to be verified by a remote system that shares the same secret.
+The device stores a shared secret and uses it to generate HOTP codes when the
+slot is activated. It types each code through its USB keyboard interface, and
+a remote system verifies the code using the same secret.
 
 ---
 
@@ -25,12 +18,9 @@ The generated code follows the HOTP model and is intended to be verified by a re
 
 The HOTP slot is activated through the **OTP / button interface**.
 
-Activation works as follows:
-
-- The user presses the BOOTSEL button **N times**
-- `N` corresponds to the slot number
-- The device generates a new HOTP value
-- The HOTP code is typed on the host system as keyboard input
+Press the BOOTSEL button **N times**, where `N` is the slot number. The device
+then generates the next HOTP value and types it into the host as keyboard
+input.
 
 !!! note
     No dedicated software is required on the host beyond USB HID keyboard support.
@@ -41,11 +31,9 @@ Activation works as follows:
 
 ### Key
 
-Defines the shared secret used to generate HOTP values.
-
-- The key is stored securely on the device
-- The key cannot be retrieved once stored
-- The maximum key length is limited by the slot implementation
+Enter the shared secret used to generate HOTP values. The device stores it
+securely and does not return it after setup; the slot implementation also
+limits its maximum length.
 
 !!! warning
     If the secret is lost, the HOTP sequence cannot be regenerated or validated.
@@ -54,7 +42,7 @@ Defines the shared secret used to generate HOTP values.
 
 ### Number of digits
 
-Defines the length of the generated HOTP code.
+Choose how many digits the generated code contains:
 
 Supported values:
 
@@ -68,10 +56,8 @@ Supported values:
 
 ### Append Enter
 
-When enabled:
-
-- An Enter key is sent after the HOTP code
-- Useful for automatic form submission
+When enabled, the device sends Enter after the code, which can submit a form
+automatically.
 
 !!! tip
     Enable this option when authenticating into login forms or terminals.
@@ -80,8 +66,8 @@ When enabled:
 
 ## Save and cancel
 
-- **Save** stores the HOTP configuration permanently
-- **Cancel** discards the configuration
+- **Save** stores the HOTP configuration permanently.
+- **Cancel** discards the changes.
 
 !!! danger
     Saving overwrites any existing slot configuration.
@@ -90,11 +76,8 @@ When enabled:
 
 ## Security considerations
 
-The HOTP slot:
-
-- Generates a new code on each activation
-- Does not expose the shared secret
-- Emits the code only as keyboard input
+Each activation generates a new code. The device keeps the shared secret
+private and emits the code only as keyboard input.
 
 !!! warning
     HOTP counters must remain synchronized with the verification system.
@@ -103,7 +86,7 @@ The HOTP slot:
 
 ## Typical use cases
 
-Common use cases include:
+Use HOTP slots for:
 
 - Two-factor authentication systems
 - Legacy systems without TOTP support
@@ -117,10 +100,9 @@ Common use cases include:
 
 ## Limitations
 
-- Counter-based (no time component)
-- Requires host-side verification
-- Susceptible to desynchronization
-- Keyboard-based emission only
+HOTP uses a counter rather than time, so the device and verifier can become
+desynchronized. The verifier must check each code, and the device emits codes
+only through the keyboard interface.
 
 !!! note
     For time-based OTP, consider using TOTP-capable solutions if available.

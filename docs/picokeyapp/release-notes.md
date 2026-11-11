@@ -1,12 +1,12 @@
 # Release notes
 
-This page tracks notable PicoKey App features reflected in this documentation set.
+This page records notable PicoKey App features covered by these documents.
 
 ---
 
 ## v2.4 baseline
 
-Reference tag in `picokeyapp`: `v2.4` (`2026-02-16`).
+The documentation uses `v2.4` (`2026-02-16`) as its baseline reference tag in `picokeyapp`.
 
 ---
 
@@ -85,12 +85,12 @@ Reference tag in `picokeyapp`: `v2.4` (`2026-02-16`).
 
 ## Notes
 
-- This page summarizes documentation coverage updates, not full firmware/API changelogs.
+- This page summarizes documentation coverage updates; it is not a full firmware or API changelog.
 - For implementation-level history, use `git log` in the `picokeyapp` repository.
 
 ## v3.0
 
-PicoKey App 3.0 includes:
+PicoKey App 3.0 adds:
 
 - a dedicated **FIDO > Vault** panel for local opaque credential packages;
 - export and import of selected resident credentials through an enrolled Pico
@@ -103,10 +103,10 @@ PicoKey App 3.0 includes:
 - per-credential expiration and revocation actions;
 - PIN complexity policy configuration;
 - `alwaysUv`, `makeCredUvNotRqd`, and discoverable-credential controls;
-- a FIDO Dashboard switch for the Keyboard Interface used by OTP slots 1–4;
+- a FIDO Dashboard switch for the Keyboard Interface used by OTP slots 1 to 4;
 - better FIDO transport fallback when the HID path is unavailable; and
 - improved OpenPGP/PIV panel behavior for mixed FIDO2 devices.
 
-The standalone [Pico Vault Enroller](https://github.com/polhenarejos/pico-vault-enroller)
-is required for board enrollment. PicoKey App manages exported packages after
-enrollment; it does not replace the enrollment ceremony.
+Use the standalone [Pico Vault Enroller](https://github.com/polhenarejos/pico-vault-enroller)
+to enroll a board. After enrollment, PicoKey App manages exported packages but
+does not perform the enrollment ceremony.

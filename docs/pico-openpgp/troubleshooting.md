@@ -2,17 +2,17 @@
 
 ## `gpg --card-status` fails
 
-Start with the host stack, not the card logic:
+First check whether the host can see the reader and card:
 
 - is PC/SC running?
 - is the reader visible?
 - does another smart-card tool see the device?
 
-Most failures here are middleware problems first.
+If these checks fail, the issue is usually in the middleware or reader setup.
 
 ## The card is visible but an admin action fails
 
-Check the role context before blaming the firmware:
+Before investigating the firmware, confirm that:
 
 - are you authenticated as `PW3`?
 - did the client keep or lose the session?
@@ -20,20 +20,20 @@ Check the role context before blaming the firmware:
 
 ## Large RSA operations seem stuck
 
-That can be normal. Upstream timing for RSA generation and use is measured in seconds or minutes, not milliseconds.
+Long delays can be normal: upstream RSA timings range from seconds to minutes, depending on the key size and operation.
 
 If you need fast provisioning, prefer ECC unless a specific RSA requirement exists.
 
 ## A feature exists in the README but not in the client
 
-That is common in OpenPGP land. Confirm separately:
+Firmware, middleware, and client support are separate checks. Confirm each one:
 
 1. firmware support
 2. middleware support
 3. client support
 
-Only the combination matters operationally.
+The feature is available in practice only when all three layers support it.
 
 ## Reset or unblock behavior is unclear
 
-If the recovery path is unclear during an incident, the documentation is already too late. Test the recovery flows on a non-critical card and document the exact steps you will actually use.
+Test the recovery flow on a non-critical card and record the steps before an incident makes them urgent.

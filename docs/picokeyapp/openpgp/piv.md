@@ -1,6 +1,6 @@
 # PIV
 
-This page documents the **OpenPGP > PIV** view in PicoKey App.
+Use **OpenPGP > PIV** in PicoKey App to view PIV status and manage PIV slots.
 
 ![PIV view (top)](../../assets/images/picokeyapp/openpgp/piv-1.png)
 ![PIV view (bottom)](../../assets/images/picokeyapp/openpgp/piv-2.png)
@@ -9,7 +9,7 @@ This page documents the **OpenPGP > PIV** view in PicoKey App.
 
 ## PIV status
 
-The **PIV Status** panel includes:
+The **PIV Status** panel shows:
 
 - `Version`
 - `Serial`
@@ -24,7 +24,7 @@ The **PIV Status** panel includes:
   - `Unblock PIN`
   - `Set MGM Key`
 
-PIV unlock is performed using the **MGM key** (management key), not the user PIN.
+Unlock the PIV session with the **MGM key** (management key); the user PIN does not unlock it.
 
 !!! warning
     Default PIN/PUK/MGM values should be changed before production use.
@@ -33,7 +33,7 @@ PIV unlock is performed using the **MGM key** (management key), not the user PIN
 
 ## Slot model
 
-The view shows standard PIV slot groups:
+The view groups the standard PIV slots into:
 
 - **Authentication Slot (9A)**
 - **Signature Slot (9C)**
@@ -41,7 +41,7 @@ The view shows standard PIV slot groups:
 - **Card Authentication Slot (9E)**
 - **Retired Slots**
 
-Per-slot metadata shown in the UI:
+For each slot, the UI shows:
 
 - `Current algorithm`
 - `PIN policy`
@@ -49,7 +49,7 @@ Per-slot metadata shown in the UI:
 - `Origin` (for example `Generated` or `Imported`)
 - Certificate state (`Present` or `Missing`)
 
-Typical slot actions:
+Depending on the slot state, you may also see:
 
 - `Generate`
 - `Import`
@@ -64,7 +64,7 @@ Typical slot actions:
 
 ## Import key workflow
 
-The import modal (`Import Key - Authentication (9A)`) is used to load an existing private key into a PIV slot.
+Use the `Import Key - Authentication (9A)` dialog to load an existing private key into a PIV slot.
 
 ![PIV import key dialog](../../assets/images/picokeyapp/openpgp/piv-import.png)
 
@@ -99,7 +99,7 @@ The import modal (`Import Key - Authentication (9A)`) is used to load an existin
 
 ## Rotate key workflow
 
-The rotate modal (`Rotate Key - Signature (9C)`) moves an active key to another slot.
+Use the `Rotate Key - Signature (9C)` dialog to move an active key to another slot.
 
 ![PIV rotate dialog](../../assets/images/picokeyapp/openpgp/piv-rotate.png)
 
@@ -109,7 +109,7 @@ The rotate modal (`Rotate Key - Signature (9C)`) moves an active key to another 
 - `Rotate`: executes the move.
 - `Cancel`: closes the modal without changes.
 
-Active keys can be moved to active or retired slots.
+You can move an active key to another active slot or to a retired slot.
 
 ### Recommended flow
 
@@ -119,18 +119,18 @@ Active keys can be moved to active or retired slots.
 
 ### Result
 
-- The key is reassigned to the selected destination slot.
+- The key moves to the selected destination slot.
 - Occupancy indicators in **Retired Slots** are updated when rotating keys into retired positions.
 - Disabled rotate actions in some slots indicate there is no key material available to move.
-- Current firmware can move retired keys back to active slots; verify the
-  destination and certificate association before committing the move.
+- Current firmware can also move a retired key back to an active slot. Check
+  the destination and certificate association before committing the move.
 - Choosing `Delete permanently` removes key material irreversibly.
 
 ---
 
 ## Retired slots
 
-The **Retired Slots** panel includes:
+The **Retired Slots** panel shows:
 
 - Slot selector (example: `Retired 4 (0x85)`)
 - Occupancy indicator for retired slots (`R1` to `R20`)
@@ -150,4 +150,4 @@ Occupied retired slots are shown in green and empty ones in red.
 
 ## Registration requirement
 
-This panel requires a registered board in PicoKey App. If the board is not registered, controls are restricted.
+Register the board in PicoKey App before using this panel; otherwise, controls are restricted.

@@ -1,6 +1,6 @@
 # First steps
 
-Treat Pico HSM like a smart-card-attached cryptographic device, not like a USB file you can start using blindly.
+Pico HSM is a smart-card-attached cryptographic device, so first confirm that the host can communicate with it.
 
 ## 1. Get the device detected
 
@@ -12,7 +12,7 @@ opensc-tool -a
 opensc-tool -an
 ```
 
-You want to prove three things:
+These checks confirm that:
 
 - the operating system sees a reader
 - the middleware sees a card
@@ -28,7 +28,7 @@ Once the reader path is healthy, list stored objects:
 pkcs11-tool --list-objects --pin 648219
 ```
 
-Use the real PIN for your device, obviously. The purpose here is not the object list itself. It is to confirm that authenticated PKCS#11 traffic works end to end.
+Replace the example PIN with your device's PIN. The object list is only a check that authenticated PKCS#11 traffic works end to end.
 
 ## 3. Start with a disposable key
 
@@ -47,7 +47,7 @@ The upstream security story is materially different across hardware:
 - RP2040 is the weakest platform for at-rest protection
 - RP2350/RP2354 and ESP32-S3 are where secure boot, secure lock, and OTP-backed claims become relevant
 
-If you are evaluating the HSM seriously, note the exact board used during testing.
+Record the exact board model whenever you evaluate the HSM, since platform choice affects its security properties.
 
 ## 5. Do not start with advanced workflows
 
@@ -65,4 +65,4 @@ Use this order instead:
 4. sign or decrypt test data
 5. then move to wrapped-key and admin workflows
 
-It is slower once, and faster overall.
+This sequence adds a few checks up front and makes later troubleshooting easier.

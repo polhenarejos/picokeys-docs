@@ -1,12 +1,12 @@
 # License and registration
 
-The **License** section manages application and device licensing.
+Use the **License** section to install licenses and register boards.
 
 ---
 
 ## Unregistered state
 
-When no license is present:
+Without an installed license:
 
 - The status shows *Not registered*
 - The **Register License** button is available
@@ -17,15 +17,15 @@ When no license is present:
 
 ## Registered state
 
-When a license is present:
+After you install a license:
 
 - The registered user is displayed
 - The target board can be selected
 - The **Register Board** button binds the license to the device
 
 !!! Note
-    The number of boards that can be registered depends on the number of the
-    purchased licenses. Each license has a number of seats that can be increased
-    by purchasing more licenses with the same email address.
+    The number of boards you can register depends on the seats included with
+    your licenses. You can add seats by purchasing more licenses with the same
+    email address.
 
 ![Register board](../assets/images/picokeyapp/register-board.png)

@@ -1,6 +1,6 @@
 # Configuration
 
-The **Configuration** section is used to commission and customize the device.
+Use the **Configuration** section to customize and commission the device.
 
 ![Configuration](../assets/images/picokeyapp/configuration.png)
 
@@ -8,13 +8,13 @@ The **Configuration** section is used to commission and customize the device.
 
 ## Vendor / USB identity
 
-This section controls how the device identifies itself over USB.
+Choose how the device identifies itself over USB here.
 
 - **Vendor preset**
-  Selects a predefined USB identity (default: *PicoKeys*).
+  Select a predefined USB identity. The default is *PicoKeys*.
 
 - **Custom VID:PID (hex)**
-  Allows specifying a custom USB Vendor ID and Product ID.
+  Enter a custom USB Vendor ID and Product ID.
 
 !!! note
     Changing USB identifiers affects how the device is recognized by the operating system.
@@ -24,31 +24,25 @@ This section controls how the device identifies itself over USB.
 
 ## Timeouts & LED
 
-This section controls user interaction timing and LED behavior.
+This section controls user-interaction timing and the LED.
 
-- **Presence button timeout (s)**
-  Timeout used for presence-confirmation actions.
+- **Presence button timeout (s)** sets how long a presence-confirmation action waits.
 
-- **LED brightness (0–15)**
-  Sets the LED intensity.
+- **LED brightness** sets the LED intensity on a scale from 0 to 15.
 
-- **LED dimmable**
-  Enables brightness control.
+- **LED dimmable** enables brightness control.
 
-- **Power cycle on reset**
-  Forces a power cycle when resetting the device.
+- **Power cycle on reset** forces a power cycle when the device resets.
 
-- **LED steady (no blink)**
-  Disables LED blinking patterns.
+- **LED steady (no blink)** disables LED blinking patterns.
 
-Availability of these options depends on the installed firmware.
+The installed firmware determines which options are available.
 
 ---
 
 ## Advanced options
 
-- **Enable secp256k1**
-  Enables support for the secp256k1 elliptic curve, if supported by the firmware.
+- **Enable secp256k1** enables this elliptic curve when the firmware supports it.
 
 !!! Note
     Some old Android devices do not support this curve. Enabling it will make the device non-detectable.
@@ -57,7 +51,7 @@ Availability of these options depends on the installed firmware.
 
 ## Commission device
 
-The **Commission device** button applies the selected configuration and provisions the device.
+Click **Commission device** to apply the selected configuration and provision the device.
 
 A status message indicates the result of the operation.
 
@@ -69,4 +63,4 @@ A status message indicates the result of the operation.
 
 ## Registration requirement
 
-This panel requires a registered board in PicoKey App to execute commissioning.
+You must register the board in PicoKey App before commissioning it from this panel.

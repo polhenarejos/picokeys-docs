@@ -1,11 +1,11 @@
 # Asymmetric ciphering
 
-Pico HSM exposes two different ideas under this heading:
+This section covers two asymmetric-key operations:
 
 - RSA decryption
 - ECDH shared-secret derivation
 
-Those are related only in the sense that both use asymmetric keys.
+Both use asymmetric keys, but they serve different purposes: RSA decrypts data, while ECDH derives a shared secret.
 
 ## Prepare sample data
 
@@ -50,7 +50,7 @@ pkcs11-tool \
 
 Upstream examples also show `RSA-PKCS` and `RSA-X-509`.
 
-The documentation should be blunt here:
+Use the following guidance when choosing between these mechanisms:
 
 - `RSA-PKCS` exists largely for compatibility
 - `RSA-X-509` is low-level and easy to misuse
@@ -79,7 +79,7 @@ openssl pkeyutl -derive -out bob-mine.der -inkey bob.pem -peerkey 11.pub
 cmp bob-mine.der mine-bob.der
 ```
 
-If `cmp` prints nothing, the derived secrets match.
+When `cmp` prints nothing, the two derived secrets match.
 
 ## Practical caution
 
@@ -89,4 +89,4 @@ Asymmetric ciphering is where users often discover that:
 - the host tool syntax is obscure
 - the intended application still needs adaptation
 
-That is normal. Test the full application path, not just the raw cryptographic primitive.
+This is common with low-level cryptographic tools, so test the full application path as well as the primitive itself.

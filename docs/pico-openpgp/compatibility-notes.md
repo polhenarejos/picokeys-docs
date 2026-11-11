@@ -1,6 +1,6 @@
 # Host setup and compatibility
 
-Most OpenPGP problems are host problems first.
+When OpenPGP does not work, check the host stack before changing card settings.
 
 Pico OpenPGP is a CCID smart-card device, so the minimum host stack is not optional:
 
@@ -11,13 +11,13 @@ Pico OpenPGP is a CCID smart-card device, so the minimum host stack is not optio
 
 ## Check the card is visible
 
-Start with the boring check first:
+Start with a read-only status check:
 
 ```sh
 gpg --card-status
 ```
 
-If that fails, do not jump straight into key generation or card policy changes.
+If the card is not visible, fix detection before trying key generation or changing card policy.
 
 Upstream also explicitly points to:
 
@@ -36,13 +36,13 @@ So a sensible validation order is:
 
 The upstream README is explicit about a recurring CCID problem: host middleware may need the device identity to be recognized correctly.
 
-In practice that can mean:
+Depending on the setup, you may need to:
 
 - using PicoKey App to help commission the board
 - building with a chosen VID/PID
 - adjusting local driver or middleware configuration
 
-This is annoying, but it is normal in the smart-card ecosystem.
+Reader and driver configuration can be inconvenient, but it is a normal part of smart-card setup.
 
 !!! warning
     "The board flashed successfully" and "the host stack will recognize the device properly" are different conditions.
@@ -75,4 +75,4 @@ For every platform you want to call supported, verify at least:
 5. one signing operation
 6. one decryption operation if you need it
 
-If that checklist is not repeatable, the platform is not really validated yet.
+Repeat those checks whenever you validate a platform; a one-off success does not establish reliable support.

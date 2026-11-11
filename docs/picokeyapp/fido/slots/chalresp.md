@@ -1,8 +1,6 @@
 # Slot: Challenge-Response
 
-This page describes the **Challenge-Response slot type** available in PicoKey App.
-
-This slot implements a **host-driven challenge–response mechanism**, where the host generates a challenge, the device signs it, and the host verifies the response.
+A **Challenge-Response slot** uses a host-driven mechanism: the host creates a challenge, the device processes it, and the host verifies the response.
 
 ![Challenge-Response slot](../../../assets/images/picokeyapp/fido/slots-chalresp.png)
 
@@ -10,26 +8,17 @@ This slot implements a **host-driven challenge–response mechanism**, where the
 
 ## Overview
 
-The Challenge-Response slot is designed to:
-
-- Bind authentication to a secret stored on the device
-- Require host-side verification
-- Avoid storing reusable secrets on the host
-
-The authentication flow is driven by the host application.
+The host application drives authentication using a secret stored on the device.
+It verifies the response itself, so it does not need to keep a reusable secret.
 
 ---
 
 ## Authentication model
 
-The Challenge-Response mechanism works as follows:
-
-- The host generates a random challenge
-- The challenge is sent to the device
-- The device signs or processes the challenge using the slot secret
-- The response is returned to the host
-- The host verifies the response
-- Authentication succeeds only if the response matches the expected value
+The host first generates a random challenge and sends it to the device. The
+device uses the slot secret to process the challenge, then returns a response
+for the host to verify. Authentication succeeds only when that response
+matches the expected value.
 
 !!! note
     The device does not decide whether authentication succeeds.
@@ -41,11 +30,9 @@ The Challenge-Response mechanism works as follows:
 
 ### Key
 
-Defines the **secret key** used for challenge processing.
-
-- The key is stored securely on the device
-- The key length is limited by the slot implementation
-- Once configured, the key cannot be retrieved in plaintext
+Enter the **secret key** used to process challenges. The device stores it
+securely, limits its length according to the slot implementation, and does
+not return it in plaintext after configuration.
 
 !!! warning
     Losing the key means the challenge-response authentication cannot be validated anymore.
@@ -54,10 +41,8 @@ Defines the **secret key** used for challenge processing.
 
 ### Require touch
 
-When enabled:
-
-- User presence is required to generate a response
-- The device waits for a physical touch or confirmation
+When enabled, the device waits for a physical touch or confirmation before it
+generates a response.
 
 !!! note
     Requiring touch prevents unattended or automated authentication attempts.
@@ -66,8 +51,8 @@ When enabled:
 
 ## Save and cancel
 
-- **Save** stores the slot configuration permanently
-- **Cancel** discards all changes
+- **Save** stores the slot configuration permanently.
+- **Cancel** discards the changes.
 
 !!! danger
     Saving overwrites any existing slot configuration.
@@ -76,11 +61,9 @@ When enabled:
 
 ## Security properties
 
-The Challenge-Response slot provides:
-
-- Protection against replay attacks (if challenges are random)
-- No static secrets sent over the interface
-- Optional user presence enforcement
+Random challenges help prevent replay attacks. The slot does not send a static
+secret over the interface, and you can require user presence before it
+responds.
 
 !!! warning
     Security depends entirely on correct challenge generation and verification on the host side.
@@ -89,7 +72,7 @@ The Challenge-Response slot provides:
 
 ## Typical use cases
 
-Common uses for Challenge-Response slots include:
+Challenge-Response slots are commonly used for:
 
 - Device-bound authentication for custom applications
 - Licensing or entitlement checks
@@ -103,9 +86,8 @@ Common uses for Challenge-Response slots include:
 
 ## Limitations
 
-- No built-in verification on the device
-- No standardized protocol (application-specific)
-- Host implementation is required
+The device does not verify the response, the protocol is application-specific,
+and the host must implement verification.
 
 !!! note
     This slot is intended for advanced users and custom integrations.

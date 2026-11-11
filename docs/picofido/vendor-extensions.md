@@ -1,8 +1,8 @@
 # Vendor extensions
 
-This page covers Pico FIDO behavior that goes beyond baseline FIDO interoperability.
+Pico FIDO includes vendor extensions beyond baseline FIDO interoperability.
 
-That does not make these features bad. It means they should be documented honestly: useful, powerful, and less portable.
+These features can be useful, but they are less portable than baseline FIDO behavior and should be documented accordingly.
 
 ## User PIN split
 
@@ -11,7 +11,7 @@ The current PicoKeys docs describe a dual-context model:
 - Admin PIN for full management
 - User PIN for a restricted subset of actions
 
-That is not part of normal WebAuthn portability. It is a product-specific management model.
+This product-specific management model does not carry over to ordinary WebAuthn clients.
 
 If you enable it, write down:
 
@@ -30,18 +30,18 @@ The documented permission mask includes capabilities such as:
 - authenticator configuration
 - reset and persistent management actions
 
-This is powerful because it turns Pico FIDO into something closer to a policy-managed authenticator. It is also where assumptions about "works like any other FIDO key" stop being true.
+Permission masks make Pico FIDO more like a policy-managed authenticator, so clients may behave differently from how they do with a standard FIDO key.
 
 ## Extended credential views
 
-The current docs also describe app-level operations such as:
+PicoKey App also provides management operations such as:
 
 - exporting metadata as JSON or CSV
 - listing creation dates, algorithms, counters, and `credProtect` state
 - filtering by RP, user, or credential identifier
 - per-credential Large Blob handling
 
-These are management conveniences, not guaranteed cross-platform behaviors.
+These management features are useful within the PicoKey App, but other platforms are not guaranteed to expose them.
 
 ## How to think about these features
 
@@ -55,4 +55,4 @@ Do not build a portability story around them unless you have tested the exact ho
 
 ## Conservative rule
 
-If a feature is not part of the baseline CTAP/WebAuthn path, assume it needs explicit interoperability testing before you promise it to anyone else.
+Test interoperability explicitly before promising support for any feature outside the baseline CTAP/WebAuthn path.

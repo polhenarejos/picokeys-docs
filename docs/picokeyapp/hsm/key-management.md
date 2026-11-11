@@ -1,8 +1,8 @@
 # Pico HSM Key Management
 
-This page documents **HSM > Management > Keys** in PicoKey App.
+Use **HSM > Management > Keys** in PicoKey App to manage keys, domains, certificates, and data objects.
 
-It covers:
+From this view, you can:
 
 - Unlocking the HSM session and using the collapsed session panel
 - Key domain setup and DKEK workflows
@@ -15,7 +15,7 @@ It covers:
 
 ## Load management session
 
-When opening `HSM > Management`, the first state is the unlock view.
+When you open `HSM > Management`, PicoKey App first shows the unlock view.
 
 ![HSM unlock](../../assets/images/picokeyapp/hsm/unlock.png)
 
@@ -23,9 +23,9 @@ When opening `HSM > Management`, the first state is the unlock view.
 2. Click **Unlock**.
 3. Wait until key loading finishes.
 
-After a successful unlock, the `Session` section collapses to save space.
+After unlocking, the `Session` section collapses to save space.
 
-If you expand the `Session` section again, you can access maintenance actions:
+Expand `Session` again to access maintenance actions:
 
 ![HSM reload](../../assets/images/picokeyapp/hsm/reload.png)
 
@@ -34,7 +34,7 @@ If you expand the `Session` section again, you can access maintenance actions:
 - **Reload**: reloads keys/domains/certificates for the current authenticated session.
 - **Change PIN**: opens the PIN change flow.
 
-When PIN is blocked, additional recovery actions are shown:
+If the PIN is blocked, the panel also shows these recovery actions:
 
 - **Unblock PIN**
 - **Reset Retries**
@@ -46,12 +46,12 @@ When PIN is blocked, additional recovery actions are shown:
 
 ## Keys view layout
 
-The `Keys` tab has two main areas:
+The `Keys` tab is divided into two areas:
 
 - Left panel: hierarchical tree (`No domain`, `Domain N`, keys, certificates, data objects)
 - Right panel: context actions and details for the selected item
 
-Tabs shown at the top:
+Use the tabs at the top to switch between:
 
 - **Keys**: key tree and key/domain actions
 - **Cipher**: cryptographic operations view
@@ -69,14 +69,14 @@ Select a domain marked as `(not created)`.
 
 ![Key domain setup](../../assets/images/picokeyapp/hsm/key-domain-setup.png)
 
-Available actions in this state:
+When a domain is marked `(not created)`, you can:
 
 - **Set up**: creates the key domain.
 - **Create DKEK Share**: creates a DKEK share file in `.pbe` format so it can be imported later.
 
 ### 2) Create DKEK share (`.pbe`)
 
-Click **Create DKEK Share** to open the DKEK share creation dialog.
+Click **Create DKEK Share** to open the dialog and create a DKEK share.
 
 ![Create DKEK share](../../assets/images/picokeyapp/hsm/create-dkek.png)
 
@@ -97,11 +97,11 @@ A password dialog is shown:
 
 ![Key domain import DKEK password](../../assets/images/picokeyapp/hsm/key-domain-import-dkek.png)
 
-This step loads the DKEK share into the domain using the share password.
+The app uses the share password to load the DKEK share into the domain.
 
 ### 4) Domain ready state
 
-When the required DKEK material is present, the domain shows a `KCV` and full actions:
+Once the domain has the required DKEK material, it shows a `KCV` and these actions:
 
 ![Key domain complete](../../assets/images/picokeyapp/hsm/key-domain-complete.png)
 
@@ -150,7 +150,7 @@ Dialog fields:
 
 ## Key details actions
 
-When a key is selected in the tree, the right panel shows metadata and action buttons.
+Select a key in the tree to view its metadata and actions in the right panel.
 
 ![Key details](../../assets/images/picokeyapp/hsm/key-details.png)
 
@@ -178,7 +178,7 @@ Displayed metadata includes:
 
 ## Certificate details
 
-When you select an item under `Certificates` (for example `Device`, `CVCA`, `DVCA`), the right panel shows certificate metadata.
+Select a certificate under `Certificates` (such as `Device`, `CVCA`, or `DVCA`) to view its metadata in the right panel.
 
 ![Certificate details](../../assets/images/picokeyapp/hsm/certificate-details.png)
 
@@ -197,7 +197,7 @@ Action:
 
 ### Certificate import
 
-When the root `Certificates` node is selected, the right panel shows the import action.
+Select the root `Certificates` node to open certificate import actions.
 
 ![Certificate import](../../assets/images/picokeyapp/hsm/certificate-import.png)
 
@@ -210,7 +210,7 @@ Action:
 
 ## Data objects (Import Object)
 
-Selecting `Data Objects > Public` shows import actions for public data objects.
+Select `Data Objects > Public` to import public data objects.
 
 ![Import object](../../assets/images/picokeyapp/hsm/import-object.png)
 
@@ -227,4 +227,4 @@ Available actions:
 
 ## Registration requirement
 
-This panel requires a registered board in PicoKey App. If the board is not registered, management actions are restricted.
+Register the board in PicoKey App before using this panel; otherwise, management actions are restricted.

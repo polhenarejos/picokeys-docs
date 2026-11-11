@@ -18,21 +18,21 @@ The upstream README publishes indicative timings that materially affect expectat
 | 3072 bits | about 600 s | about 7 s |
 | 4096 bits | about 1000 s | about 15 s |
 
-Those numbers are not cosmetic. They determine whether RSA is practical for your workflow at all.
+These timings help determine whether RSA fits your workflow, especially when key generation is part of regular provisioning.
 
 ## ECC is usually the sensible default
 
-For most day-to-day OpenPGP use:
+For everyday OpenPGP use, ECC is often more practical because:
 
 - ECC generation is much faster
 - interactive workflows feel saner
 - automation is less likely to hit timeouts or impatient users
 
-If you do not have a specific RSA requirement, do not make large RSA your default choice.
+Unless you have a specific RSA requirement, prefer ECC for new deployments.
 
 ## Firmware support is not client support
 
-This is the recurring mistake in OpenPGP docs.
+Keep firmware support and client support separate when you evaluate a feature.
 
 Examples:
 
@@ -40,7 +40,7 @@ Examples:
 - advanced card functions may require lower-level tooling
 - GnuPG, OpenSC, and PKCS#11 clients do not surface the same feature set
 
-So "supported by Pico OpenPGP" must always be qualified by the client path.
+When you say that Pico OpenPGP supports a feature, name the client path you have tested as well.
 
 ## Practical rule
 

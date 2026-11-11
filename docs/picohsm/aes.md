@@ -1,6 +1,6 @@
 # AES
 
-Pico HSM exposes a serious symmetric-crypto surface, but host tooling support is less uniform than for signatures.
+Pico HSM supports a broad set of symmetric operations, although host tools expose them less consistently than signature operations.
 
 ## What upstream claims
 
@@ -11,7 +11,7 @@ The upstream README advertises:
 - extended modes including ECB, CBC, CFB, OFB, XTS, CTR, GCM, and CCM
 - CMAC and related symmetric workflows
 
-That is broader than what many default PKCS#11 frontends make pleasant to use.
+Many standard PKCS#11 frontends do not make this full range of modes easy to use.
 
 ## Generate an AES key
 
@@ -54,4 +54,4 @@ cat crypted.aes | sc-tool \
 - the firmware may support more modes than your chosen host utility exposes cleanly
 - authenticated modes such as GCM or CCM deserve end-to-end testing with your exact application stack
 
-If your use case depends on a specific mode, validate that exact mode early.
+If your application depends on a particular mode, test that mode with the intended host tools before building around it.

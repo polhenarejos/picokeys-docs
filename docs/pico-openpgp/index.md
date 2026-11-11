@@ -1,8 +1,8 @@
 # Pico OpenPGP
 
-A full OpenPGP smart card applet over USB CCID: three key roles, host-side GnuPG and OpenSC tooling, and on-device cryptographic operations without exporting private key material.
+Pico OpenPGP runs a full OpenPGP smart-card applet over USB CCID. It provides three key roles and on-device cryptographic operations, with host-side tools such as GnuPG and OpenSC.
 
-The important part is not just that the firmware speaks OpenPGP card 3.4.1. It is that the host stack must speak it correctly too.
+The firmware implements OpenPGP card 3.4.1, and the host stack must support the commands you plan to use.
 
 ## Start here
 
@@ -24,7 +24,7 @@ Upstream claims support for:
 - optional admin-less operation, where the user PIN can also authorize the
   administrative context when the firmware policy enables it
 
-That is a broad feature set. It still needs to be separated into two buckets:
+These capabilities fall into two groups:
 
 - implemented in firmware
 - realistically exposed by mainstream host software
@@ -37,7 +37,7 @@ Pico OpenPGP is not:
 - a general HSM appliance with Pico HSM's wider feature surface
 - proof that every OpenPGP or PKCS#11 client supports every advertised card command
 
-If you need broader cryptographic primitives, key domains, or wrapped-key workflows, [Pico HSM](../picohsm/index.md) is the better fit.
+For broader cryptographic primitives, key domains, or wrapped-key workflows, see [Pico HSM](../picohsm/index.md).
 
 ## Security posture
 
@@ -55,13 +55,12 @@ The limits are just as important:
 
 ## Practical expectation
 
-The default use case is still the familiar OpenPGP card workflow:
+The usual workflow is straightforward:
 
 - card visible through PC/SC
 - GnuPG or OpenSC talks to it
 - on-device keys sign, decrypt, or authenticate
 
-These docs now follow that flow much more directly.
 
 ## Recent firmware changes
 

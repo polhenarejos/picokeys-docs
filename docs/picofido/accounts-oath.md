@@ -1,6 +1,6 @@
 # OATH accounts
 
-Pico FIDO also implements OATH-style one-time password storage. This is useful, but it is not why most people should choose the firmware.
+Pico FIDO also stores OATH accounts for services that still require one-time passwords. Most users choose the firmware for its FIDO features, but OATH can help with older services.
 
 ## What upstream claims
 
@@ -11,11 +11,11 @@ The upstream README lists support for:
 - HOTP
 - compatibility with Yubico Authenticator and `ykman` in supported configurations
 
-This is a practical feature set for users who still need OTP-based services.
+Together, these features cover users who still need OTP-based services.
 
 ## When OATH makes sense
 
-Use OATH accounts when:
+OATH accounts are useful when:
 
 - the service does not support passkeys
 - you need TOTP or HOTP specifically
@@ -49,12 +49,12 @@ If you do not explicitly need HOTP, TOTP is usually easier to live with.
 - account metadata may be managed differently depending on the tool
 - Yubico-oriented apps may care about VID/PID identity or device naming heuristics
 
-That means a feature can exist in firmware and still be awkward in a specific desktop toolchain.
+As a result, a feature may work in firmware but remain awkward to manage with a particular desktop tool.
 
 ## Security notes
 
 - the secret stays on the device
 - the generated code does not
-- whoever sees a valid OTP quickly enough can usually replay it
+- anyone who sees a valid OTP may be able to use it before the legitimate user does
 
 Treat OATH as a compatibility feature, not as the primary reason to adopt Pico FIDO.
